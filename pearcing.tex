@@ -1,0 +1,267 @@
+% !TEX root = combinatorics.tex
+\documentclass[combinatorics.tex]{subfiles}
+\begin{document}
+\chapter{The Sauer-Shelah Lemma}
+\label{combinatorics}
+
+\def\vc{{\footnotesize VC}}
+\def\nip{{\footnotesize NIP}}
+
+
+\def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
+\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+\definecolor{brown}{RGB}{150, 50, 10}
+\definecolor{green}{RGB}{10,120, 20}
+\def\mr{\color{brown}}
+\def\gr{\color{green}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{A piercing problem}\label{qq}
+
+After Pierre Simon, after Jiri Matousek, after Noga Alon and Daniel Kleitman.
+
+Let $q\le p<\omega$ we say that $\Phi$ has the $(p,q)\jj$property if out of every $p$ sets in $\Phi$ some $q$ have non empty intersection.
+It has the dual $(p,q)\jj$property if for every $p$ point in $\U$ some $q$ are belong to the same set in $\Phi$.
+
+
+The following a is a particular case of a theorem of  Matousek (based on a proof of Noga Alon and Daniel Kleitman).
+The proof by Pierre Simon is simpler.
+[I will add details, references, and much more.]
+
+\begin{theorem}\label{thm_qq}
+Let $\U$ be finite and let $\Phi$ have \vc-dimension $k<\omega$.
+There are some integers $q$ and $h$ that depends only on $k$ such that, if every $B\subseteq\U$ of cardinality $q$ is a subset of some $\phi\in\Phi$, then $\U$ is covered by some $X\subseteq\Phi$ of cardinality $h$.
+\end{theorem}
+
+This theorem is often stated in the dual form which explains why it is sometimes called a piercing (or Helly-type) theorem: there are some integers $q$ and $h$ that depends only on $k$ such that, if every $q$ sets in $\Phi$ have non-empty intersection, then there is a $B\subseteq\U$ of cardinality $h$ that intersects every $\phi\in\Phi$.
+See Exercise~\ref{ex_dual_qqthm}.
+
+% \begin{proof}
+% Let $\<a_i:i<m\>$ and $\<\phi_j:j<n\>$ enumerate $\U$ and $\Phi$ without repetitions.
+Recall that the dual system is $\U^*=\Phi$ and $\Phi\!^{*}\!=\big\{\Phi_i: i<m\big\}$, where $\Phi_i=\big\{\phi\in\Phi: a_i\in\phi\big\}$.
+By Proposition~\ref{prop_vc*} the dual system has \vc-dimension $2^k$.
+Choose some $\epsilon=1/2$.
+From Theorem~\ref{thm_epsilon_approx} we obtain an $h$ such that every probability measure $\mu^*\!$ on \ $\Phi$ has an $\epsilon\jj$ap\-prox\-i\-ma\-tion of cardinality $h$.
+As $\epsilon$ is fixed, this $h$ only depends on $k$.
+Then there is a muti-set $X:\Phi\to\omega$ of cardinality $h$ such that
+% 
+% \parbox{10ex}{$\sharp$}
+% $\displaystyle\left|\mu\!^*\!(\Phi_i)\ -\ \frac{|X\cap\Phi_i|}{h}\right|\medrel{\le}\epsilon.$
+% 
+% Recall how we read notation with multi-sets
+% 
+% \parbox{10ex}{~}
+% $\displaystyle|X\cap\Phi_i|\medrel{=}\sum_{a_i\in\phi} X(\phi)$
+% 
+% Now, suppose that the probability measure on $\Phi$ is such that $\mu\!^*\!(\Phi_i)>\epsilon$ for all $i<m$, then the set $Y=\big\{\phi\in\Phi\ :\ X(\phi)\neq\0\big\}$ intersects every $\phi\in\Phi$.
+Moreover $|Y|\le h$ as required.
+% 
+% For $i<m$ and $j<n$ let $P_{i,j}=1$ if $a_i\in\phi_j$ and $0$ otherwise.
+Suppose we can find some $x_j\in\RR$ such that for every $i<m$
+% 
+% \parbox{10ex}{$\flat$}
+% $\displaystyle\sum_{j<n}\big(P_{i,j}-\epsilon\big)x_j\medrel{>}0$
+% 
+% Then we can assume that all $x_j$ are positive.
+In fact,
+% 
+% \parbox{10ex}{~}
+% $\displaystyle\sum_{j<n}P_{i,j}\medrel{\ge}1$
+% 
+% (because every $a_i$ belongs to some $\phi_j$) so we can translate translate solutions of any positive quantity.
+We can also rescale solutions so, setting $\mu\!^*(\phi_j)\deq x_j$, we obtain a well-defined probability measure
+% 
+% \parbox{10ex}{~}
+% $\displaystyle\mu\!^*(\Phi_i)\medrel{=}\sum_{j<n}P_{i,j}\,x_j\medrel{>}\epsilon$
+% 
+% We only have to prove that equation $\flat$ has a solution.
+It suffices to show that clause \ssf{2} of Farkas' Lemma cannot obtain, that is, for every $\lambda_i\in\RR_+$ there are some $x_j\in\RR_+$ such that
+% 
+% \parbox{10ex}{$\flat\flat$}
+% $\displaystyle\sum_{i<m}\lambda_i\sum_{j<n}\big(P_{i,j}-\epsilon\big)x_j\medrel{>}0$.
+% 
+% As we can assume the $\lambda_i$ add to $1$, setting $\mu(a_i)\deq\lambda_i$, we obtain a probability measure on $\U$.
+Note that for every $j$ we have
+% 
+% \parbox{10ex}{~}
+% $\displaystyle\mu(\phi_j)\medrel{=}\sum_{i<m}\lambda_i P_{i,j}.$
+% 
+% By Theorem~\ref{thm_epsilon_approx}, once again, there is a $q$ such that for every probability measure $\mu$ on $\U$ there is a multi-set $B:\U\to\omega$ of cardinality $q$ such that
+% 
+% \parbox{10ex}{$\sharp\sharp$}
+% $\displaystyle\left|\mu(\phi_j)\ -\ \frac{\big|B\cap\phi_j\big|}{q}\right|\medrel{\le}\epsilon.$
+% 
+% As $\epsilon$ is fixed, $q$ only depends on $k$.
+By assumption, there is a $\check\jmath$ such that $\big\{a:B(a)\neq0\big\}\subseteq\phi_{\check\jmath}$ hence $|B\cap\phi_{\check\jmath}|=q$.
+Therefore $\mu(\phi_{\check\jmath})>1-\epsilon$.
+Let $\check x_j$ be $1$ for $j=\check\jmath$ and $0$ otherwise.
+We claim that the tuple $\<x_j:j<n\>$ is a solution of $\flat\flat$.
+In fact
+% 
+% \parbox{10ex}{~}
+% $\displaystyle\sum_{i<m}\lambda_i\sum_{j<n}\big(P_{i,j}-\epsilon\big)\check x_j\medrel{=}{\sum_{i<m}\lambda_i\big(P_{i,\check\jmath}-\epsilon\big)}\medrel{=}\mu(\phi_{\check\jmath})-\epsilon\medrel{\ge}1-\epsilon\medrel{>}0$.
+% 
+% This concludes the proof.
+% \end{proof}
+
+
+
+\begin{proof}
+Let $\<a_i:i<m\>$ and $\<\phi_j:j<n\>$ enumerate $\U$ and $\Phi$ without repetitions.
+Recall that the dual system is $\U\!^*=\Phi$ and $\Phi\!^{*}\!=\big\{\Phi_i: i<m\big\}$, where $\Phi_i=\big\{\phi\in\Phi: a_i\in\phi\big\}$.
+By Proposition~\ref{prop_vc*} the dual system has \vc-dimension $2^k$.
+Choose some $\epsilon=1/2$.
+From Corollary~\ref{coroll_epsilon_net} we obtain an $h$ such that every probability measure $\mu\!^*$ on \ $\Phi$ admits an $\epsilon\jj$net of cardinality $h$.
+As $\epsilon$ is fixed, this $h$ only depends on $k$.
+Restating this explicitly there is a set $X\subseteq\U\!^*$ of cardinality $h$ such that
+
+\parbox{10ex}{$\sharp$}
+$\displaystyle\left|\mu\!^*\!(\Phi_i)\right|>\epsilon\medrel{\IMP}X\cap\Phi_i\neq\0$
+
+So, if the probability measure on $\Phi$ is such that $\mu\!^*\!(\Phi_i)>\epsilon$ for all $i<m$, then $X\subseteq\Phi$ cover $\U$ as required by the theorem.
+So we only need to find such a probability measure.
+
+For $i<m$ and $j<n$ let $P_{i,j}=1$ if $a_i\in\phi_j$ and $0$ otherwise.
+Suppose we can find some $x_j\in\RR$ such that for every $i<m$
+
+\parbox{10ex}{$\flat$}
+$\displaystyle\sum_{j<n}\big(P_{i,j}-\epsilon\big)x_j\medrel{>}0$
+
+Then we can assume that all $x_j$ are positive.
+In fact,
+
+\parbox{10ex}{~}
+$\displaystyle\sum_{j<n}P_{i,j}\medrel{\ge}1$
+
+(because every $a_i$ belongs to some $\phi_j$) so we can translate solutions of any positive quantity.
+We can also rescale solutions so, setting $\mu\!^*(\phi_j)\deq x_j$, we obtain a well-defined probability measure
+
+\parbox{10ex}{~}
+$\displaystyle\mu\!^*(\Phi_i)\medrel{=}\sum_{j<n}P_{i,j}\,x_j\medrel{>}\epsilon$
+
+We only have to prove that equation $\flat$ has a solution.
+It suffices to show that clause \ssf{2} of Farkas' Lemma cannot obtain, that is, for every $\lambda_i\in\RR_+$ there are some $x_j\in\RR_+$ such that
+
+\parbox{10ex}{$\flat\flat$}
+$\displaystyle\sum_{i<m}\lambda_i\sum_{j<n}\big(P_{i,j}-\epsilon\big)x_j\medrel{>}0$.
+
+As we can assume the $\lambda_i$ add to $1$, setting $\mu(a_i)\deq\lambda_i$, we obtain a probability measure on $\U$.
+Note that for every $j$ we have
+
+\parbox{10ex}{~}
+$\displaystyle\mu(\phi_j)\medrel{=}\sum_{i<m}\lambda_i P_{i,j}.$
+
+Apply Corollary~\ref{coroll_epsilon_net} once again to the set-system $\<\U,\neg\Phi\>$.
+There is a $q$ such that for every probability measure $\mu$ on $\U$ there is a set $B\subseteq\U$ of cardinality $q$ such that
+
+\parbox{10ex}{$\sharp\sharp$}
+$\displaystyle\mu(\neg\phi_j)>\epsilon\medrel{\IMP}B\not\subseteq\phi_j$
+
+As $\epsilon$ is fixed, $q$ only depends on $k$.
+By assumption, there is a $\check\jmath$ such that $B\subseteq\phi_{\check\jmath}$ and therefore $\mu(\phi_{\check\jmath})\ge1-\epsilon$.
+Let $\check x_j$ be $1$ for $j=\check\jmath$ and $0$ otherwise.
+We claim that the tuple $\<x_j:j<n\>$ is a solution of $\flat\flat$.
+In fact
+
+\parbox{10ex}{~}
+$\displaystyle\sum_{i<m}\lambda_i\sum_{j<n}\big(P_{i,j}-\epsilon\big)\check x_j\medrel{=}{\sum_{i<m}\lambda_i\big(P_{i,\check\jmath}-\epsilon\big)}\medrel{=}\mu(\phi_{\check\jmath})-\epsilon\medrel{\ge}1-\epsilon\medrel{>}0$.
+This concludes the proof.
+\end{proof}
+
+The following is a classical result.
+The proof may be found in any introductory text of convex analysis or linear programming.
+There are many (sometimes non equivalent) ways to state it, we recommend  Terence Tao's exposition which may be found in his mathematical blog (we have reversed strict and weak inequalities, but the proof is identical).
+
+\begin{proposition}[(Farkas' Lemma)]
+For $i<m$ let $P_i:\RR^n\to\RR$ be affine linear functions.
+Then the following are equivalent\nobreak  
+\begin{itemize}
+\item[1.] $\displaystyle\bigwedge_{i<m}P_i(x)> 0$ for some $x\in\RR^n$;
+\item[2.] there are no $\lambda_i\in\RR_+$ such that \smash{$\displaystyle\sum_{i<m}\lambda_iP_i(x)\le 0$} for every $x\in\RR^n$.\QED
+\end{itemize}
+\end{proposition}
+
+% \begin{proof}
+% \def\myC{\raisebox{-.5ex}{\Bigg[}}
+% \def\myJ{\raisebox{-.5ex}{\Bigg]}}
+% 
+% By induction on $n$.
+It will help induction 
+% 
+% \begin{itemize}
+% \item[1.] $\displaystyle\bigvee_{j<m}\myC\bigwedge_{i<m}P_{i,j}(x)> 0\myJ$ for some $x\in\RR^n$;
+% \item[2.] for every $j<m$ there are some $\lambda_i\in\RR_+$ such that \smash{$\displaystyle\sum_{i<m}\lambda_iP_{i,j}(x)\le 0$} for every $x\in\RR^n$.
+% \end{itemize}
+% 
+% Let $|x|=n$ and $|y|=1$.
+Up to rescaling we can assume that $P_{i,j}(x,y)$ have the form 
+% 
+% \parbox[t]{10ex}{\hfil$\displaystyle\bigvee_{j<m}$}
+% $\displaystyle\myC\;\bigwedge_{i\in I_1}P_{i,j}(x)+y>0\medrel{\wedge}\bigwedge_{i\in I_2}y-P_{i,j}(x)>0\medrel{\wedge}\bigwedge_{i\in I_3}P_{i,j}(x)>0\myJ$
+% 
+% It is easy to see that these equations can ve solved if we can first solve in the following equations in $x$   
+% 
+% \parbox[t]{10ex}{\hfil$\displaystyle\bigvee_{j<m}$}
+% $\displaystyle\min_{i\in I_1} P_{i,j}(x)\ \ge\ \max_{i\in I_2}P_{i,j}(x)\wedge\myC\,\bigwedge_{i\in I_3}P_{i,j}(x)>0\myJ$
+% 
+% 
+% The former can be written 
+% 
+% \end{proof}
+
+\begin{exercise}\label{ex_dual_qqthm}
+Let $k$, $q$ and $h$ be some integers as in Theorem~\ref{thm_qq} and let $\Phi$ be a set-system with dual \vc-dimension $k$.
+Suppose that any $q$ sets in $\Phi$ have non-empty intersection and prove that there is some set $B\subseteq\U$ of cardinality $h$ that intersects every $\phi\in\Phi$.\QED
+\end{exercise}
+
+
+
+
+\section{Appendix: Farkas' lemma}\label{appendix}
+
+Below, an affine version of Farkas' Lemma tailored to our purposes.
+
+\begin{proposition}
+Fix some $v_1,\dots,v_n,u\in\QQ^k$ and let $r_1,\dots,r_n,s\in\QQ$.
+Let 
+
+\hfil $X(r_1,\dots,r_n)=\{x\in\QQ^k\ :\ r_i\le v_i\cdot x, \textrm{ for every }i=1,\dots,n\}$.
+
+
+Then the following are equivalent
+\begin{itemize}
+\item[1.] $s\le u\cdot x$ for all $x\in X(r_1,\dots,r_n)$;
+\item[2.] there exist $q_1,\dots,q_n\in\QQ^+$ such that \smash{$\displaystyle\sum^n_{i=1} q_iv_i=u$}.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Implication \ssf{2}$\IMP$\ssf{1} is immediate.
+To prove \ssf{1}$\IMP$\ssf{2} assume \ssf{1}.
+We claim that
+\begin{itemize}
+\item[3.] $0\le u\cdot x$ for all $x\in X(0,\dots,0)$.
+\end{itemize}
+Suppose not and let $x\in X(0,\dots,0)$ be such that $u\cdot x<0$.
+Let $y\in X(r_1,\dots,r_n)$.
+Then $y+ax\in X(r_1\dots,r_n)$ for every $a\in\QQ^+$.
+From \ssf{1} we obtain $s\le u\cdot (y+ax)$ which, for $a$ is sufficiently large, is a contradiction.
+
+
+From \ssf{3} it follows that if $x\cdot v_i=0$ for $i=1,\dots,n$ then $0= u\cdot x$.
+We can assume without loss of generality that $v_1,\dots,v_n$ are linearly independent.
+Then by linear algebra \smash{$\sum q_iv_i=u$} for some $q_i\in\QQ$.
+Now fix $i$ and verify that $q_i$ is non-negative.
+Let $x_i$ such that $x_i\cdot v_j=1$, if $i=j$, and $0$ otherwise.
+Then $0\le x_i\cdot u=q_i$.
+\end{proof}
+
+
+
+ 
+ 
+\end{document}

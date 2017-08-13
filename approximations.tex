@@ -1,0 +1,317 @@
+% !TEX root = combinatorics.tex
+\documentclass[combinatorics.tex]{subfiles}
+\begin{document}
+\chapter{The Sauer-Shelah Lemma}
+\label{combinatorics}
+
+\def\vc{{\footnotesize VC}}
+\def\nip{{\footnotesize NIP}}
+
+
+\def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
+\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+\definecolor{brown}{RGB}{150, 50, 10}
+\definecolor{green}{RGB}{10,120, 20}
+\def\mr{\color{brown}}
+\def\gr{\color{green}}
+
+
+\chapter{Approximations}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Epsilon-approximations}\label{epsilon_approximations}
+
+\def\Av{\mathbin{\textrm{Av}}}
+\def\disc{\mathbin{\textrm{disc}}}
+\def\ceq#1#2#3{\parbox[t]{30ex}{$\displaystyle #1$}\parbox{5ex}{$\displaystyle\hfil #2$}{$\displaystyle #3$}}
+
+Let $\mu$ be some probability measure on $\U$ that makes all $\phi$-definable sets measurable.
+We say that a finite set $A\subseteq\U$ is an \emph{$\epsilon$-approximation of $\mu$\/} or \emph{$\epsilon\jj$sample\/} if for every $b$
+
+\ceq{\star\hfill\left|\mu\phi(\U,b) - \frac{\big|\phi(A,b)\big|}{|A|}\right|}{\le}{\epsilon}
+
+It is not true that all probability measures admits $\epsilon\jj$approximations for arbitrarily small $\epsilon$. Not even when $\U$ is finite (see Exercise~\ref{ex_counterexample}).
+This is unfortunate, so we introduce a weaker notion of approximation.
+
+A \emph{multi-set\/} is a map $A:\U\to\omega$.
+We interpret $A(a)$ as the multiplicity of the element $a$.
+We say that the multi-set $C$ is a subset of $A$, and write $C\subseteq A$, if $C(a)\le A(a)$ for all $a\in\U$. 
+We define $A\cap C$ as the multi-set $a\mapsto\min\{A(a),C(a)\}$ and  $A\sm C$ as the multi-set $a\mapsto\max\{0,A(a)-C(a)\}$.
+
+The \emph{size of $A$\/} is defined as
+
+\ceq{\hfill\emph{$|A|$}}{=}{\sum_{a\in\U} A(a).}
+
+Note that $|A|=|A\cap C|+|A\sm C|$.
+
+When $A$ is a multi-set we read \emph{$\phi(A,b)$\/} as the intersection of $A$ with $\phi(\U,b)$.
+
+We say that $A:\U\to\omega$ is a \emph{multi-set $\epsilon\jj$approximation\/} of $\mu$ if inequality $\star$ holds with the reading adapted to multi-sets.
+It is clear that every measure on a finite set admits multi-set $\epsilon\jj$approximations for arbitrarily small $\epsilon$ or, when $\mu$ is rational-valued, even a $0\jj$approximation.
+
+
+% It is useful to introduce an even weaker notion.
+% We say that a finite set $A$ is an \emph{$\epsilon$-net for $\mu$\/} if for every $b$
+%  
+% \ceq{\hfill\mu\phi(\U,b)>\epsilon}{\IMP}{\phi(A,b)\neq\0.}
+% 
+% Clearly, any $\epsilon\jj$approximation is in particular an $\epsilon\jj$net.
+% More generally, if $A:\U\to\omega$ is a multi-set $\epsilon\jj$approximation then $\supp A$ is an $\epsilon\jj$net.
+
+Given $\epsilon$ we are interested in the least $n$ such that some $\epsilon\jj$approximations of size $n$ exist.
+The idea is to start with a large approximation and reduce size at the cost of slightly enlarging $\epsilon$.
+We now introduce a powerful technique for achieving this.
+
+It is convenient to include $\U$ among the definable sets. So, let $u\notin\V$ be a fresh element. We extend $\phi$ on $\V\cup\{u\}$ by defining \emph{$\phi(\U,u)=\U$}. 
+
+A \emph{coloring of $A$\/} is just a subset $C\subseteq A$.
+For $b\in\V\cup\{u\}$ we write 
+
+\ceq{\hfill\emph{$\delta_{A,C,b}$}}{=}{\frac{1}{|A|}\ \Big(|\phi(C,b)|-|\phi(A{\sm} C,b)|\Big).}
+
+The \emph{(relative) discrepancy\/} of $C$ is\smallskip
+
+\ceq{\hfill\emph{$\delta_{A,C}$}}{=}{\sup_{b\in\V\cup\{u\}}\big|\delta_{A,C,b}\big|}
+
+The \emph{discrepancy\/} of $A$ is 
+
+\ceq{\hfill \emph{$\delta_A$}}{=}{\inf_{C\subseteq A}\delta_{A,C}}
+
+\smallskip
+It is immediate that if $\phi$ shatters $A\subseteq\U$, then $\delta_A$ is large, i.e.\@ close to $1/2$.
+
+The next lemma is intuitive, if an $\epsilon$-approximation has small discrepancy then we can halve its size at a small cost.
+
+\begin{lemma}\label{lem_aprossimazionediapprossimazione}
+Let $A$ be an $\epsilon$-approximation of $\mu$ of size $n$.
+Let $C\subseteq A$ be a coloring of discrepancy $\delta_{A,C}$.
+Then either $C$ or $A\sm C$ is an $(\epsilon+\delta_{A,C})\jj$approximation of $\mu$ of size $\le n/2$.
+\end{lemma}
+
+\begin{proof}
+%Assume for clarity that $A$ is integral, so infimum and supremum in the definition of $\delta_A$ can be replaced by minimum and maximum.
+%It is straightforward to generalize the argument to fractional multi-sets (it is not needed for the application below).
+
+Define also $n^+{=}\,|C|$ and  $n^-{=}\,|A{\sm}C|$.
+We may assume that $n^+\le n/2$, otherwise swap $C$ and $A\sm C$.
+Then $\delta_{A,C,u}=(n^+-n^-)/n<0$.
+
+\ceq{\ssf{1.}\hfill\frac{|\phi(A,b)|}{n}}{=}{\frac{|\phi(C,b)|\, +\, |\phi(A{\sm}C,b)|}{n}}
+
+\ceq{}{=}{\frac{2|\phi(C,b)|}{n}\, -\, \delta_{A,C,b}}
+
+\ceq{}{\le}{\frac{|\phi(C,b)|}{n^+}\, +\, \delta_{A,C}}
+
+We also have 
+
+\ceq{\ssf{2.}\hfill\frac{|\phi(A,b)|}{n}}{=}{\frac{2|\phi(C,b)|}{n}\, -\, \delta_{A,C,b}}
+
+\ceq{}{=}{\frac{|\phi(C,b)|}{n^+}\big(1+\delta_{A,C,u}\big)\,-\,\delta_{A,C,b}}
+
+\ceq{}{\ge}{\frac{|\phi(C,b)|}{n^+}\ -\ 2\delta_{A,C}}
+
+Combining \ssf{1} and \ssf{2} we obtain\smallskip
+
+\ceq{\hfill\left|\frac{|\phi(A,b)|}{n}\ -\ \frac{|\phi(C,b)|}{n^+}\right|}{\le}{2\delta_{A,C}}\smallskip
+
+hence\smallskip
+
+\ceq{\hfill\left|\mu\phi(A,b)\ -\ \frac{|\phi(C,b)|}{n^+}\right|}{\le}{\epsilon + 2\delta_{A,C}}\smallskip
+
+as claimed by the lemma.
+\end{proof}
+
+\begin{corollary}
+Let $A$ be an $\epsilon$-approximation of $\mu$ of size $n$ and discrepancy $\delta_A$.
+Then there is an $(\epsilon+2\delta_A)\jj$approximation of $\mu$ of size $\le n/2$.
+\end{corollary}
+
+The lemma above tells that $\epsilon$-approximations with small discrepancy are useful, but as yet we have no clue as to finding one.
+We are going to prove that when the number of definable subsets of $A$ is relatively small, then the discrepancy of $A$ is not too large.
+We use a probabilistic argument to prove this bound (when you don't have a clue how to do something, you might as well do it randomly).
+
+First, we make a brief digression into probability theory.
+The following inequality is a classical tool in this context.
+
+\begin{lemma}[(Chernoff's bound, special case)]\label{Chernoff}
+For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that $\Pr(X_i=\pm1)=1/2$.
+Then for every $\delta>0$
+
+\ceq{\hfill \Pr\big(\bar X\ge\delta\big)}{\le}{\exp(-\frac{n}{2}\delta^2)}\hfill where $\displaystyle \bar X=\frac1n\sum^n_{i=1}X_i$
+\end{lemma}
+\begin{proof}
+Let $t>0$ be arbitrary.
+Then
+
+\ceq{\sharp\hfill \Pr(\bar X\ge\delta)}{=}{ \Pr\big(e^{t\bar X}\ge e^{t\delta}\big)}
+
+\ceq{~}{\le}{e^{-t\delta}\,{\rm E}\big(e^{t\bar X}\big)}
+
+In fact, the equality follows because the exponential is an increasing function and the inequality is Markov's inequality, which says that $\Pr(X\ge a)\le a^{-1}{\rm E}(X)$ for every $a$ and is immediate to verify.
+Now observe that
+
+\ceq{\hfill {\rm E}\big(e^{tX_i}\big)}{=}{\frac12e^t\ +\ \frac12e^{-t}}
+
+\ceq{~}{=}{\frac12\sum^\infty_{i=0}\frac{t^i}{i!}\ +\ \frac12\sum^\infty_{i=0}\frac{(-t)^{i}}{i!}}
+
+\ceq{~}{=}{\sum^\infty_{i=0}\frac{t^{2i}}{(2i)!}}
+
+\ceq{~}{\le}{\sum^\infty_{i=0}\frac{(t^2/2)^i}{i!}}
+
+\ceq{~}{=}{e^{t^2/2}}
+
+From this, by independence we have 
+
+\ceq{\hfill {\rm E}\big(e^{t\bar X}\big)}{=}{\prod^n_{i=1}e^{(t/n)X_i}}$\medrel{=}e^{t^2/2}$
+
+
+Subtituting in $\sharp$ gives $\Pr(\bar X\ge\delta)\le e^{t^2/2-t\delta}$.
+Finally Chernoff's inequality is obtained substituting $\delta$ for $t$.
+\end{proof}
+
+
+\begin{lemma}\label{lem_discrepanzarandom} 
+Let $A$ be a multi-set of size $\le n$. Assume the support of $A$ has $\le m$  definable subsets. Then $\delta_A\ \le\ \sqrt{(2/n)\ln(2m)\;}$.
+\end{lemma}
+
+\begin{proof}
+\def\ceq#1#2#3{\parbox[t]{40ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+To prove that $\delta_A\le\delta$ it suffices to show that there is a coloring $C\subseteq A$ such that $\delta_{A,C,b}\le\delta$ for all $b$. This is obviously true if we can define a probability on $C$ and show that
+
+\ceq{\hfill \Pr\big(\big\{C\subseteq A\ :\ \A b\ \ \delta_{A,C,b}\le \delta\big\}\big)}{>}{0}
+
+or, by \ssf{3}, that for every $b\in\V$
+
+\ceq{\ssf{4.}\hfill\Pr\big(\big\{C\subseteq A\ :\ \delta_{A,C,b}\ge\delta\big\}\big)}{\le}{\frac1{2m}.}
+
+Let $\<a_1,\dots,a_n\>$ be an enumeration of $A$. Imagine that the colorings are obtained by tossing $n$ time a fair coin a toss to decide the color of each $a_i$ independently. Denote by $C_\sigma$ the coloring associated to the sequence of coin toss $\sigma$. Fix $b\in\V$ and let $X_i$ be the random variables
+
+{\def\ceq#1#2#3{\parbox[t]{20ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+\ceq{\hfill X_i}{=}{
+\left\{\begin{array}{ll}
++1 & {\rm if\ } a_i\in\phi(C_\sigma,b)\\
+-1 &  {\rm otherwise\ }\\
+\end{array}\right.}}
+
+Then $\bar X=\delta_{A,C_\sigma,b}$ and we may apply Chernoff's bound to obtain
+
+\ceq{\hfill\Pr\big(\big\{C\subseteq A\ :\ \delta_{A,C,b}\ge\delta\big\}\big)}{=}{\Pr(\bar X\ge\delta)}
+
+\ceq{}{\le}{\exp(-\frac{n\delta^2}{2}),}
+
+Then \ssf{4} is satisfied if $n\delta^2/2\le \ln(2m)$. This yields the required bound.
+\end{proof}
+
+\begin{theorem}\label{thm_epsilon_approx}
+Let $\phi$ have \vc-density $d$.
+Let $\mu$ be some probability measure that admits an $\eta$-approximation.
+Then there is a $(\epsilon+\eta)$-approximation of size 
+
+\ceq{\natural\hfill n}{\le}{C\frac{k}{\epsilon^2}\ln\frac{1}{\epsilon}.}
+
+where $C$ is an absolute constant. In particular, the bound above does not depend on the size of the $\eta$-approximation.
+\end{theorem}
+
+Note that the bound claimed by the theorem only depends on the dimension of $\phi$ and it is independent of $\mu$.
+
+\begin{proof}
+For $i=0,\dots,h$ we construct a decreasing chain $A_i$ of $\eta_i$-approximations.
+By assumption we can require $A_0$ is an $\eta_0$-approximation for $\eta_0=\eta$.
+We denote by $n_i$ and $\delta_i$ the cardinality, respectively the discrepancy, of $A_i$.
+By lemma~\ref{lem_aprossimazionediapprossimazione}, we can require that $\eta_{i+1}\le\eta_i+2\delta_i$ and $n_i=2^{-i}n_0$. We can assume $n_0=2^m$ for some $m$.
+Then
+
+\ceq{\hfill \eta_h}{=}{\eta\ +\ 2\sum^h_{i=1}\delta_i}
+
+The construction stops at the least $h$ such that 
+
+\ceq{\hfill \sum^{h}_{i=1}\delta_i}{\le}{\sum^{h}_{i=1}\sqrt{\frac{2d(m-i)\ln 2}{2^{m-i}}}}
+
+\ceq{}{\le}{O(1)\sqrt{d(m-h)2^{-(m-h)}}}
+
+
+
+
+$\epsilon<\epsilon_h+2\delta_h$.
+So we have ``only'' have to prove that (independently of $n_0$) this $h$ satisfies
+
+\ceq{\natural\natural\hfill 2^{-h}n_0}{\le}{2^8\frac{k}{\epsilon^2}\ln\frac{1}{\epsilon^2}.}
+
+We may rewrite the condition $\epsilon<\epsilon_h+2\delta_h$ as
+
+\ceq{\hfill\epsilon}{<}{4\sum^{h+1}_{i=1}\delta_i}
+
+To get rid of some annoying square roots that will appear soon, we substitute the latter inequality with
+
+\ceq{\hfill\epsilon^2}{<}{2^5\sum^{h+1}_{i=1}\delta^2_i}
+
+% This suffices because (for any numbers $\delta_i$)
+% 
+% \ceq{\hfill\Big(\sum^{h+1}_{i=1}\delta_i\Big)^2}{<}{2\sum^{h+1}_{i=1}\delta^2_i}
+
+We do not know $\delta_i$ but Lemma~\ref{lem_discrepanzarandom}, together with Sauer's Lemma~\ref{lem_Sauer}, gives an upper bound
+
+\ceq{\hfill\delta^2_i}{\le}{\frac{2}{n_i}\ln n_i^{k}}
+
+\ceq{}{=}{\frac{2^{i+1}}{n_0}\Big(k\ln 2^{-i}+ k\ln n_0\Big)}
+
+\ceq{}{\le}{\frac{2^{i+1}}{n_0}k\ln n_0}
+
+Then we obtain
+
+\ceq{\hfill\sum^{h+1}_{i=1}\delta^2_i }{\le}{2^{h+2}k\ \frac{\ln n_0}{n_0}}
+
+The theorem is complete as any $h$ that satisfies the inequality
+
+\ceq{\hfill \epsilon^2}{<}{2^{h+7}k\ \frac{\ln n_0}{n_0}}
+
+verifies $\natural\natural$ (and in particular the $h$ at which the constructions stops).
+The verification of is immediate, it suffices to substitute for $\epsilon^2$ the r.h.s.\@ of the inequality above and recall that we can assume that $n_0$ is sufficiently large.
+\end{proof}
+
+%We need to deal with arbitrary measures on finite sets $\U$.
+Then the uniform measure on $\U$ admits a $0\jj$approximation, namely $\U$ itself.
+Then it admits $\epsilon\jj$approximations of size at most $\natural$ for every $0<\epsilon<1$.
+
+% The following proposition is immediate.
+% 
+% \begin{proposition}\label{prop_0_multiapprox}
+% Let $\Phi$ be a finite set-system then every probability measure $\mu$ admits a multi-set  $\epsilon\jj$approximation and every positive $\epsilon$.
+(Even a $0\jj$approximation, if $\mu$ is rational valued.)\QED
+% \end{proposition}
+
+\begin{corollary}\label{coroll_epsilon_multiapprox}Let $\Phi$ be a finite set-system of \vc-dimension $1<k<\omega$.
+Then for every positive $\epsilon<1$, every probability measure $\mu$ admits a multi-set $\epsilon$-approximation of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
+\end{corollary}
+\begin{proof}
+Without loss of generality we can assume that $\mu$ is rational valued.
+Then there is a uniform probability measure $\mu'$ on some finite set $\U'$ and a surjection $f:\U'\to\U$ such that $\mu(f^{-1}\phi)=\mu(\phi)$.
+By Theorem~\ref{thm_epsilon_approx} $\mu'$ admits an $\epsilon\jj$approximation $B'$ with cardinality by $\natural$, for every positive $\epsilon<1$.
+We know define a multi-set $B$ such that $B(a)=|B'\cap f^{-1}|$ for every $a\in\U$.
+As $|B'|=|B|$ and $|B'\cap f^{-1}\phi|=|B\cap\phi|$, this is the required multi-set $\epsilon$-approximation.
+\end{proof}
+
+The following corollary is used in Theorem~\ref{thm_qq} below.
+Though it is sufficient for our application, stronger bound are known (essentially, we can replace $\epsilon$ for $\epsilon^2$).
+
+
+
+\begin{corollary}\label{coroll_epsilon_net}
+Let $\Phi$ be a finite set-system of \vc-dimension $1<k<\omega$.
+Then for every positive $\epsilon<1$, every probability measure $\mu$ admits a multi-set $\epsilon$-net of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
+\end{corollary}
+
+\begin{exercise}\label{ex_counterexample}
+Suppose that $\{a\},\{b\}\in\Phi$ for some $a,b\in\U$.
+Show that, if $\mu$ and $\epsilon$ are such that $0<\epsilon<\mu(a)$ and $2\epsilon<\mu(b)-\mu(a)$, then $\mu$ admits no $\epsilon\jj$approximation.\QED
+\end{exercise}
+
+
+
+ 
+ 
+\end{document}
