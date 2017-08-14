@@ -1,8 +1,8 @@
-% !TEX root = combinatorics.tex
-\documentclass[combinatorics.tex]{subfiles}
+% !TEX root = sputnik.tex
+\documentclass[sputnik.tex]{subfiles}
 \begin{document}
-\chapter{The Sauer-Shelah Lemma}
-\label{combinatorics}
+
+\def\Fr{\mathop{\rm Fr}}
 
 \def\vc{{\footnotesize VC}}
 \def\nip{{\footnotesize NIP}}
@@ -11,10 +11,6 @@
 \def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
 \def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
-\definecolor{brown}{RGB}{150, 50, 10}
-\definecolor{green}{RGB}{10,120, 20}
-\def\mr{\color{brown}}
-\def\gr{\color{green}}
 
 
 \chapter{Approximations}
@@ -23,61 +19,97 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Epsilon-approximations}\label{epsilon_approximations}
 
-\def\Av{\mathbin{\textrm{Av}}}
-\def\disc{\mathbin{\textrm{disc}}}
-\def\ceq#1#2#3{\parbox[t]{30ex}{$\displaystyle #1$}\parbox{5ex}{$\displaystyle\hfil #2$}{$\displaystyle #3$}}
 
-Let $\mu$ be some probability measure on $\U$ that makes all $\phi$-definable sets measurable.
-We say that a finite set $A\subseteq\U$ is an \emph{$\epsilon$-approximation of $\mu$\/} or \emph{$\epsilon\jj$sample\/} if for every $b$
+\section{Multisets}\label{multisets}
 
-\ceq{\star\hfill\left|\mu\phi(\U,b) - \frac{\big|\phi(A,b)\big|}{|A|}\right|}{\le}{\epsilon}
+A sample is a sequence of elements of $\U$ where we disregard the order and only consider the number of times they appear.
+We formalize this with the notion of multiset. 
 
-It is not true that all probability measures admits $\epsilon\jj$approximations for arbitrarily small $\epsilon$. Not even when $\U$ is finite (see Exercise~\ref{ex_counterexample}).
-This is unfortunate, so we introduce a weaker notion of approximation.
-
-A \emph{multi-set\/} is a map $A:\U\to\omega$.
+A \emph{multiset\/} is a function $A:\U\to\omega$.
 We interpret $A(a)$ as the multiplicity of the element $a$.
-We say that the multi-set $C$ is a subset of $A$, and write $C\subseteq A$, if $C(a)\le A(a)$ for all $a\in\U$. 
-We define $A\cap C$ as the multi-set $a\mapsto\min\{A(a),C(a)\}$ and  $A\sm C$ as the multi-set $a\mapsto\max\{0,A(a)-C(a)\}$.
-
+The \emph{support\/} of $A$ is the set $\{a:A(a)\neq0\}$.
 The \emph{size of $A$\/} is defined as
 
 \ceq{\hfill\emph{$|A|$}}{=}{\sum_{a\in\U} A(a).}
 
+The set of multisets of size $n$ is denoted by \emph{$\U^{[n]}$}.
+
+If we identify plain sets with $\{0,1\}$-valued multisets, size generalizes cardinality.
+A tuple $\<a_1,\dots,a_n\>\in\U^n$ is an \emph{enumeration\/} of $A$ if $A(a)=\big|\{i:a_i=a\}\big|$ for all $a\in\U$.
+Clearly, any enumeration of $A$ has length $n=|A|$.
+
+We say that $C$ is a submultiset of $A$ if $C(a)\le A(a)$ for all $a\in\U$.
+We write \emph{$C\subseteq A$}.
+We write \emph{$A\cap C$\/} for the multiset $\min\{A(a),C(a)\}$.
+We write \emph{$A\sm C$\/} for the multiset $\max\{0,A(a)-C(a)\}$.
 Note that $|A|=|A\cap C|+|A\sm C|$.
 
 When $A$ is a multi-set we read \emph{$\phi(A,b)$\/} as the intersection of $A$ with $\phi(\U,b)$.
 
-We say that $A:\U\to\omega$ is a \emph{multi-set $\epsilon\jj$approximation\/} of $\mu$ if inequality $\star$ holds with the reading adapted to multi-sets.
-It is clear that every measure on a finite set admits multi-set $\epsilon\jj$approximations for arbitrarily small $\epsilon$ or, when $\mu$ is rational-valued, even a $0\jj$approximation.
+Note that the definitions above (but for the notion of enumeration) generalize to \emph{fractional multisets\/} i.e.,  function that take non negative real values. These will be used in the next chapter.  
 
 
-% It is useful to introduce an even weaker notion.
-% We say that a finite set $A$ is an \emph{$\epsilon$-net for $\mu$\/} if for every $b$
-%  
-% \ceq{\hfill\mu\phi(\U,b)>\epsilon}{\IMP}{\phi(A,b)\neq\0.}
-% 
-% Clearly, any $\epsilon\jj$approximation is in particular an $\epsilon\jj$net.
-% More generally, if $A:\U\to\omega$ is a multi-set $\epsilon\jj$approximation then $\supp A$ is an $\epsilon\jj$net.
+\section{A uniform law of large numbers}
+
+Given a multiset $A$ of finite size we define the \emph{frequency\/} of $\phi(\U,b)$ 
+
+\ceq{\hfill\emph{$\Fr\phi(A,b)$}}{=}{\frac{\big|\phi(A,b)\big|}{|A|}}
+
+Recall the weak law of large number.
+
+\begin{proposition}[(Weak law of large numbers)] 
+Let $\Pr$ be a probability measure on $\U$ that makes all definable sets measurable. Then for every $b\in\V$
+
+\def\ceq#1#2#3{\parbox[t]{45ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+\ceq{\hfill\displaystyle\Pr \Big(A\in\U^{[n]}\ :\ \Big|\Pr\phi(\U,b) - \Fr\phi(A,b)\Big|\le\epsilon\Big)}{\ge}{1-\frac{1}{4n\epsilon^2}}
+\end{proposition}
+
+\begin{proof}
+Let $p=\mu\phi(\U,b)$ then $\big|\phi(A,b)\big|$ is a binomial random variable $B(p,n)$. Hence $(1/n)\big|\phi(A,b)\big|$ has mean $p$ and variance $p(1-p)/n\le 1/4n$. Apply Chebyshev's inequality. 
+\end{proof}
+
+
+An \emph{$\epsilon$-approximation\/} of the probability measure $\Pr$ is a multiset $A\subseteq\U$ such that for every $b\in\V$
+
+\def\ceq#1#2#3{\parbox[t]{30ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+\ceq{\hfill\displaystyle \Big|\Pr\phi(\U,b) - \Fr\phi(A,b)\Big|}{\le}{\epsilon}
+
+We state the uniform law of large number for finite sample spaces. The generalization requires some technical nuisance, so it is moved to the end of the section.
+
+
+\begin{proposition}[(Uniform law of large numbers)] 
+Let $\Pr$ be a probability measure on $\U$, which we assume to be finite set. Let $\phi$ have \vc-density $d$. Then there is a multi-set $\epsilon$-approximation of size 
+
+\ceq{\hfill n}{\le}{C\frac{d}{\epsilon^2}\ln\frac1\epsilon,}
+
+where $C$ is an absolute constant (in particular, it does not depend neither on $\U$ nor on $\Pr$).
+\end{proposition}
+
+
+
+\section{Discrepancy}\label{epsilon_approximations}
+
+\def\ceq#1#2#3{\parbox[t]{30ex}{$\displaystyle #1$}\parbox{5ex}{$\displaystyle\hfil #2$}{$\displaystyle #3$}}
 
 Given $\epsilon$ we are interested in the least $n$ such that some $\epsilon\jj$approximations of size $n$ exist.
-The idea is to start with a large approximation and reduce size at the cost of slightly enlarging $\epsilon$.
+The idea is to start with an approximation of large size and reduce size at the cost of slightly enlarging $\epsilon$.
 We now introduce a powerful technique for achieving this.
 
 It is convenient to include $\U$ among the definable sets. So, let $u\notin\V$ be a fresh element. We extend $\phi$ on $\V\cup\{u\}$ by defining \emph{$\phi(\U,u)=\U$}. 
 
-A \emph{coloring of $A$\/} is just a subset $C\subseteq A$.
+A \emph{coloring of $A$\/} is just a submultiset $C\subseteq A$.
 For $b\in\V\cup\{u\}$ we write 
 
-\ceq{\hfill\emph{$\delta_{A,C,b}$}}{=}{\frac{1}{|A|}\ \Big(|\phi(C,b)|-|\phi(A{\sm} C,b)|\Big).}
+\ceq{\hfill\emph{$\delta_{A,C,b}$}}{=}{\frac{|\phi(C,b)|-|\phi(A{\sm} C,b)|}{|A|}.}
 
 The \emph{(relative) discrepancy\/} of $C$ is\smallskip
 
 \ceq{\hfill\emph{$\delta_{A,C}$}}{=}{\sup_{b\in\V\cup\{u\}}\big|\delta_{A,C,b}\big|}
 
-The \emph{discrepancy\/} of $A$ is 
+The \emph{(relative) discrepancy\/} of $A$ is 
 
 \ceq{\hfill \emph{$\delta_A$}}{=}{\inf_{C\subseteq A}\delta_{A,C}}
 
@@ -87,9 +119,9 @@ It is immediate that if $\phi$ shatters $A\subseteq\U$, then $\delta_A$ is large
 The next lemma is intuitive, if an $\epsilon$-approximation has small discrepancy then we can halve its size at a small cost.
 
 \begin{lemma}\label{lem_aprossimazionediapprossimazione}
-Let $A$ be an $\epsilon$-approximation of $\mu$ of size $n$.
+Fix a probability measure\/ $\Pr$. Let $A$ be an $\epsilon$-approximation of size $n$.
 Let $C\subseteq A$ be a coloring of discrepancy $\delta_{A,C}$.
-Then either $C$ or $A\sm C$ is an $(\epsilon+\delta_{A,C})\jj$approximation of $\mu$ of size $\le n/2$.
+Then either $C$ or $A\sm C$ is an $(\epsilon+2\delta_{A,C})\jj$approximation of size $\le n/2$.
 \end{lemma}
 
 \begin{proof}
@@ -120,14 +152,14 @@ Combining \ssf{1} and \ssf{2} we obtain\smallskip
 
 hence\smallskip
 
-\ceq{\hfill\left|\mu\phi(A,b)\ -\ \frac{|\phi(C,b)|}{n^+}\right|}{\le}{\epsilon + 2\delta_{A,C}}\smallskip
+\ceq{\hfill\left|\Pr\phi(A,b)\ -\ \frac{|\phi(C,b)|}{n^+}\right|}{\le}{\epsilon + 2\delta_{A,C}}\smallskip
 
 as claimed by the lemma.
 \end{proof}
 
 \begin{corollary}
-Let $A$ be an $\epsilon$-approximation of $\mu$ of size $n$ and discrepancy $\delta_A$.
-Then there is an $(\epsilon+2\delta_A)\jj$approximation of $\mu$ of size $\le n/2$.
+Let $A$ be an $\epsilon$-approximation of size $n$ and discrepancy $\delta_A$.
+Then there is an $(\epsilon+2\delta_A)\jj$approximation of size $\le n/2$.
 \end{corollary}
 
 The lemma above tells that $\epsilon$-approximations with small discrepancy are useful, but as yet we have no clue as to finding one.
@@ -138,7 +170,7 @@ First, we make a brief digression into probability theory.
 The following inequality is a classical tool in this context.
 
 \begin{lemma}[(Chernoff's bound, special case)]\label{Chernoff}
-For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that $\Pr(X_i=\pm1)=1/2$.
+For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i=\pm1)=1/2$.
 Then for every $\delta>0$
 
 \ceq{\hfill \Pr\big(\bar X\ge\delta\big)}{\le}{\exp(-\frac{n}{2}\delta^2)}\hfill where $\displaystyle \bar X=\frac1n\sum^n_{i=1}X_i$
@@ -180,7 +212,7 @@ Let $A$ be a multi-set of size $\le n$. Assume the support of $A$ has $\le m$  d
 
 \begin{proof}
 \def\ceq#1#2#3{\parbox[t]{40ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
-To prove that $\delta_A\le\delta$ it suffices to show that there is a coloring $C\subseteq A$ such that $\delta_{A,C,b}\le\delta$ for all $b$. This is obviously true if we can define a probability on $C$ and show that
+To prove that $\delta_A\le\delta$ it suffices to show that there is a coloring $C\subseteq A$ such that $\delta_{A,C,b}\le\delta$ for all $b$. It suffices to define a probability on $C$ and show that
 
 \ceq{\hfill \Pr\big(\big\{C\subseteq A\ :\ \A b\ \ \delta_{A,C,b}\le \delta\big\}\big)}{>}{0}
 
@@ -208,7 +240,7 @@ Then \ssf{4} is satisfied if $n\delta^2/2\le \ln(2m)$. This yields the required 
 
 \begin{theorem}\label{thm_epsilon_approx}
 Let $\phi$ have \vc-density $d$.
-Let $\mu$ be some probability measure that admits an $\eta$-approximation.
+Let $\Pr$ be some probability measure that admits an $\eta$-approximation.
 Then there is a $(\epsilon+\eta)$-approximation of size 
 
 \ceq{\natural\hfill n}{\le}{C\frac{k}{\epsilon^2}\ln\frac{1}{\epsilon}.}
@@ -216,7 +248,7 @@ Then there is a $(\epsilon+\eta)$-approximation of size
 where $C$ is an absolute constant. In particular, the bound above does not depend on the size of the $\eta$-approximation.
 \end{theorem}
 
-Note that the bound claimed by the theorem only depends on the dimension of $\phi$ and it is independent of $\mu$.
+Note that the bound claimed by the theorem only depends on the dimension of $\phi$ and it is independent of $\Pr$.
 
 \begin{proof}
 For $i=0,\dots,h$ we construct a decreasing chain $A_i$ of $\eta_i$-approximations.
@@ -229,7 +261,9 @@ Then
 
 The construction stops at the least $h$ such that 
 
-\ceq{\hfill \sum^{h}_{i=1}\delta_i}{\le}{\sum^{h}_{i=1}\sqrt{\frac{2d(m-i)\ln 2}{2^{m-i}}}}
+\ceq{\hfill \sum^{h}_{i=1}\delta_i}{\le}{\sum^{h}_{i=1}\sqrt{(2/n_i)\ln(2n_i^d)}
+
+\ceq{}{\le}{\sum^{h}_{i=1}\sqrt{\frac{2d(m-i)\ln 2}{2^{m-i}}}}
 
 \ceq{}{\le}{O(1)\sqrt{d(m-h)2^{-(m-h)}}}
 
@@ -280,17 +314,17 @@ Then it admits $\epsilon\jj$approximations of size at most $\natural$ for every 
 % The following proposition is immediate.
 % 
 % \begin{proposition}\label{prop_0_multiapprox}
-% Let $\Phi$ be a finite set-system then every probability measure $\mu$ admits a multi-set  $\epsilon\jj$approximation and every positive $\epsilon$.
-(Even a $0\jj$approximation, if $\mu$ is rational valued.)\QED
+% Let $\Phi$ be a finite set-system then every probability measure $\Pr$ admits a multi-set  $\epsilon\jj$approximation and every positive $\epsilon$.
+(Even a $0\jj$approximation, if $\Pr$ is rational valued.)\QED
 % \end{proposition}
 
 \begin{corollary}\label{coroll_epsilon_multiapprox}Let $\Phi$ be a finite set-system of \vc-dimension $1<k<\omega$.
-Then for every positive $\epsilon<1$, every probability measure $\mu$ admits a multi-set $\epsilon$-approximation of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
+Then for every positive $\epsilon<1$, every probability measure $\Pr$ admits a multi-set $\epsilon$-approximation of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
 \end{corollary}
 \begin{proof}
-Without loss of generality we can assume that $\mu$ is rational valued.
-Then there is a uniform probability measure $\mu'$ on some finite set $\U'$ and a surjection $f:\U'\to\U$ such that $\mu(f^{-1}\phi)=\mu(\phi)$.
-By Theorem~\ref{thm_epsilon_approx} $\mu'$ admits an $\epsilon\jj$approximation $B'$ with cardinality by $\natural$, for every positive $\epsilon<1$.
+Without loss of generality we can assume that $\Pr$ is rational valued.
+Then there is a uniform probability measure $\Pr'$ on some finite set $\U'$ and a surjection $f:\U'\to\U$ such that $\Pr(f^{-1}\phi)=\Pr(\phi)$.
+By Theorem~\ref{thm_epsilon_approx} $\Pr'$ admits an $\epsilon\jj$approximation $B'$ with cardinality by $\natural$, for every positive $\epsilon<1$.
 We know define a multi-set $B$ such that $B(a)=|B'\cap f^{-1}|$ for every $a\in\U$.
 As $|B'|=|B|$ and $|B'\cap f^{-1}\phi|=|B\cap\phi|$, this is the required multi-set $\epsilon$-approximation.
 \end{proof}
@@ -302,16 +336,15 @@ Though it is sufficient for our application, stronger bound are known (essential
 
 \begin{corollary}\label{coroll_epsilon_net}
 Let $\Phi$ be a finite set-system of \vc-dimension $1<k<\omega$.
-Then for every positive $\epsilon<1$, every probability measure $\mu$ admits a multi-set $\epsilon$-net of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
+Then for every positive $\epsilon<1$, every probability measure $\Pr$ admits a multi-set $\epsilon$-net of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
 \end{corollary}
 
 \begin{exercise}\label{ex_counterexample}
 Suppose that $\{a\},\{b\}\in\Phi$ for some $a,b\in\U$.
-Show that, if $\mu$ and $\epsilon$ are such that $0<\epsilon<\mu(a)$ and $2\epsilon<\mu(b)-\mu(a)$, then $\mu$ admits no $\epsilon\jj$approximation.\QED
+Show that, if $\Pr$ and $\epsilon$ are such that $0<\epsilon<\Pr(a)$ and $2\epsilon<\Pr(b)-\Pr(a)$, then $\Pr$ admits no $\epsilon\jj$approximation.\QED
 \end{exercise}
 
 
 
- 
  
 \end{document}
