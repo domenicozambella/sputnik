@@ -1,5 +1,7 @@
-# Topics in combinatorics
+# Topics on Vapnik-Chervnenkis theory
 
-Notes for a series of lectures around Vapnik-Chervonenkis
+Notes for a series of lectures.
 
-This is for **private use** for the moment.  
+This **very messy** work-in-progress.
+
+Do not use for the time being.

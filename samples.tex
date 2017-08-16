@@ -13,7 +13,7 @@
 
 
 
-\chapter{Approximations}
+\chapter{Samples}
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -47,7 +47,8 @@ Note that $|A|=|A\cap C|+|A\sm C|$.
 
 When $A$ is a multi-set we read \emph{$\phi(A,b)$\/} as the intersection of $A$ with $\phi(\U,b)$.
 
-Note that the definitions above (but for the notion of enumeration) generalize to \emph{fractional multisets\/} i.e.,  function that take non negative real values. These will be used in the next chapter.  
+Note that the definitions above (but for the notion of enumeration) generalize to \emph{fractional multisets\/} i.e.,  function that take non negative real values.
+These will be used in the next chapter.
 
 
 \section{A uniform law of large numbers}
@@ -59,7 +60,8 @@ Given a multiset $A$ of finite size we define the \emph{frequency\/} of $\phi(\U
 Recall the weak law of large number.
 
 \begin{proposition}[(Weak law of large numbers)] 
-Let $\Pr$ be a probability measure on $\U$ that makes all definable sets measurable. Then for every $b\in\V$
+Let $\Pr$ be a probability measure on $\U$ that makes all definable sets measurable.
+Then for every $b\in\V$
 
 \def\ceq#1#2#3{\parbox[t]{45ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
@@ -67,21 +69,25 @@ Let $\Pr$ be a probability measure on $\U$ that makes all definable sets measura
 \end{proposition}
 
 \begin{proof}
-Let $p=\mu\phi(\U,b)$ then $\big|\phi(A,b)\big|$ is a binomial random variable $B(p,n)$. Hence $(1/n)\big|\phi(A,b)\big|$ has mean $p$ and variance $p(1-p)/n\le 1/4n$. Apply Chebyshev's inequality. 
+Let $p=\mu\phi(\U,b)$ then $\big|\phi(A,b)\big|$ is a binomial random variable $B(p,n)$.
+Hence $(1/n)\big|\phi(A,b)\big|$ has mean $p$ and variance $p(1-p)/n\le 1/4n$.
+Apply Chebyshev's inequality.
 \end{proof}
 
 
-An \emph{$\epsilon$-approximation\/} of the probability measure $\Pr$ is a multiset $A\subseteq\U$ such that for every $b\in\V$
+An \emph{$\epsilon$-sample}, or \emph{$\epsilon$-approximation}, of a probability measure $\Pr$ is a multiset $A\subseteq\U$ such that for every $b\in\V$
 
 \def\ceq#1#2#3{\parbox[t]{30ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
 \ceq{\hfill\displaystyle \Big|\Pr\phi(\U,b) - \Fr\phi(A,b)\Big|}{\le}{\epsilon}
 
-We state the uniform law of large number for finite sample spaces. The generalization requires some technical nuisance, so it is moved to the end of the section.
+We state the uniform law of large number for finite sample spaces.
+The generalization requires some technical nuisance, so it is moved to the end of the section.
 
 
 \begin{proposition}[(Uniform law of large numbers)] 
-Let $\Pr$ be a probability measure on $\U$, which we assume to be finite set. Let $\phi$ have \vc-density $d$. Then there is a multi-set $\epsilon$-approximation of size 
+Let $\Pr$ be a probability measure on $\U$, which we assume to be finite set.
+Let $\phi$ have \vc-density $d$. Then there is a multi-set $\epsilon$-approximation of size 
 
 \ceq{\hfill n}{\le}{C\frac{d}{\epsilon^2}\ln\frac1\epsilon,}
 
@@ -98,7 +104,8 @@ Given $\epsilon$ we are interested in the least $n$ such that some $\epsilon\jj$
 The idea is to start with an approximation of large size and reduce size at the cost of slightly enlarging $\epsilon$.
 We now introduce a powerful technique to achieve this.
 
-It is convenient to include $\U$ among the definable sets. So, let $u\notin\V$ be a fresh element. We extend $\phi$ on $\V\cup\{u\}$ by defining \emph{$\phi(\U,u)=\U$}. 
+It is convenient to include $\U$ among the definable sets. So, let $u\notin\V$ be a fresh element.
+We extend $\phi$ on $\V\cup\{u\}$ by defining \emph{$\phi(\U,u)=\U$}.
 
 A \emph{coloring\/} of a multiset $A$ is just a submultiset $C\subseteq A$.
 For $b\in\V\cup\{u\}$ we write 

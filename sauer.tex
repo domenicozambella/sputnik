@@ -23,39 +23,51 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Two equivalent frameworks}\label{vc_dimension}
 
-Let $U$ and $V$ be two sets and let $\phi\subseteq U\times V$.
+Let $\U$ and $\V$ be two sets and let $\phi\subseteq \U\times\V$.
 In other words $\phi$ is a \emph{bipartite graph}.
-%We assume $\phi$ is neither of the form $U\times B$ nor $A\times V$ for some $A\subseteq U$ and $B\subseteq V$.
-%This is a non standard assumption which we make to avoid trivialities.
 We may call $\phi$ an (abstract) \emph{incidence relation\/} and write $\phi(x,y)$ for $\<x,y\>\in\phi$.
-For $A\subseteq U$ and $b\in V$ we define 
+Sets of the form
 
-\ceq{\hfill\emph{$\phi(A,b)$}}{=}{\{a\in A:\phi(a,b)\}.} 
+\ceq{\hfill\emph{$\phi(\U,b)$}}{=}{\{a\in\U:\phi(a,b)\}.}
 
-This is what we call a \emph{definable subset of $A$}.
-We may say \emph{$B$-definable} to convey that $b\in B$.
-By the non triviality of $\phi$, there are at least two definable subsets.
-We define also
+are called \emph{definable sets\/} or, when more that a relation is involved, \emph{$\phi$-definable sets}.
+The collection \emph{collection definable subsets\/} is denoted by \emph{$\phi(\U,b)_{b\in\V}$}.
 
-\ceq{\hfill\emph{$\phi(A,b)_{b\in B}$}}{=}{\{\phi(A,b) : b\in B\}.}
+Often we need to consider the \emph{trace\/} of a definable set on some arbitrary $A\subseteq\U$.
 
-We call $\phi(U,b)_{b\in V}$ the \emph{collection definable subsets}.
-If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in V}$, we say that $A$ is \emph{shattered\/} by $\phi$.
+\ceq{\hfill\emph{$\phi(A,b)$}}{=}{\{a\in A:\phi(a,b)\}.}
+
+We call this a \emph{definable subset of $A$}.
+And denote by \emph{$\phi(A,b)_{b\in\V}$\/} the collection of definable subsets on $A$.
+
+If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in\V}$, we say that $A$ is \emph{shattered\/} by $\phi$.
 The following is called the \emph{shatter function\/}
 
-\ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\Big\{|\phi(A,b)_{b\in V}|\ \ :\ \ A\subseteq U,\ |A|=n\Big\}.}
+%\ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\Big\{|\phi(A,b)_{b\in\V}|\ \ :\ \ A\subseteq\U,\ |A|=n\Big\}.}
+
+\ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\bigg\{|\phi(A,b)_{b\in\V}|\ \ :\ \ A\in {\U\choose n}\bigg\}.}
 
 So, $\pi_\phi(n)$ gives the maximal number of definable subsets that a set of cardinality $n$ may have.
 Trivially, $\pi_\phi(n)\le2^n$ for all $n$.
-Moreover, if $\pi_\phi(k)=2^k$ for some $k$, then  $\pi_\phi(n)=2^n$ for every $n\le k$.
+Moreover, if $\pi_\phi(k)=2^k$ for some $k$, then $\pi_\phi(n)=2^n$ for every $n\le k$.
 
-The dual incidence relation $\phi^*$ is the relation on $V\times U$ which is sometimes denoted by $\phi^{-1}$.
+Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ defined by 
+
+\ceq{\hfill\emph{$b\equiv_{\phi,A} b'$}}{\IFF}{\phi(a,b)\iff\phi(a,b')}\quad for ll $a\in A$;
+
+\ceq{}{\IFF}{\phi(A,b)=\phi(A,b').}
+
+We denote by $S_\phi(A)$ the set of $\equiv_{\phi,A}$-equivalence classes. We obviously have
+
+\ceq{\hfill\pi_\phi(n)}{=}{\max\bigg\{|S_\phi(A)|\ \ :\ \  A\in {\U\choose n}\bigg\}.}
+
+The dual incidence relation $\phi^*$ is the relation on $\V\times\U$ which is sometimes denoted by $\phi^{-1}$.
 Then dual scattering function is defined as follows (with the obvious meaning of the notation) 
 
-\ceq{\hfill\emph{$\pi^*_\phi(n)$}}{=}{\max\Big\{|\phi(a,B)_{a\in U}|\ \ :\ \ B\subseteq V,\ |B|=n\Big\}.}
+\ceq{\hfill\emph{$\pi^*_\phi(n)$}}{=}{\max\bigg\{|\phi(a,B)_{a\in\U}|\ \ :\ \ B\in {\V\choose n}\bigg\}.}
 
 \begin{definition}\label{def_VCdim}
-The \emph{Vapnik-Cher\-vo\-nen\-kis dimension\/} of $\phi$, abbreviated by \emph{\vc-dimension}, is the maximal cardinality of a finite set $A\subseteq U$ that is shattered by $\phi$.
+The \emph{Vapnik-Cher\-vo\-nen\-kis dimension\/} of $\phi$, abbreviated by \emph{\vc-dimension}, is the maximal cardinality of a finite set $A\subseteq\U$ that is shattered by $\phi$.
 Equivalently, it is the maximal $k$ such that $\pi_\phi(k)=2^k$.
 If such a maximum does not exist,
 we say that $\phi$ has infinite \vc-dimension.
@@ -63,7 +75,8 @@ we say that $\phi$ has infinite \vc-dimension.
 We will say \emph{dual \vc-dimension\/} for the \vc-dimension of $\phi^*$.
 
 The \emph{\vc-density\/} of $\phi$ is the infimum over all real number $r$ such that $\pi_\phi(n)\in O(n^r)$.
-It is infinite if no such $r$ exist.\QED
+It is infinite if no such $r$ exist.
+The  \emph{dual \vc-density\/} is defined accordingly.\QED
 \end{definition}
 
 
@@ -72,7 +85,7 @@ The converse is also true.
 In fact, in the next section we show that the \vc-dimension bounds the \vc-density.
 
 \begin{proposition}
-If $\phi$ has \vc-dimension $k$ then its dual \vc-dimension is $\le 2^{k+1}$.
+If $\phi$ has \vc-dimension $< k$ then its dual \vc-dimension is $< 2^{k+1}$.
 \end{proposition}
 
 \begin{proof}
@@ -91,45 +104,47 @@ That is, $\phi$ shatters $\{a_i\,:\,i<k\}$.
 \end{proof}
 
 An alternative formalism uses \emph{set systems\/} in place of incidence relations.
-A set system is a collection $\Phi$ of subsets of some set $U$.
-We denote a set system by $(U,\Phi)$.
-Given a set system, we immediately obtain an incidence relation with $V=\P(U)$ by defining $\phi(x,y)$ as $x\in y\in\Phi$.
+A set system is a collection $\Phi$ of subsets of some set $\U$.
+We denote a set system by $(\U,\Phi)$.
+Given a set system, we immediately obtain an incidence relation with $\V=\P(\U)$ by defining $\phi(x,y)$ as $x\in y\in\Phi$.
 
-Vice versa, to an incidence relation $\phi$ we associate $\Phi=\phi(U,b)_{b\in V}$, the set system of the definable subsets of $U$.
+Vice versa, to an incidence relation $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$, the set system of the definable subsets of $\U$.
 %The non triviality assumption above translates to the claim that $\Phi$ contains at least two elements and $\Phi\neq\{\0,U\}$.
 The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
 The shatter function \emph{$\pi_\Phi(n)$\/} is defined in a similar way.
 
-An incidence relation is \emph{extensional\/} if $\phi(U,b')=\phi(U,b'')$ implies $b',b''\in V$.
+An incidence relation is \emph{extensional\/} if $\phi(\U,b')=\phi(\U,b'')$ implies $b',b''\in\V$.
 The correspondence between extensional incidence relations and set systems is one-to-one.
 In general, the correspondence is many-to-one.
 However, as we are mainly interested the set system associated, we my switch from one formalism to the other according to which one is more convenient.
 
-%An incidence relation is \emph{reduced\/} if $\phi(U,b')=\phi(U,b'')$ implies $b'=b''$ and, dually, $\phi(a',V)=\phi(a'',V)$ implies $a'=a''$.
+%An incidence relation is \emph{reduced\/} if $\phi(\U,b')=\phi(\U,b'')$ implies $b'=b''$ and, dually, $\phi(a',V)=\phi(a'',V)$ implies $a'=a''$.
 %By quotienting and taking representatives, we can always find a reduced relation with the same shattering function.
 
 \begin{example}\label{ex_vcdim}
 \begin{itemize}
-\item[a.] Set systems of cardinality $1$ are those with an incidence relation of the form $A\times V$ for some $A\subseteq U$.
+\item[a.] Set systems of cardinality $1$ are those with an incidence relation of the form $A\times\V$ for some $A\subseteq\U$.
 They shatter only the empty set, therefore they have \vc-dimension $0$.
 Their shatter function is identically $1$.
-\item[b.] Let $\Phi$ be a non trivial partition of $U$.
+\item[b.] Let $\Phi$ be a non trivial partition of $\U$.
 Then only singletons are shattered, so the \vc-dimension is $1$.
 The shatter function is $\pi_\Phi(n)=\min\big\{n,|\Phi|\big\}$.
-\item[c.] If $\Phi$ is a non trivial chain of subsets of $U$ the situation is identical to that described in \ssf{b}.
-\item[d.] Let $U=\RR$ and let $\Phi$ be the collection of open intervals.
+\item[c.] If $\Phi$ is a non trivial chain of subsets of $\U$ the situation is identical to that described in \ssf{b}.
+\item[d.] Let $\U=\RR$ and let $\Phi$ be the collection of open intervals.
 Any set of 2 points is shattered but no set with 3 points can.
 So the \vc-dimension is $2$.
-\item[e.] Let $U=\RR^2$ and let $\Phi$ be the collection of half planes.
+\item[e.] Let $\U=\RR^2$ and let $\Phi$ be the collection of half planes.
 Any set of 3 non collinear points is shattered but no set with 4 points can (by Radon's Theorem).
 So the \vc-dimension is $3$.
-\item[f.] Let $\Phi=U^{[\le k]}$ be the collection of all subsets of $U$ of cardinality $\le k$.
+\item[f.] Let $\Phi=U^{[\le k]}$ be the collection of all subsets of $\U$ of cardinality $\le k$.
 Then $\Phi$ has \vc-dimension $k$ and
 
 \noindent\kern19ex$\displaystyle\pi_\Phi(n)=\sum^k_{i=0} \binom{n}{i}$.
 
-\item[g.] Let $U=\RR^2$ and let $\Phi$ be the collection of polygons.
-Then the \vc-dimension is $\infty$.\QED
+%Consider the type space $S_{\phi^*}(B)$ where $B\subseteq\V$ is a set of cardinality $k$. Note that for every 
+
+\item[g.] Let $\U=\RR^2$ and let $\Phi$ be the collection of polygons.
+Then $\Phi$ has \vc-dimension $\infty$.\QED
 \end{itemize}
 \end{example}
 
@@ -146,7 +161,7 @@ No wonder it has been discovered and rediscovered may times.
 It has been proved independently by Shelah~\cite{shelah72}, Sauer~\cite{sauer}, and Vapnik-Cher\-vo\-nen\-kis~\cite{VC} around 1970 (Shelah gives credit to Micha Perles).
 Saharon Shelah was working in model theory while Norbert Sauer, Vladimir Vapnik and Alexey Chervonenkis were in statistical learning theory.
 
-We shall present three proofs of this lemma, one in this section and two in the next section.
+We shall present three proofs of this lemma, one in this section and two in the next section. I am aware of a forth proof which uses linear algebra, see e.g.~\cite{gowers}. 
 
 \begin{proposition}[(Sauer-Shelah's Lemma)]\label{prop_Sauer}
 If $\phi$ has \vc-dimension $k$ then for every $n\ge k$
@@ -161,12 +176,12 @@ If $k=0$, both sides of the inequality are $1$.
 Now, assume the lemma is true for $k-1$.
 We prove by induction on $n$ that for every $A$ of cardinality $n$
 
-\ceq{\hfill\big|\phi(A,b)_{b\in V}\big| }{\le}{\bigsum^{k}_{i=0} \binom{n}{i}.} 
+\ceq{\hfill\big|\phi(A,b)_{b\in\V}\big| }{\le}{\bigsum^{k}_{i=0} \binom{n}{i}.} 
 
 If $n=k$ the r.h.s.\@ of the inequality above is $2^n$ and the claim is trivial.
 So, assume the claim is true for $n-1$ and let $A$ have cardinality $n$.
 Fix some $a\in A$ and let $A'=A\sm\{a\}$.
-We can assume that $\phi(A,b)\simdiff\phi(A,b')=\{a\}$ for some $b,b'$, otherwise $\big|\phi(A,b)_{b\in V}\big|=\big|\phi(A',b)_{b\in V}\big|$ and the claim follows immediately from the induction hypothesis.
+We can assume that $\phi(A,b)\simdiff\phi(A,b')=\{a\}$ for some $b,b'$, otherwise $\big|\phi(A,b)_{b\in\V}\big|=\big|\phi(A',b)_{b\in\V}\big|$ and the claim follows immediately from the induction hypothesis.
 
 Define a new incidence relation
 
@@ -178,11 +193,11 @@ Note that if $A''$ is shattered by $\psi$ then $A''\cup\{a\}$ it is shattered by
 Then the \vc-dimension of $\psi$ is at most $k-1$.
 We also have that
 
-\ceq{\hfill\big|\phi(A,b)_{b\in V}\big|}{=}{\big|\phi(A',b)_{b\in V}\big|\ +\ \big|\psi(A',b)_{b\in V}\big|.}
+\ceq{\hfill\big|\phi(A,b)_{b\in\V}\big|}{=}{\big|\phi(A',b)_{b\in\V}\big|\ +\ \big|\psi(A',b)_{b\in\V}\big|.}
 
 Hence by induction hypothesis
 
-\ceq{\hfill \big|\phi(A,b)_{b\in V}\big|}{\le}{\bigsum^{k}_{i=0} \binom{n-1}{i}\ \  +\ \  \bigsum^{k-1}_{i=0}  \binom{n-1}{i}}
+\ceq{\hfill \big|\phi(A,b)_{b\in\V}\big|}{\le}{\bigsum^{k}_{i=0} \binom{n-1}{i}\ \  +\ \  \bigsum^{k-1}_{i=0}  \binom{n-1}{i}}
 
 \ceq{}{=}{\binom{n-1}{0}\ \ +\ \ \bigsum^{k}_{i=1}\ \bigg[ \binom{n-1}{i}\ +\ \binom{n-1}{i-1}\bigg]}
 
@@ -202,7 +217,7 @@ Therefore the \vc-dimension is an upper bond to the \vc-density.
 For every incidence relation $\phi$ one of the following obtains
 \begin{itemize}
  \item[1.] the \vc-dimension is infinite and $\pi_\phi(n)=2^n$ for every positive integer $n$;
- \item[2.] the \vc-dimension is $k$ and $\pi_\phi(n)\ \le\ O(n^k)$.
+ \item[2.] the \vc-dimension is $k$ and $\pi_\phi(n)\ \in\ O(n^k)$.
 \end{itemize}
 \end{corollary}
 \begin{proof}
@@ -223,8 +238,7 @@ Then
 \section{Pajor variant and the method of shifting}
 
 An alternative proof of the Sauer-Shelah's Lemma derives it as corollary of a lemma by Alain Pajor~\cite{pajor}.
-The proofs below are not the original one.
-The first proof is credited to Noga Alon by Kalai~\cite{kalai}, to (many) others by~\cite{ARS}.
+The proof below is credited to Noga Alon by Kalai~\cite{kalai}, to (many) others by~\cite{ARS}.
 
 \begin{proposition}[(Pajor's Lemma)]\label{prop_Pajor}
 Assume $\Phi$ is finite.
@@ -232,9 +246,9 @@ Then $\Phi$ there are at least $|\Phi|$ sets shattered by $\Phi$.
 \end{proposition}
 
 We show how Sauer-Shelah's Lemma follows from Pajor's Lemma.
-Fix a set $A\subseteq U$ of cardinality $n$ such that $\pi_\phi(n)=\big|\phi(A,b)_{b\in V}\big|$.
-Now, consider the set system $\Phi=\phi(A,b)_{b\in V}$.
-By Pajor's Lemma there are $|\Phi|$ subsets of $U$ shattered by $\Phi$.
+Fix a set $A\subseteq\U$ of cardinality $n$ such that $\pi_\phi(n)=\big|\phi(A,b)_{b\in\V}\big|$.
+Now, consider the set system $\Phi=\phi(A,b)_{b\in\V}$.
+By Pajor's Lemma there are $|\Phi|$ subsets of $\U$ shattered by $\Phi$.
 These subsets cannot have cardinality larger than the \vc-dimension of $\phi$, then $\Phi\subseteq A^{[\le k]}$
 
 \ceq{\hfill\pi_\phi(n)}{=}{|\Phi|\medrel{\le}\big|A^{[\le k]}\big|\medrel{=}\sum^k_{i=0} \binom{n}{i}.}
@@ -242,7 +256,7 @@ These subsets cannot have cardinality larger than the \vc-dimension of $\phi$, t
 \begin{proof}
 The proposition holds if $|\Phi|=1$.
 Now, suppose it holds for set systems of cardinality $<|\Phi|$.
-Fix $a\in U$ and let $\Phi_0=\big\{B\in\Phi : a\notin B\big\}$ and $\Phi_1=\Phi\sm\Phi_0$.
+Fix $a\in\U$ and let $\Phi_0=\big\{B\in\Phi : a\notin B\big\}$ and $\Phi_1=\Phi\sm\Phi_0$.
 We can choose $a$ such that $\Phi_i\neq\Phi$.
 By the inductive hypothesis, both $\Phi_i$ shatter at least $\big|\Phi_i\big|$ sets.
 If no set is shattered by both $\Phi_i$, the claim follows immediately.
@@ -258,9 +272,9 @@ They named it \textit{compression}, but is now known as \textit{shifting}.
 
 When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subseteq_{a}\kern-1.5pt A$}. We write
 
-\ceq{\hfill B_{\phi,a}}{=}{\big\{b\ : \neg\E b'\,\phi(U,b')\subseteq_a\phi(U,b)\big\}}
+\ceq{\hfill\emph{$B_{\phi,a}$}}{=}{\big\{b\ :\ \phi(a,b)\ {\rm and}\ \neg\E b'\,\phi(\U,b')\subseteq_a\phi(\U,b)\big\}}
 
-We say that $\phi$ is \emph{compressed\/} if $B_{\phi,a}=\0$ for every $a\in U$.
+We say that $\phi$ is \emph{compressed\/} if $B_{\phi,a}=\0$ for every $a\in\U$.
 
 \begin{proposition}\label{prop_compressed} 
 If $\phi$ is compressed then any co-finite subset of a definable set is definable.
@@ -268,30 +282,30 @@ In particular $\phi$ shatters every finite subset of a definable set.
 \end{proposition}
 
 \begin{proof}
-If for contradiction $\psi(U,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
+If for contradiction $\psi(\U,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
 \end{proof}
 
 
 \begin{proposition}\label{prop_conservative} Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$.
 Then
 
-\ceq{\hfill\psi(U,b)=\psi(U,b')}{\IFF}{\phi(U,b)=\phi(U,b')}\hfill for all $b,b'\in V$.
+\ceq{\hfill\psi(\U,b)=\psi(\U,b')}{\IFF}{\phi(\U,b)=\phi(\U,b')}\hfill for all $b,b'\in\V$.
 \end{proposition}
 
 \begin{proof}
-$\IMP$\quad Assume $\phi(U,b)\neq\phi(U,b')$.
-We may also assume that $\phi(U\sm\{a\},b)=\phi(U\sm\{a\},b')$, otherwise $\psi(U,b)\neq\psi(U,b')$ is immediate.
+$\IMP$\quad Assume $\phi(\U,b)\neq\phi(\U,b')$.
+We may also assume that $\phi(\U\sm\{a\},b)=\phi(\U\sm\{a\},b')$, otherwise $\psi(\U,b)\neq\psi(\U,b')$ is immediate.
 Then $\phi(a,b)\niff\phi(a,b')$, say $ \phi(a,b)$ and $\neg \phi(a,b')$.
-Then $\phi(U,b')\subseteq_a\phi(U,b)$ and $b\notin B_{\phi,a}$.
+Then $\phi(\U,b')\subseteq_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
 So $\psi(a,b)$ and $\neg \psi(a,b')$.
 
-$\PMI$\quad Assume $\psi(U,b)\neq\psi(U,b')$. 
-Again, we may also assume that $\psi(U\sm\{a\},b)=\psi(U\sm\{a\},b')$.
+$\PMI$\quad Assume $\psi(\U,b)\neq\psi(\U,b')$. 
+Again, we may also assume that $\psi(\U\sm\{a\},b)=\psi(\U\sm\{a\},b')$.
 Then $\psi(a,b)\niff\psi(a,b')$, say $\psi(a,b)$ and $\neg\psi(a,b')$.
 As $\phi(a,b)$ is clear, we only have to prove that $\neg\phi(a,b')$.
 Suppose for a contradiction that $\phi(a,b')$.
 Then $b'\in B_{\phi,a}$.
-This is a contradiction as $\psi(U,b)\subseteq_a\psi(U,b')$.
+This is a contradiction as $\psi(\U,b)\subseteq_a\psi(\U,b')$.
 \end{proof}
 
 
@@ -307,41 +321,49 @@ We may assume that $a\in A$.
 If $\psi(a,b)$ then we may chose $b=b'$.
 So, assume $\neg\psi(a,b)$.
 As $\psi$ shatters $A$ then there is $c$ such that $\psi(A,c)=\psi(A,b)\cup\{a\}$.
-Then $\E b'\,\phi(U,b')\subseteq_a\phi(U,c)$.
+Then $\E b'\,\phi(\U,b')\subseteq_a\phi(\U,c)$.
 Therefore $\psi(A,b)=\phi(A,b')$.
 \end{proof}
 
 
 \begin{void_thm}[Second proof of Pajor's Lemma]\label{proof2_Pajor}\rm
-Let $\phi$ be the incidence relation associated to $\Phi$. We may assume that $\phi$ is finite. Let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm \{a\}{\times}B_{\phi_i,a}$ for some $a$. As $\phi$ is finite, we can assume that $\psi_n$ is compressed. Let $\Psi$ be the set of $\psi_n$-definable sets. By Proposition~\ref{prop_shattered}, $\Psi$ shatters at least $|\Psi|$ sets. By Proposition~\ref{prop_compressed}, every set shattered by $\Psi$ is shattered by $\Phi$. By Proposition~\ref{prop_conservative}, $|\Psi|=|\Phi|$.\QED
+Let $\phi$ be the incidence relation associated to $\Phi$.
+We may assume that $\phi$ is finite.
+Let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm \{a\}{\times}B_{\phi_i,a}$ for some $a$.
+As $\phi$ is finite, we can assume that at some stage $n$ we obtain a compressed relation $\psi=\phi_n$.
+Let $\Psi$ be the set of $\psi$-definable sets.
+By Proposition~\ref{prop_shattered}, $\Psi$ shatters at least $|\Psi|$ sets.
+By Proposition~\ref{prop_compressed}, every set shattered by $\Psi$ is shattered by $\Phi$.
+By Proposition~\ref{prop_conservative}, $|\Psi|=|\Phi|$.\QED
 \end{void_thm}
 
+Define $E_{\phi,a}\subseteq\V^2$ as the set of e pairs $\<b',b\>$ such that $\phi(\U,b')\subseteq_a\phi(\U,b)$. 
+Note incidentally that $E_{\phi,a}$ is the graph of a partial injections of $\V$ into itself. 
 
-The unit distance diagraph of $\phi$ is the graph with vertex set $V$ and edge set $E_\phi$ consisting of the pairs $(b',b)$ such that $\phi(U,b')\subseteq_a\phi(U,b)$ for some $a$.
-
-
-
-\begin{proposition}\label{prop_shattered} 
-Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $|E_\phi|\le |E_{\psi}|$
+\begin{proposition}\label{prop_udd1} 
+Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $E_\phi\subseteq E_{\psi}$
 \end{proposition}
-
-\begin{proof}
-
+\begin{proof}Both the range and the domain of $E_{\phi,a}$ are disjoint from $B_{\phi,a}$.
 \end{proof}
 
-
+We call $\displaystyle E_\phi=\bigcup_{a\in U}E_{\phi,a}$ the unit distance diagraph of $\phi$. 
 
 \begin{proposition}
-Let $\phi$ be an extensional incidence relation with \vc-dimension $k$. Let $\Phi$ be the set system associated to it. Then $|E_\phi|\le k\,|\Phi|$.
+Let $\phi$ be a finite incidence relation with \vc-dimension $k$.
+Let $\Phi$ be the set system associated to it. 
+Then $|E_\phi|\le k\,|\Phi|$.
 \end{proposition}
 
 \begin{proof}
-$E_\phi\subseteq E_{\phi'}$ 
+Let $\psi$ and $\Psi$ be as defined in Proof~\ref{proof2_Pajor}.
+By Propositions~\ref{prop_compressed} and~\ref{prop_shattered}, every has at most $k$ ancestors.
+Therefore
+
+\ceq{\hfill\frac{|E_\phi|}{|\Phi|}}{\le}{\frac{|E_\psi|}{|\Psi|}\medrel{\le}k}
 \end{proof}
 
-
 \begin{comment}
-For $a\in U$ and $B\in\Phi$ we define
+For $a\in\U$ and $B\in\Phi$ we define
 
 \ceq{\hfill s_{a,\Phi}(B)}{=}%
 {\left\{\begin{array}{ll}
@@ -376,8 +398,8 @@ Derive Proposition~\ref{prop_shift_shatter} from this fact.\QED
 \end{exercise}
 
 \begin{void_thm}[Second proof of Pajor's Lemma]\label{proof2_Pajor}\rm
-As $\Phi$ is finite we can assume $U$ is finite.
-Let $\Psi$ be the result of applying $s_a$ to $\Phi$ for all $a\in U$.
+As $\Phi$ is finite we can assume $\U$ is finite.
+Let $\Psi$ be the result of applying $s_a$ to $\Phi$ for all $a\in\U$.
 From the discussion above it is clear that $|\Psi|=|\Phi|$ and that sets shattered by $\Psi$ are also shattered by $\Phi$.
 We claim that if $A\subseteq B\in \Psi$ then $A\in \Psi$.
 Note that this implies that all sets in $\Psi$ are shattered by $\Psi$, hence by $\Phi$.
@@ -389,9 +411,9 @@ But this is not possible because $s_{a,\Phi}(B)=B\sm\{a\}$.\QED
 
 Given two incidence relations $\psi$ and $\phi$ we shall consider the following properties. 
 
-\ceq{\#\hfill\psi(U,b)=\psi(U,b')}{\IMP}{\phi(U,b)=\phi(U,b')}\hfill for all $b,b'\in V$.
+\ceq{\#\hfill\psi(\U,b)=\psi(\U,b')}{\IMP}{\phi(\U,b)=\phi(\U,b')}\hfill for all $b,b'\in\V$.
 
-\ceq{\#\#\hfill\psi(U,b)=\psi(U,b')}{\IFF}{\phi(U,b)=\phi(U,b')}\hfill for all $b,b'\in V$.
+\ceq{\#\#\hfill\psi(\U,b)=\psi(\U,b')}{\IFF}{\phi(\U,b)=\phi(\U,b')}\hfill for all $b,b'\in\V$.
 
 \begin{proposition} 
 Fix $\phi$ and let $\psi$ be minimal (w.r.t.\@ inclusion) among the relations that satisfy \ssf{\#}.
@@ -399,7 +421,7 @@ Then every subset of a $\psi$-definable set is $\psi$-definable.
 The same holds with \ssf{\#\#} for \ssf{\#}.
 \end{proposition}
 \begin{proof}
-Suppose for contradiction that $\psi(U,b)\sm A'$ is not definable for some $A'\neq\0$.
+Suppose for contradiction that $\psi(\U,b)\sm A'$ is not definable for some $A'\neq\0$.
 Then $\psi'=\psi\sm A'{\times}\{b\}$ satisfies \ssf{\#} contradicting the minimality of $\psi$. The proof for \ssf{\#\#} is similar.
 \end{proof}
 
@@ -409,25 +431,25 @@ When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subseteq_{a}\kern-1
 
 \begin{proposition} Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$ where
 
-\ceq{\hfill B_{\phi,a}}{=}{\big\{b\ : \neg\E b'\,\phi(U,b')\subseteq_a\phi(U,b)\big\}}
+\ceq{\hfill B_{\phi,a}}{=}{\big\{b\ : \neg\E b'\,\phi(\U,b')\subseteq_a\phi(\U,b)\big\}}
 
 Then $\psi$ satisfy \ssf{\#\#}.
 \end{proposition}
 
 \begin{proof}
-$\IMP$\quad Assume $\phi(U,b)\neq\phi(U,b')$. 
-We may also assume that $\phi(U\sm\{a\},b)=\phi(U\sm\{a\},b')$, otherwise $\psi(U,b)\neq\psi(U,b')$ is immediate.
+$\IMP$\quad Assume $\phi(\U,b)\neq\phi(\U,b')$. 
+We may also assume that $\phi(\U\sm\{a\},b)=\phi(\U\sm\{a\},b')$, otherwise $\psi(\U,b)\neq\psi(\U,b')$ is immediate.
 Then $\phi(a,b)\niff\phi(a,b')$, say $ \phi(a,b)$ and $\neg \phi(a,b')$.
-Then $\phi(U,b')\subseteq_a\phi(U,b)$ and $b\notin B_{\phi,a}$.
+Then $\phi(\U,b')\subseteq_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
 So $\psi(a,b)$ and $\neg \psi(a,b')$.
 
-$\PMI$\quad Assume $\psi(U,b)\neq\psi(U,b')$. 
-Again, we may also assume that $\psi(U\sm\{a\},b)=\psi(U\sm\{a\},b')$.
+$\PMI$\quad Assume $\psi(\U,b)\neq\psi(\U,b')$. 
+Again, we may also assume that $\psi(\U\sm\{a\},b)=\psi(\U\sm\{a\},b')$.
 Then $\psi(a,b)\niff\psi(a,b')$, say $\psi(a,b)$ and $\neg\psi(a,b')$.
 As $\phi(a,b)$ is clear, we only have to prove that $\neg\phi(a,b')$. 
 Suppose for a contradiction that $\phi(a,b')$. 
 Then $b'\in B_{\phi,a}$.
-This is a contradiction as $\psi(U,b)\subseteq_a\psi(U,b')$.
+This is a contradiction as $\psi(\U,b)\subseteq_a\psi(\U,b')$.
 \end{proof}
 
 
@@ -437,22 +459,22 @@ This $\psi$ will be constructed by stages.
 That is, we define inductively $\phi_0,\dots,\phi_n$.
 We let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm \{a\}{\times}B$ where
 
-\ceq{\hfill B}{=}{\big\{b\ : \neg\E b'\,\phi(U,b)\simdiff\phi(U,b')=\{a\}\big\}}
+\ceq{\hfill B}{=}{\big\{b\ : \neg\E b'\,\phi(\U,b)\simdiff\phi(\U,b')=\{a\}\big\}}
 
  the pair $\{a\}{\times}B\subseteq\phi_i$ is such that
 
 
-arbitrary subject to the condition that $\neg\E y\ \phi_i(U,b)\simdiff\phi_i(U,y)=\{a\}$.
+arbitrary subject to the condition that $\neg\E y\ \phi_i(\U,b)\simdiff\phi_i(\U,y)=\{a\}$.
 We stop when  $\phi_n$ contains no applicable pair $\<a,b\>$.
 Then we set $\psi=\phi_n$.
 
 
 
-edges in $\{a\}{\times}V$ for some fixed $a\in U$.
-We define $\psi_a=\phi \sm \{a\}{\times} B$, where $B\subseteq V$ is the largest set such that $\psi_a$ has the property \ssf{\#} above.
+edges in $\{a\}{\times}V$ for some fixed $a\in\U$.
+We define $\psi_a=\phi \sm \{a\}{\times} B$, where $B\subseteq\V$ is the largest set such that $\psi_a$ has the property \ssf{\#} above.
 The set $B$ is uniquely determined by this requirement, namely
 
-\ceq{\hfill B}{=}{\big\{b\ : \neg\E y\,\phi(U,b)\simdiff\phi(U,y)=\{a\}\big\}}
+\ceq{\hfill B}{=}{\big\{b\ : \neg\E y\,\phi(\U,b)\simdiff\phi(\U,y)=\{a\}\big\}}
 
 
 
@@ -470,7 +492,7 @@ The set $B$ is uniquely determined by this requirement, namely
 We say that $\psi$ is \emph{honest\/} on $A$ if for every $b$ there is a $b'$ such that
 \begin{itemize}
 \item[1.] $\psi(A,b)=\phi(A,b')$;
-\item[2.] $\psi(U,b)\subseteq\phi(U,b')$.
+\item[2.] $\psi(\U,b)\subseteq\phi(\U,b')$.
 \end{itemize}
 
 
@@ -482,27 +504,27 @@ Assume that $\psi$ is honest on $A$.
 We prove that is honest on $A\sm\{a\}$.
 So, fix $b$. 
 If $\psi(A,b)=\psi(A\sm\{a\},b)$ the claim is obvious, so assume $\psi(a,b)$.
-By minimality, $\psi\sm\{\<a,b\>\}$ does not satisfy \ssf{\#}, then there is $c$ such that $\psi(U,c)=\psi(U,b)\sm\{a\}$. As $\psi$ is honest on $A$, there is $b'$ such that 
+By minimality, $\psi\sm\{\<a,b\>\}$ does not satisfy \ssf{\#}, then there is $c$ such that $\psi(\U,c)=\psi(\U,b)\sm\{a\}$. As $\psi$ is honest on $A$, there is $b'$ such that 
 \begin{itemize}
 \item[1.] $\psi(A\sm\{a\},b)=\psi(A,c)=\phi(A,b')=\phi(A\sm\{a\},b')$;
-\item[2.] $\psi(U,b)\subseteq\psi(U,c)\subseteq\phi(U,b')$.
+\item[2.] $\psi(\U,b)\subseteq\psi(\U,c)\subseteq\phi(\U,b')$.
 \end{itemize}
 The claim follows.
 \end{proof}
 
 This $\psi$ will be constructed by stages.
 That is, we define inductively $\phi_0,\dots,\phi_n$.
-We let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm\{\<a,b\>\}$ where the pair $\<a,b\>\in\phi_i$ is arbitrary subject to the condition that $\neg\E y\ \phi_i(U,b)\simdiff\phi_i(U,y)=\{a\}$.
+We let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm\{\<a,b\>\}$ where the pair $\<a,b\>\in\phi_i$ is arbitrary subject to the condition that $\neg\E y\ \phi_i(\U,b)\simdiff\phi_i(\U,y)=\{a\}$.
 We stop when  $\phi_n$ contains no applicable pair $\<a,b\>$.
 Then we set $\psi=\phi_n$.
 
 
 
-edges in $\{a\}{\times}V$ for some fixed $a\in U$.
-We define $\psi_a=\phi \sm \{a\}{\times} B$, where $B\subseteq V$ is the largest set such that $\psi_a$ has the property \ssf{\#} above.
+edges in $\{a\}{\times}V$ for some fixed $a\in\U$.
+We define $\psi_a=\phi \sm \{a\}{\times} B$, where $B\subseteq\V$ is the largest set such that $\psi_a$ has the property \ssf{\#} above.
 The set $B$ is uniquely determined by this requirement, namely
 
-\ceq{\hfill B}{=}{\big\{b\ : \neg\E y\,\phi(U,b)\simdiff\phi(U,y)=\{a\}\big\}}
+\ceq{\hfill B}{=}{\big\{b\ : \neg\E y\,\phi(\U,b)\simdiff\phi(\U,y)=\{a\}\big\}}
 
 \begin{proposition}\label{prop_shift_shatter}
 If $A$ is shattered by $\psi_a$ then $A$ is also shattered by $\phi$.
@@ -514,20 +536,20 @@ We prove that for every $b$ here is a $b'$ such that $\psi_a(A,b)=\phi(A,b')$.
 If $\psi_a(a,b)$ then we may chose $b=b'$.
 So, assume $\neg\psi_a(a,b)$.
 As $\psi_a$ shatters $A$ then there is $b'$ such that $\psi_a(A,b')=\psi_a(A,b)\cup\{a\}$.
-Then $\E y\,\phi(U,b')\simdiff\phi(U,y)=\{a\}$.
+Then $\E y\,\phi(\U,b')\simdiff\phi(\U,y)=\{a\}$.
 Therefore $\psi_a(A,b)=\phi(a,y)$.
 \end{proof}
 
 Let $\psi_{a_1,\dots,a_n}=(\psi_{a_1,\dots,a_{n-1}})_{a_n}$.
 
 \begin{void_thm}[Second version of second proof of Pajor's Lemma]\label{proof3_Pajor}\rm
-As $\Phi=\phi(U,b)_{b\in V}$ is finite we can assume $U$ is finite.
+As $\Phi=\phi(\U,b)_{b\in\V}$ is finite we can assume $\U$ is finite.
 Let $\psi=\psi_{a_1,\dots,a_n}$.
 From the discussion above it is clear that the $\psi$-definable sets and the $\phi$-definable sets are equinumerous.
 Moreover they shatter the same sets.
 We claim that $\psi$ shatters all $\psi$-definable sets.
 So the proposition follows from the claim.
-If the claim fails, there is a $b$ such that $\psi(U,b)\sm\{a\}\notin\Psi$.
+If the claim fails, there is a $b$ such that $\psi(\U,b)\sm\{a\}\notin\Psi$.
 But this is not possible.\QED
 \end{void_thm}
 
