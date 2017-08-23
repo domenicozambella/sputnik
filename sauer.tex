@@ -28,17 +28,24 @@ In other words $\phi$ is a \emph{bipartite graph}.
 We may call $\phi$ an (abstract) \emph{incidence relation\/} and write $\phi(x,y)$ for $\<x,y\>\in\phi$.
 Sets of the form
 
-\ceq{\hfill\emph{$\phi(\U,b)$}}{=}{\{a\in\U:\phi(a,b)\}.}
+\ceq{\hfill\emph{$\phi(\U,b)$}}{=}{\{a\in\U:\phi(a,b)\}}
 
-are called \emph{definable sets\/} or, when more that a relation is involved, \emph{$\phi$-definable sets}.
-The collection \emph{collection definable subsets\/} is denoted by \emph{$\phi(\U,b)_{b\in\V}$}.
+are called \emph{definable sets\/} or, when other relations are involved, \emph{$\phi$-definable sets}.
+The collection of all definable sets is denoted by \emph{$\phi(\U,b)_{b\in\V}$}.
 
-Often we need to consider the \emph{trace\/} of a definable set on some arbitrary $A\subseteq\U$.
+Often we need to consider the \emph{trace\/} of a definable set on some arbitrary $A\subseteq\U$
 
 \ceq{\hfill\emph{$\phi(A,b)$}}{=}{\{a\in A:\phi(a,b)\}.}
 
-We call this a \emph{definable subset of $A$}.
-And denote by \emph{$\phi(A,b)_{b\in\V}$\/} the collection of definable subsets on $A$.
+We call this a \emph{definable subset of $A$\/} and denote by \emph{$\phi(A,b)_{b\in\V}$\/} the collection of definable subsets on $A$.
+
+Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ defined by 
+
+\ceq{\hfill\emph{$b\equiv_{\phi,A} b'$}}{\IFF}{\phi(a,b)\iff\phi(a,b')}\quad for ll $a\in A$;
+
+\ceq{}{\IFF}{\phi(A,b)=\phi(A,b').}
+
+The $\equiv_{\phi,A}$-equivalence class are called \emph{types over $A$}. We denote by $S_\phi(A)$ the set types over $A$. As there is a one-to-one correspondence between definable subsets and types, $|S_\phi(A)|=|\phi(A,b)_{b\in\V}|$. 
 
 If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in\V}$, we say that $A$ is \emph{shattered\/} by $\phi$.
 The following is called the \emph{shatter function\/}
@@ -47,24 +54,18 @@ The following is called the \emph{shatter function\/}
 
 \ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\bigg\{|\phi(A,b)_{b\in\V}|\ \ :\ \ A\in {\U\choose n}\bigg\}.}
 
+\ceq{}{=}{\max\bigg\{\kern2ex|S_\phi(A)|\kern2.5ex\ \ :\ \  A\in {\U\choose n}\bigg\}.}
+
 So, $\pi_\phi(n)$ gives the maximal number of definable subsets that a set of cardinality $n$ may have.
 Trivially, $\pi_\phi(n)\le2^n$ for all $n$.
 Moreover, if $\pi_\phi(k)=2^k$ for some $k$, then $\pi_\phi(n)=2^n$ for every $n\le k$.
-
-Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ defined by 
-
-\ceq{\hfill\emph{$b\equiv_{\phi,A} b'$}}{\IFF}{\phi(a,b)\iff\phi(a,b')}\quad for ll $a\in A$;
-
-\ceq{}{\IFF}{\phi(A,b)=\phi(A,b').}
-
-We denote by $S_\phi(A)$ the set of $\equiv_{\phi,A}$-equivalence classes. We obviously have
-
-\ceq{\hfill\pi_\phi(n)}{=}{\max\bigg\{|S_\phi(A)|\ \ :\ \  A\in {\U\choose n}\bigg\}.}
 
 The dual incidence relation $\phi^*$ is the relation on $\V\times\U$ which is sometimes denoted by $\phi^{-1}$.
 Then dual scattering function is defined as follows (with the obvious meaning of the notation) 
 
 \ceq{\hfill\emph{$\pi^*_\phi(n)$}}{=}{\max\bigg\{|\phi(a,B)_{a\in\U}|\ \ :\ \ B\in {\V\choose n}\bigg\}.}
+
+\ceq{}{=}{\max\bigg\{\kern2ex|S_{\phi^*}(B)|\kern2.2ex\ \ :\ \  B\in {\V\choose n}\bigg\}.}
 
 \begin{definition}\label{def_VCdim}
 The \emph{Vapnik-Cher\-vo\-nen\-kis dimension\/} of $\phi$, abbreviated by \emph{\vc-dimension}, is the maximal cardinality of a finite set $A\subseteq\U$ that is shattered by $\phi$.
@@ -106,14 +107,14 @@ That is, $\phi$ shatters $\{a_i\,:\,i<k\}$.
 An alternative formalism uses \emph{set systems\/} in place of incidence relations.
 A set system is a collection $\Phi$ of subsets of some set $\U$.
 We denote a set system by $(\U,\Phi)$.
-Given a set system, we immediately obtain an incidence relation with $\V=\P(\U)$ by defining $\phi(x,y)$ as $x\in y\in\Phi$.
+Given a set system, we immediately obtain an incidence relation.
+Fix any $\V$ containing $\Phi$ and define $\phi(x,y)$ as $x\in y\in\Phi$.
 
 Vice versa, to an incidence relation $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$, the set system of the definable subsets of $\U$.
-%The non triviality assumption above translates to the claim that $\Phi$ contains at least two elements and $\Phi\neq\{\0,U\}$.
 The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
 The shatter function \emph{$\pi_\Phi(n)$\/} is defined in a similar way.
 
-An incidence relation is \emph{extensional\/} if $\phi(\U,b')=\phi(\U,b'')$ implies $b',b''\in\V$.
+An incidence relation is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
 The correspondence between extensional incidence relations and set systems is one-to-one.
 In general, the correspondence is many-to-one.
 However, as we are mainly interested the set system associated, we my switch from one formalism to the other according to which one is more convenient.
@@ -238,36 +239,47 @@ Then
 \section{Pajor variant and the method of shifting}
 
 An alternative proof of the Sauer-Shelah's Lemma derives it as corollary of a lemma by Alain Pajor~\cite{pajor}.
-The proof below is credited to Noga Alon by Kalai~\cite{kalai}, to (many) others by~\cite{ARS}.
+%The proof below is credited to Noga Alon by Kalai~\cite{kalai}, to (many) others by~\cite{ARS}.
 
 \begin{proposition}[(Pajor's Lemma)]\label{prop_Pajor}
-Assume $\Phi$ is finite.
-Then $\Phi$ there are at least $|\Phi|$ sets shattered by $\Phi$.
+Let $A\subseteq\U$ be finite.
+Then $\phi$ shatters at least $|S_\phi(A)|$ subsets of $A$.
 \end{proposition}
 
 We show how Sauer-Shelah's Lemma follows from Pajor's Lemma.
-Fix a set $A\subseteq\U$ of cardinality $n$ such that $\pi_\phi(n)=\big|\phi(A,b)_{b\in\V}\big|$.
-Now, consider the set system $\Phi=\phi(A,b)_{b\in\V}$.
-By Pajor's Lemma there are $|\Phi|$ subsets of $\U$ shattered by $\Phi$.
-These subsets cannot have cardinality larger than the \vc-dimension of $\phi$, then $\Phi\subseteq A^{[\le k]}$
+Fix a set $A\subseteq\U$ of cardinality $n$ such that $\pi_\phi(n)=\big|S_\phi(A)\big|$.
+By Pajor's Lemma there are $|S_\phi(A)|$ subsets of $A$ shattered by $\phi$.
+These subsets cannot have cardinality larger than the \vc-dimension of $\phi$, then 
 
-\ceq{\hfill\pi_\phi(n)}{=}{|\Phi|\medrel{\le}\big|A^{[\le k]}\big|\medrel{=}\sum^k_{i=0} \binom{n}{i}.}
+\ceq{\hfill\pi_\phi(n)}{=}{|\phi(A,b)_{b\in\V}|\medrel{\le}\left|\bigcup^k_{i=0}{A\choose i}\right|\medrel{=}\sum^k_{i=0} \binom{n}{i}.}
 
 \begin{proof}
-The proposition holds if $|\Phi|=1$.
+If $A$ is empty then $|S_\phi(A)|=1$ and $\0$ is the only subset of $A$ that $\phi$ shatters.
+Fix $a\in A$ and assume the lemma holds for $A'=A\sm\{a\}$.
+Let $\psi$ be the relation defined in the proof of Prosition~\ref{prop_Sauer}.
+Recall that
+
+\ceq{\hfill\big|\phi(A,b)_{b\in\V}\big|}{=}{\big|\phi(A',b)_{b\in\V}\big|\ +\ \big|\psi(A',b)_{b\in\V}\big|.}
+
+and that if $A''\subseteq A'$ is shattered by $\psi$ then $A''\cup\{a\}$ it is shattered by $\phi$.
+By induction hypothesis $\phi$ shatters least $\big|\phi(A',b)_{b\in\V}\big|$ subsets of $A'$ and at least $\big|\psi(A',b)_{b\in\V}\big|$ containing $a$.
+The lemma follows.
+
+We present a different wording of essentially the same proof.
+Consider the set system $\Phi=\phi(A,b)_{b\in\V}$ and reason by induction of $|\Phi|$.
+The proposition holds trivially if $|\Phi|=1$.
 Now, suppose it holds for set systems of cardinality $<|\Phi|$.
-Fix $a\in\U$ and let $\Phi_0=\big\{B\in\Phi : a\notin B\big\}$ and $\Phi_1=\Phi\sm\Phi_0$.
-We can choose $a$ such that $\Phi_i\neq\Phi$.
-By the inductive hypothesis, both $\Phi_i$ shatter at least $\big|\Phi_i\big|$ sets.
+Fix $a\in A$ and let $\Phi_0=\big\{B\in\Phi : a\notin B\big\}$ and $\Phi_1=\Phi\sm\Phi_0$.
+As $|\Phi|>1$, we can choose $a$ such that $\Phi_i\neq\Phi$.
+By the inductive hypothesis, both $\Phi_i$ shatter at least $\big|\Phi_i\big|$ subsets of $A$.
 If no set is shattered by both $\Phi_i$, the claim follows immediately.
 Otherwise, note that for each set shattered by both $\Phi_i$ there are two sets shattered by $\Phi$, one containing $a$ and one not containing $a$.
 The claim follows.
 \end{proof}
  
-We give a second proof of Pajor's Lemma by a method which is interesting in itself because of its many applications.
-I would not know whom to credit with this proof.
+We give different proof of Pajor's Lemma by a method which is interesting in itself because of its many applications.
 The method has been introduced by Erd\H{o}s, Ko and Rado to prove their eponymous theorem.
-They named it \textit{compression}, but is now known as \textit{shifting}.
+They named it \textit{compression}, but is also known as \textit{shifting}.
 
 
 When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subseteq_{a}\kern-1.5pt A$}. We write
@@ -327,13 +339,12 @@ Therefore $\psi(A,b)=\phi(A,b')$.
 
 
 \begin{void_thm}[Second proof of Pajor's Lemma]\label{proof2_Pajor}\rm
-Let $\phi$ be the incidence relation associated to $\Phi$.
-We may assume that $\phi$ is finite.
+Let $\phi$ be a finite extensional incidence relation associated to $\Phi$.
 Let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm \{a\}{\times}B_{\phi_i,a}$ for some $a$.
 As $\phi$ is finite, we can assume that at some stage $n$ we obtain a compressed relation $\psi=\phi_n$.
 Let $\Psi$ be the set of $\psi$-definable sets.
-By Proposition~\ref{prop_shattered}, $\Psi$ shatters at least $|\Psi|$ sets.
-By Proposition~\ref{prop_compressed}, every set shattered by $\Psi$ is shattered by $\Phi$.
+By Proposition~\ref{prop_compressed}, $\Psi$ shatters at least $|\Psi|$ sets.
+By Proposition~\ref{prop_shattered}, every set shattered by $\Psi$ is shattered by $\Phi$.
 By Proposition~\ref{prop_conservative}, $|\Psi|=|\Phi|$.\QED
 \end{void_thm}
 
@@ -349,17 +360,16 @@ Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $E_\phi\subseteq E_{\psi}$
 We call $\displaystyle E_\phi=\bigcup_{a\in U}E_{\phi,a}$ the unit distance diagraph of $\phi$. 
 
 \begin{proposition}
-Let $\phi$ be a finite incidence relation with \vc-dimension $k$.
-Let $\Phi$ be the set system associated to it. 
-Then $|E_\phi|\le k\,|\Phi|$.
+Let $\phi$ be a finite extensional incidence relation with \vc-dimension $k$.
+Then $|E_\phi|\le k\,|\V|$.
 \end{proposition}
 
 \begin{proof}
-Let $\psi$ and $\Psi$ be as defined in Proof~\ref{proof2_Pajor}.
-By Propositions~\ref{prop_compressed} and~\ref{prop_shattered}, every has at most $k$ ancestors.
+Let $\psi$ be as defined in Proof~\ref{proof2_Pajor}.
+By Propositions~\ref{prop_compressed} and~\ref{prop_shattered}, every $b\in\V$ has at most $k$ ancestors.
 Therefore
 
-\ceq{\hfill\frac{|E_\phi|}{|\Phi|}}{\le}{\frac{|E_\psi|}{|\Psi|}\medrel{\le}k}
+\ceq{\hfill\frac{|E_\phi|}{|\V|}}{\le}{\frac{|E_\psi|}{|\V|}\medrel{\le}k}
 \end{proof}
 
 \begin{comment}

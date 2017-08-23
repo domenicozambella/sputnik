@@ -2,6 +2,6 @@
 
 Notes for a series of lectures.
 
-This **very messy** work-in-progress.
+Steer clear of it (for the time being).
 
-Do not use for the time being.
+This is **very messy** work-in-progress.
