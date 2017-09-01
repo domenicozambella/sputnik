@@ -26,7 +26,11 @@
 \def\ceq#1#2#3{\parbox[t]{32ex}{$\displaystyle #1$}\parbox{5ex}{$\displaystyle\hfil #2$}{$\displaystyle #3$}}
 
 A sample is a just sequence of elements of $\U$ where we disregard the order and only consider the number of times they appear.
-Formally, a \emph{sample\/} is a \emph{multiset}, that is is a function $A:\U\to\NN$.
+Formally, a \emph{sample\/} is a \emph{multi-subset of $\U$}, that is is a function $A:\U\to\NN$. 
+
+The definitions in this and the next sections easily generalize to \emph{fractional multi-sets\/} i.e.,  function $A:\U\to\RR$ with non negative values.
+These will have some applications in the next chapters.
+
 We interpret $A(x)$ as the \emph{multiplicity\/} of the element $x\in\U$.
 The \emph{support\/} of $A$ is the set \emph{$\supp(A)$}$=\{x:A(x)\neq0\}$.
 The \emph{size of $A$\/} is defined as
@@ -54,8 +58,7 @@ An \emph{$\epsilon$-approximation\/} of a sample $A$ is a subsample $C\subseteq 
 
 \ceq{\hfill\displaystyle \Big|\Fr(\B/A) - \Fr(\B/C)\Big|}{\le}{\epsilon}
 
-With exception of enumerations, the definitions above easily generalize to \emph{fractional samples\/} i.e.,  function with values on the non negative real.
-These will be used in the next chapter.
+As an alternative to multi-sets, we could use the following approach. Replace $\U$ with $\U'=\U\times\omega$, which we think of as the union of infinitely many disjoint copies of $\U$. Replace $\Phi$ with $\Phi'=\{\B\times\omega\ :\ \B\in\Phi\}$. Then $\U'$ contains infinitely many copies of each element of $\U$ which are indistinguishable by sets in $\Phi'$. Then to every finite subset of $A\subseteq\U'$ we can associate a multi-subset of $\U$. (The correspondence is not one-to-one, but this is not relevant in the following.)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,25 +75,24 @@ In general $\U$ may not be among the definable sets. As it is often convenient t
 
 Let $C\subseteq A$ and $\B\in\Phi'$. We call the quantity 
 
-\ceq{\hfill\emph{$\Delta_{A,C,\B}$}}{=}{\frac{|C\cap\B|-|(A{\sm} C)\cap\B|}{|A|}}
+\ceq{\hfill\emph{$\Delta_{A,C,\B}$}}{=}{|C\cap\B|-|(A{\sm} C)\cap\B|}
 
-the \emph{discrepancy\/} of $C$ in $\B$. The \emph{relative discrepancy\/} of $C$ in $\B$ is
+the \emph{discrepancy\/} of $C$ in $\B$. 
+The \emph{discrepancy\/} of $C$ is
 
-\ceq{\hfill\emph{$\delta_{A,C,\B}$}}{=}{\frac{\Delta_{A,C,\B}}{|A|}.}
+\ceq{\hfill\emph{$\Delta_{A,C}$}}{=}{\max_{\B\in\Phi'}\big|\Delta_{A,C,\B}\big|.}
 
-The \emph{relative discrepancy\/} of $C$ is\smallskip
+Finally, the \emph{discrepancy\/} of $A$ is 
 
-\ceq{\hfill\emph{$\delta_{A,C}$}}{=}{\sup_{\B\in\Phi'}\big|\delta_{A,C,\B}\big|.}
+\ceq{\hfill \emph{$\Delta_A$}}{=}{\min_{C\subseteq A}\Delta_{A,C}.}
 
-The \emph{relative discrepancy\/} of $A$ is 
-
-\ceq{\hfill \emph{$\delta_A$}}{=}{\inf_{C\subseteq A}\delta_{A,C}}
+We will use the same notation but with a lowercase \emph{$\delta$\/} for the \emph{relative discrepancy}. This is obtained obtained dividing the discrepancy by the size of $A$.
 
 The next lemma is intuitive, if an $\epsilon$-approximation has small discrepancy then we can halve its size at a small cost.
 
 \begin{lemma}\label{lem_aprossimazionediapprossimazione}
 Let $A$ be a sample of size $n$.
-Let $C\subseteq A$ have discrepancy $\delta_{A,C}$.
+Let $C\subseteq A$ have relative discrepancy $\delta_{A,C}$.
 Then either $C$ or $A\sm C$ is an $\epsilon$-approximation of size $\le n/2$ for $\epsilon=2\delta_{A,C}$.
 \end{lemma}
 
@@ -125,135 +127,78 @@ as claimed by the lemma.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Random colorings}
+\section{Random colorings}\label{colorings}
 
-An \emph{enumeration\/} of a sample $A$ is a tuple $a=\<a_1,\dots,a_n\>\in\U^n$ such that
+We say that a tuple $a=\<a_1,\dots,a_n\>\in\U^n$ is an \emph{enumeration\/} of the sample $A$ if for all $x\in\U$
 
 \ceq{\hfill A(x)}{=}{\big|\{i\ :\ a_i=x\}\big|.}
 
 Clearly, all enumerations of $A$ have length $n=|A|$. We write \emph{$\range(a)$} for the sample enumerated by $a$.
 
-Fix an enumeration $a=\<a_1,\dots,a_n\>$ of $A$. A tuple $c=\<c_1,\dots,c_n\>\in\{-1,+1\}^n$ is called a \emph{coloring}. To each coloring $c$ we associate a subsample of $A$ 
+\def\spl{{\rm smpl}}
 
-\ceq{\hfill C_c(x)}{=}{\big|\{i : a_i=x,\ c_i=+1\}\big|}
+Fix an enumeration $a=\<a_1,\dots,a_n\>$ of $A$. A tuple $c=\<c_1,\dots,c_n\>\in\{-1,+1\}^n$ is called a \emph{coloring}. To each coloring $c$ we associate a subsample of $A$, which we denote by \emph{$\spl(a,c) $}. It assigns to $x\in\U$ multiplicity $\big|\{i : a_i=x,\ c_i=+1\}\big|$.
 
 Note that the quantity 
 
 \ceq{\hfill\Delta_{a,c,\B}}{=}{\sum_{a_i\in\B}c_i.}
 
-coincide with the discrepancy of $C_c$ over $\B$. As in particular it does not depend the enumeration of $A$, below we will write $\Delta_{A,c,\B}$
+coincide with the discrepancy of $\spl(a,c)$ over $\B$.
 
-When 
+There is probability measure on the subsamples of $A$ which is computationally convenient. We assume that $C=\spl(a,c)$ where $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obtained tossing $n$ times a fair coin. 
+
+That is, we assume an uniform distribution on the colorings and this induces a multivariate binomial distribution on the subsamples. Note that this distribution s independent of the enumeration of $A$.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Important inequalities}
 
 
 \def\ceq#1#2#3{\parbox[t]{15ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
-\begin{void_thm}[Proposition (Weak Law of Large Numbers)]\label{wlln}
-Let $\mu$ be a probability measure on $\U$.
-Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
+\begin{void_thm}[Proposition (Chebychev's inequality)]\label{wlln}
+Let $X$ be a random variable with finite mean and finite variance.
 
-\ceq{\hfill1-\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle\mu^n \Big(c\in\U^n\ :\ \Big|\mu\B - \frac1n\big|c^\circ\cap\B\big| \Big|\le\epsilon\Big)}
+\ceq{\hfill1-\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle\Pr \Big(\big|{\rm E}(X)-X\big|\le\epsilon\Big)}
 \end{void_thm}
 
 
 \begin{proof}
-Note that $X=X(c)=\big|c^\circ\cap\B\big|$ is a binomial random variable with success probability $p=\mu\B$. 
+
+\ceq{\hfill1-\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle\Pr \Big(\big|X-{\rm E}(X)\big|\le\epsilon\Big)}
+
+\end{proof}
+
+\begin{void_thm}[Proposition (Weak Law of Large Numbers)]\label{wlln}
+Let $\Pr$ be a probability measure on $\U$.
+Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
+
+\ceq{\hfill1-\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle{\Pr}^n \Big(c\in\U^n\ :\ \Big|\Pr(\B) - \Fr(\B/c) \Big|\le\epsilon\Big)}
+\end{void_thm}
+
+
+\begin{proof}
+Note that $X=X(c)=\big|\range(c)\cap\B\big|$ is a binomial random variable with success probability $p=\mu\B$. 
 Hence ${\rm E}(X)=p$ and  ${\rm Var}(X)=p(1-p)/n$.
 Apply Chebyshev's inequality.
 \end{proof}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{A uniform law of large numbers}
 
-\def\ceq#1#2#3{\parbox[t]{35ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
-
-An \emph{$\epsilon$-approximation\/} of a sample $A$ is a subsample $C\subseteq A$ such that for every definable set $\B$
-
-\ceq{\hfill\displaystyle \Big|\Fr(A,\B) - \Fr(C,\B)\Big|}{\le}{\epsilon}
-
-We want to estimate the minimal size of an $\epsilon$-approximation of $A$.
-We want a bound that depends solely on $\epsilon$, not on the size of $A$. It is also important to note requirement of uniformity: the same approximation works for all definable sets.
-
-If we allow $C$ to depend on $\B$, its existence follows easily from the weak law of large numbers.
-
-\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
-
-\begin{proposition}[(Weak law of large numbers)]
-For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C\subseteq A$ of size $n=1/4\,\epsilon^2$ such that $\big|\Fr(A,\B) - \Fr(C,\B)\big|\le\epsilon$.
-\end{proposition}
-% 
-% \begin{proof}
-% Apply the weak law of large numbers, Proposition~\ref{wlln},  with $\mu(\B) = \Fr(A,\B)$. If $n\le1/4\,\epsilon^2$ then
-% 
-% \ceq{\hfill0}{<}{\displaystyle\mu^n \Big(c\in\U^n\ :\ \Big|\mu(\B) - \Fr(B/c)\big| \Big|\le\epsilon\Big)}
-% 
-% In particular, set above in non empty. The required subsample is $C=c^\circ\cap A$.
-% \end{proof}
-
-
-\begin{proof}
-Define $\Pr(\cdot)=\Fr(A,\cdot)$. Fix $\B$ and set $p=\Pr(\B)$. Consider the Bernoulli random variables $X_i$ that on input $c\in\U^n$ output
-
-\ceq{\hfill X_i(c)}{=}{\left\{
-\begin{array}{ll}
-1&{\rm if}\ c_i\in\B\\
-0&{\rm if}\ c_i\notin\B\\
-\end{array}\right.}
-
-Define also $\displaystyle\bar X=\frac1n\sum_iX_i$. Then ${\rm E}(\bar X)=p$ and $\displaystyle{\rm Var}(\bar X)=\frac{p(1-p)}{n}\le\frac1{4n}$. 
-
-If we set $C=\range(c)\cap A$, we obtain 
-
-\ceq{\hfill \big|{\rm E}(\bar X)-\bar X(c) \big|}{=}{\big|\Fr(A,\B) - \Fr(\range(c),\B)\big|}
-
-\ceq{}{\ge}{\big|\Fr(A,\B) - \Fr(C,\B)\big|}
-
-So it suffices that $\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon$ has positive probability for some large enough $n$. By Chebychev's inequality
-
-
-\ceq{\hfill 1-\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{<}{\Pr\Big(\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon\Big)}
-
-% By the Chernoff bound
-% 
-% \ceq{\hfill 1-2\,e^{-2n\epsilon^2}}{<}{\Pr\Big(\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon\Big)}
-
-Hence the probability above is positive for $\displaystyle\frac1{4\epsilon^{\scriptscriptstyle 2}}\le n$.
-\end{proof}
-
-
-\begin{theorem}[(Uniform law of large numbers)]\label{thm_epsilon_approx}
-Assume $(\U,\Phi)$ has \vc-density $d$. Then every sample $A$ has an $\epsilon$-approximation of size 
-
-\ceq{\hfill n}{\le}{c\,\frac{d}{\epsilon^{\scriptscriptstyle 2}}\ln\frac1\epsilon,}
-
-where $c$ is an absolute constant.
-\end{theorem}
-
-
-
-The lemma above tells that $\epsilon$-approximations with small discrepancy are useful, but as yet we have no clue as to finding one.
-We are going to prove that when the number of definable subsets of $A$ is relatively small, then the discrepancy of $A$ is not too large.
-We use a probabilistic argument to prove this bound (when you don't have a clue how to do something, you might as well do it randomly).
-
-First, we make a brief digression into probability theory.
-The following inequality is a classical tool in this context.
 
 \begin{lemma}[(Chernoff's bound, special case)]\label{Chernoff}
 For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i=\pm1)=1/2$.
 Then for every $\epsilon>0$
 
-\ceq{\hfill \Pr\big(\bar X\ge\epsilon\big)}{\le}{\exp(-\frac{n}{2}\epsilon^2)}\hfill where $\displaystyle \bar X=\frac1n\sum^n_{i=1}X_i$
+\ceq{\hfill \Pr\big(M\ge\epsilon\big)}{\le}{\exp(-\frac{\epsilon^2}{2n})}\hfill where $\displaystyle M=\sum^n_{i=1}X_i$
 \end{lemma}
 \begin{proof}
 Let $t>0$ be arbitrary.
 Then
 
-\ceq{\sharp\hfill \Pr(\bar X\ge\epsilon)}{=}{ \Pr\big(e^{t\bar X}\ge e^{t\epsilon}\big)}
+\ceq{\sharp\hfill \Pr(M\ge\epsilon)}{=}{ \Pr\big(e^{tM}\ge e^{t\epsilon}\big)}
 
-\ceq{~}{\le}{e^{-t\epsilon}\,{\rm E}\big(e^{t\bar X}\big)}
+\ceq{~}{\le}{e^{-t\epsilon}\,{\rm E}\big(e^{tM}\big)}
 
 In fact, the equality follows because the exponential is an increasing function and the inequality is Markov's inequality, which says that $\Pr(X\ge a)\le a^{-1}{\rm E}(X)$ for every $a$ and is immediate to verify.
 Now observe that
@@ -270,40 +215,128 @@ Now observe that
 
 From this, by independence we have 
 
-\ceq{\hfill {\rm E}\big(e^{t\bar X}\big)}{=}{\prod^n_{i=1}e^{(t/n)X_i}}$\medrel{=}e^{t^2/2}$
+\ceq{\hfill {\rm E}\big(e^{tM}\big)}{=}{\prod^n_{i=1}e^{t\,X_i}}$\medrel{=}e^{n\,t^2/2}$
 
 
-Subtituting in $\sharp$ gives $\Pr(\bar X\ge\epsilon)\le e^{t^2/2-t\epsilon}$.
-Finally Chernoff's inequality is obtained substituting $\epsilon$ for $t$.
+Subtituting in $\sharp$ gives $\Pr(M\ge\epsilon)\le e^{n\,t^2/2-t\epsilon}$.
+Finally Chernoff's inequality is obtained substituting $\epsilon/n$ for $t$.
 \end{proof}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A uniform law of large numbers}
+
+\def\ceq#1#2#3{\parbox[t]{35ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+We want to estimate the minimal size of an $\epsilon$-approximation of $A$.
+We want a bound that depends solely on $\epsilon$, not on the size of $A$.
+It is also important to note that the definition of approximation includes a requirement of uniformity: the same subsample works for all definable sets.
+
+If we allow $C\subseteq A$ to depend on $\B$, the existence of a subsample that satisfies the inequality 
+
+\ceq{\hfill\displaystyle \Big|\Fr(\B/A) - \Fr(\B/C)\Big|}{\le}{\epsilon}
+
+follows easily from Chebychev's inequality and its size only depends on $\epsilon$. This is essentially the weak law of large numbers for the probability measure $\Fr(\cdot/A)$.
+
+\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+\begin{proposition}[(Weak law of large numbers)]
+For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C$ of size $n=1/4\,\epsilon^2$ such that $\big|\Fr(\B/A) - \Fr(\B/C)\big|\le\epsilon$.
+\end{proposition}
+% 
+% \begin{proof}
+% Apply the weak law of large numbers, Proposition~\ref{wlln},  with $\mu(\B) = \Fr(A,\B)$. If $n\le1/4\,\epsilon^2$ then
+% 
+% \ceq{\hfill0}{<}{\displaystyle\mu^n \Big(c\in\U^n\ :\ \Big|\mu(\B) - \Fr(B/c)\big| \Big|\le\epsilon\Big)}
+% 
+% In particular, set above in non empty. The required subsample is $C=c^\circ\cap A$.
+% \end{proof}
+
+ Note that to avoid technicalities we do not insist in requiring $C\subseteq A$.
+
+\begin{proof}
+Interpret $\Fr(\cdot/A)$ as a probability measure on $\supp A$. Fix $\B$ and set $p=\Fr(\B/A)$. Consider the Bernoulli random variables $X_i$ that on input $c\in(\supp A)^n$ output
+
+\ceq{\hfill X_i(c)}{=}{\left\{
+\begin{array}{ll}
+1&{\rm if}\ c_i\in\B\\
+0&{\rm if}\ c_i\notin\B\\
+\end{array}\right.}
+
+Define also $\displaystyle\bar X=\frac1n\sum_iX_i$. Then ${\rm E}(\bar X)=p$ and $\displaystyle{\rm Var}(\bar X)=\frac{p(1-p)}{n}\le\frac1{4n}$. 
+
+If we set $C=\range(c)$, we obtain 
+
+\ceq{\hfill \big|{\rm E}(\bar X)-\bar X(c) \big|}{=}{\big|\Fr(\B/A) - \Fr(\B/C)\big|}
+
+So it suffices that $\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon$ has positive probability for some large enough $n$. By Chebychev's inequality
+
+\ceq{\hfill 1-\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{<}{\Pr\Big(\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon\Big)}
+
+% By the Chernoff bound
+% 
+% \ceq{\hfill 1-2\,e^{-2n\epsilon^2}}{<}{\Pr\Big(\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon\Big)}
+
+Hence the probability above is positive for $\displaystyle\frac1{4\epsilon^{\scriptscriptstyle 2}}\le n$.
+\end{proof}
+
+The main result of this chapter is the following theorem of  Vapnik and Chervonenkis which we proof in the next section.
+
+\begin{theorem}[(Uniform law of large numbers)]\label{thm_epsilon_approx}
+Assume $(\U,\Phi)$ has \vc-density $d$. Then every sample $A$ has an $\epsilon$-approximation of size 
+
+\ceq{\hfill n}{=}{c\,\frac{d}{\epsilon^{\scriptscriptstyle 2}}\ln\frac1\epsilon,}
+
+where $c$ is an absolute constant.
+\end{theorem}
+
+
+
+The lemma above tells that $\epsilon$-approximations with small discrepancy are useful, but as yet we have no clue as to finding one.
+We are going to prove that when the number of definable subsets of $A$ is relatively small, then the discrepancy of $A$ is not too large.
+We use a probabilistic argument to prove this bound (when you don't have a clue how to do something, you might as well do it randomly).
+
+
 \begin{lemma}\label{lem_discrepanzarandom} 
-Let $A$ be a sample of size $\le n$. Assume the support of $A$ has $\le m$  definable subsets. Then $\delta_A\ \le\ \sqrt{(2/n)\ln(m+1)\;}$.
+Let $A$ be a sample of size $\le n$. Assume the support of $A$ has $\le m$  definable subsets. Then $\Delta_A\ \le\ \sqrt{2n\ln(m+2)\;}$.
 \end{lemma}
 
 \begin{proof}
 \def\ceq#1#2#3{\parbox[t]{40ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
-To prove that $\delta_A\le\epsilon$ it suffices to show that there is a $C\subseteq A$ such that $\delta_{A,C,\B}\le\epsilon$ for all $\B$.  It suffices to define a probability on the subsamples of $A$ and show that
+Let $\epsilon=\sqrt{2n\ln(m+2)}$. Then we need to prove that $\Delta_A\le\epsilon$ which is equivalent to
 
-\ceq{\hfill \Pr\big(\A\B\in\Phi'\ \ \delta_{A,C,\B}\le \epsilon\big)}{>}{0}
+\ceq{\hfill \E C\subseteq A\ \A\B\in\Phi'\ \Delta_{A,C,\B}}{\le}{\epsilon}
 
-or, as $\Phi'$ has at most $m+1$ elements, that for every $\B\in\Phi'$
+Let $\Pr(\cdot)$ denote the probability measure on the subsamples of $A$ discussed in Section~\ref{colorings} (though, clearly, any other probability measure would do for the implication)
 
-\ceq{\ssf{4.}\hfill\Pr\big(\delta_{A,C,\B}\ge\epsilon\big)}{\le}{\frac1{m+2}.}
+\ceq{\rm}{\Uparrow}{}
 
+\ceq{\hfill \Pr\big(\A\B\in\Phi'\ \ \Delta_{A,C,\B}\le \epsilon\big)}{>}{0.}
 
-Suppose $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obtained tossing $n$ times a fair coin. Fix $\B$ and let $n'=|\B|$. Consider the Bernoulli random variables $X_i$ that on input $c$ output $c_i$. Define also $\displaystyle\bar X=(1/n')\sum_{a_i\in\B} X_i$. Then $\delta_{A,C_c,\B}=\bar X(c)$ and \ssf{4} is equivalent to
+As $\Phi'$ has at most $m+1$ elements
 
-\ceq{\hfill\Pr\big(\bar X\ge\epsilon\big)}{\le}{\frac1{m+2}.}
+\ceq{}{\Uparrow}{}
 
+\ceq{\hfill\A\B\in\Phi'\ \Pr\big(\Delta_{A,C,\B}\ge\epsilon\big)}{\le}{\frac1{m+2}.}
 
-By the Chernoff's bound this is satisfied if 
+Fix an enumeration $a$ of $A$. Suppose $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obtained tossing $n$ times a fair coin. Consider the Bernoulli random variables $X_i$ that on input $c$ output $c_i$. For a given $\B$ define $\displaystyle M_\B=\sum_{a_i\in\B} X_i$. Then $\Delta_{A,C,\B}= \Delta_{a,c,\B}=M_\B(c)$. Therefore
 
+\ceq{\hfill\Pr\big(\Delta_{A,C,\B}\ge\epsilon\big)}{\le}{\frac1{m+2}.}
 
-\ceq{\hfill\exp(-\frac{n'\epsilon^2}{2})}{\le}{\frac1{m+2}.}
+\ceq{}{\Updownarrow}{} 
 
-As $n'\le n$, this yields the required bound.\end{proof}
+\ceq{\hfill\Pr\big(M_\B\ge\epsilon\big)}{\le}{\frac1{m+2}.}
+
+\ceq{\rm By\ the\ Chernoff's\ bound}{\Uparrow}{} 
+
+\ceq{\hfill\exp(-\frac{\epsilon^2}{2|\B|})}{\le}{\frac1{m+2}.}
+
+\ceq{}{\Updownarrow}{} 
+
+\ceq{\hfill2|\B|\ln(m+2)}{\le}{\epsilon^2}
+
+As $|\B|\le n$, the latter is clearly true.
+\end{proof}
 
 \begin{void_thm}[Proof of Proposition \ref{thm_epsilon_approx}]\rm
 Set $A_0=A$ and $\epsilon_0=0$. We construct a decreasing chain $A_i$ of $\epsilon_i$-approximations.
@@ -337,34 +370,6 @@ this in turn is ensured if
 
 
 \end{void_thm}
-
-
-\begin{corollary}\label{coroll_epsilon_multiapprox}Let $\Phi$ be a finite set-system of \vc-dimension $1<k<\omega$.
-Then for every positive $\epsilon<1$, every probability measure $\Pr$ admits a multi-set $\epsilon$-approximation of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
-\end{corollary}
-\begin{proof}
-Without loss of generality we can assume that $\Pr$ is rational valued.
-Then there is a uniform probability measure $\Pr'$ on some finite set $\U'$ and a surjection $f:\U'\to\U$ such that $\Pr(f^{-1}\phi)=\Pr(\phi)$.
-By Theorem~\ref{thm_epsilon_approx} $\Pr'$ admits an $\epsilon\jj$approximation $B'$ with cardinality by $\natural$, for every positive $\epsilon<1$.
-We know define a multi-set $B$ such that $B(a)=|B'\cap f^{-1}|$ for every $a\in\U$.
-As $|B'|=|B|$ and $|B'\cap f^{-1}\phi|=|B\cap\phi|$, this is the required multi-set $\epsilon$-approximation.
-\end{proof}
-
-The following corollary is used in Theorem~\ref{thm_qq} below.
-Though it is sufficient for our application, stronger bound are known (essentially, we can replace $\epsilon$ for $\epsilon^2$).
-
-
-
-\begin{corollary}\label{coroll_epsilon_net}
-Let $\Phi$ be a finite set-system of \vc-dimension $1<k<\omega$.
-Then for every positive $\epsilon<1$, every probability measure $\Pr$ admits a multi-set $\epsilon$-net of cardinality bounded by $\natural$ of Theorem~\ref{thm_epsilon_approx}.
-\end{corollary}
-
-\begin{exercise}\label{ex_counterexample}
-Suppose that $\{a\},\{b\}\in\Phi$ for some $a,b\in\U$.
-Show that, if $\Pr$ and $\epsilon$ are such that $0<\epsilon<\Pr(a)$ and $2\epsilon<\Pr(b)-\Pr(a)$, then $\Pr$ admits no $\epsilon\jj$approximation.\QED
-\end{exercise}
-
 
 
  

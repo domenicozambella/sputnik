@@ -1,0 +1,149 @@
+% !TEX root = sputnik.tex
+\documentclass[sputnik.tex]{subfiles}
+\begin{document}
+
+\def\Fr{\mathop{\rm Fr}}
+
+\def\vc{{\footnotesize VC}}
+\def\nip{{\footnotesize NIP}}
+
+
+\def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
+\def\ceq#1#2#3{\parbox[t]{15ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+
+
+\chapter{Packings and transversals}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linear programming / convex optimization}\label{LP}
+
+The following is a classical result.
+The proof may be found in any introductory text of linear programming.
+There are many (sometimes non equivalent) ways to state it.
+The following somewhat unusual phrasing is taken from Terence Tao's blog.
+It stresses the analogies between Farkas' lemma and Hilbert's Nullstellensatz.
+% (we have reversed strict and weak inequalities, but the proof is identical).
+
+\begin{proposition}[(Farkas' Lemma)]
+For $i\in[m]$ let $P_i:\RR^n\to\RR$ be affine linear functions.
+Then the following are equivalent
+\nobreak  
+\begin{itemize}
+\item[1.] $\displaystyle\bigwedge^m_{i=1}P_i(x)\ge 0$ has a solution $x\in\RR^n$;
+\item[2.] there are no $0\le y\in\RR^m$ such that \smash{$\displaystyle\sum^m_{i=1}y_iP_i=-1$}.\QED
+\end{itemize}
+\end{proposition}
+
+
+
+\begin{proposition}[(Farkas' Lemma, second formulation)]
+Let $A$ be a $m\times n$ real matrix. 
+%Let $\big\<A_{i,j}\ :\ i\in[m],\ j\in[n]\big\>$ be the the entries of a real matrix.
+Let $b\in\RR^m$ be a column vector.
+Then the following are equivalent
+\nobreak  
+\begin{itemize}
+\item[1.] $Ax\ge b$ has a solution $x\in\RR^n$;
+\item[2.] all $0\le y\in\RR^m$ such that $A^{\rm T}y=0$ also satisfy $b^{\rm T}y\ge0$.\QED
+\end{itemize}
+\end{proposition}
+
+
+\begin{proposition}[(Duality for LP)]
+Let $A$ be a $m\times n$ real matrix. Let $c\in\RR^m$ and $b\in\RR^n$ be column vectors. Then the following maximum and minimum exist and coincide.\nobreak  
+% \begin{itemize}
+% \item[1.] $\max\{\,c^{\rm T}\, x\ :\ \ A\,x\le b,\ 0\le x\}$;
+% \item[2.] $\min\,\{\,b^{\rm T}\,y\ :\ A^{\rm T}y\ge c,\  0\le y\}$.\QED
+% \end{itemize}
+\begin{itemize}
+\item[1.] $\min\,\{\,c^{\rm T}\, x\ :\ \ A\,x\ge b,\ 0\le x\}$;
+\item[2.] $\max\{\,b^{\rm T}\,y\ :\ A^{\rm T}y\le c,\  0\le y\}$.\QED
+\end{itemize}
+
+\end{proposition}
+
+% \begin{proof}
+% For $i=1,\dots,m$ let 
+% 
+% \ceq{\hfill P_i\ :\ \RR^n}{\to}{\RR} 
+% 
+% \ceq{\hfill x\kern1.3ex}{\mapsto}{\Big(\sum^n_{j=1}A_{i,j}\,x_j\Big)-1}
+% 
+% Also for an given $y$ define
+% 
+% \ceq{\hfill P_{m+1}\ :\ \RR^n}{\to}{\RR} 
+% 
+% \ceq{\hfill x\kern1.3ex}{\mapsto}{\Big(\sum^n_{j=1}x_j\Big)-y}
+% 
+% the maximal $y$ such that the system of equation has a non negative solution. By Farkas's lemma this is the  maximal $y$ such that 
+% \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Transversals and packings}\label{Transversals_Packings}
+
+A subset $A\subseteq\U$ is a \emph{tansversal\/} if $\phi(A,b)\neq\0$ for every $b\in\V$. Equivalently, if $\phi(a,\V)_{a\in A}$ covers $\V$.
+The \emph{transversal number\/} of $\phi$, denoted by $\tau(\phi)$, is the smallest cardinality of a transversal of $\phi$.
+
+A subset $B\subseteq\V$ is a \emph{packing\/} if $\phi(\U,b)\cap\phi(\U,b')=\0$ for every $b,b'\in B$. Equivalently if $|\phi(a,B)|\le1$ for every $a\in\U$.
+The \emph{packing number\/} of $\phi$, denoted by $\nu(\phi)$, is the largest cardinality of a packing  $B\subseteq\V$.
+
+As any transversal is at least as large as any packing, we always have $\nu(\phi)\le\tau(\phi)$.
+Very little can be said in the reverse direction in general.
+
+A fractional multi-set $A$ over $\U$ is a \emph{fractional tansversal\/} if $|\phi(A, b)|\ge1$ for every $b\in\V$.
+The \emph{fractional transversal number\/} of $\phi$, denoted by $\tau^*(\phi)$, is the  infimum of the size of the fractional transversals of $\phi$.
+
+A fractional multi-set $B$ over $\V$ is a \emph{fractional packing\/} if $|\phi(a,B)|\le1$ for every $a\in\U$.
+The \emph{fractional packing number\/} of $\phi$, denoted by $\nu^*(\phi)$, is the supremum of the size of the fractional packings of $\phi$.
+
+\begin{example}
+Let $\U=\RR^2$ and $\V$ is a set of $n$ lines in general position.
+Let $\phi$ be the incidence relation.
+%That is, any to lines intersect and every point is contained in at most to lines.
+Then $\nu(\phi)=1$, as any two lines intersect.
+And $\tau(\phi)=\lceil n/2\rceil$, as each point belongs to at most two lines.
+
+Let $B$ assign $1/2$ to every line. Then $|\phi(a,B)|\le1$ holds because each point is contained in at most two lines.
+Then $\nu^*(\phi)\ge n/2$.
+It is easy to see that $\tau^*(\phi)= n/2$.
+If $n$ is even, it is clear.
+If $n$ is odd, take $3$ any lines, and assign $1/2$ to the three intersection points.
+Proceed as in the even case with the other lines.\QED
+\end{example}
+
+\begin{exercise}
+Let $\U=\RR$ and $\V$ is a set of finitely many closed intervals.
+Let $\phi$ be the incidence relation.
+Then $\nu(\phi)=\tau(\phi)$.
+Hint: by induction on $\nu(\phi)$.
+\end{exercise}
+
+\begin{theorem}
+For every finite incidence relation $\nu^*(\phi)=\tau^*(\phi)$.
+\end{theorem}
+\begin{proof}
+Let $\U=\{a_1,\dots,a_m\}$ and $\V=\{b_1,\dots,b_n\}$.
+Let $F$ be the $\{0,1\}$-valued incidence matrix $\phi(a_i,b_j)$.
+A multi-set over $\U$ is a naturally associated to a vector $0\le x\in\RR^m$.
+A multi-set over $\U$ is associated to a vector $0\le y\in\RR^n$. 
+Then 
+
+
+\ceq{\hfill\tau^*(\phi)}{=}{\min\,\big\{\,1_n^{\rm T}\;x\ :\ \ F\,x\ge 1_m,\ 0\le x\}.}
+
+\ceq{\hfill\nu^*(\phi)}{=}{\max\big\{\,1_n^{\rm T}\ y\,\  :\ F^{\rm T}y\le 1_n,\,\  0\le y\};}
+
+
+
+\end{proof}
+
+\end{document}

@@ -14,6 +14,7 @@
 \def\mr{\color{brown}}
 \def\gr{\color{green}}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23,13 +24,12 @@
 
 After Pierre Simon, after Jiri Matousek, after Noga Alon and Daniel Kleitman.
 
-Let $q\le p<\omega$ we say that $\Phi$ has the $(p,q)\jj$property if out of every $p$ sets in $\Phi$ some $q$ have non empty intersection.
-It has the dual $(p,q)\jj$property if for every $p$ point in $\U$ some $q$ are belong to the same set in $\Phi$.
+Let $q\le p<\omega$ we say that $\Phi$ has the $(p,q)$-property if out of every $p$ sets in $\Phi$ some $q$ have non empty intersection.
+It has the dual $(p,q)$-property if for every $p$ point in $\U$ some $q$ are belong to the same set in $\Phi$.
 
 
 The following a is a particular case of a theorem of  Matousek (based on a proof of Noga Alon and Daniel Kleitman).
 The proof by Pierre Simon is simpler.
-[I will add details, references, and much more.]
 
 \begin{theorem}\label{thm_qq}
 Let $\U$ be finite and let $\Phi$ have \vc-dimension $k<\omega$.
@@ -170,19 +170,6 @@ In fact
 $\displaystyle\sum_{i<m}\lambda_i\sum_{j<n}\big(P_{i,j}-\epsilon\big)\check x_j\medrel{=}{\sum_{i<m}\lambda_i\big(P_{i,\check\jmath}-\epsilon\big)}\medrel{=}\mu(\phi_{\check\jmath})-\epsilon\medrel{\ge}1-\epsilon\medrel{>}0$.
 This concludes the proof.
 \end{proof}
-
-The following is a classical result.
-The proof may be found in any introductory text of convex analysis or linear programming.
-There are many (sometimes non equivalent) ways to state it, we recommend  Terence Tao's exposition which may be found in his mathematical blog (we have reversed strict and weak inequalities, but the proof is identical).
-
-\begin{proposition}[(Farkas' Lemma)]
-For $i<m$ let $P_i:\RR^n\to\RR$ be affine linear functions.
-Then the following are equivalent\nobreak  
-\begin{itemize}
-\item[1.] $\displaystyle\bigwedge_{i<m}P_i(x)> 0$ for some $x\in\RR^n$;
-\item[2.] there are no $\lambda_i\in\RR_+$ such that \smash{$\displaystyle\sum_{i<m}\lambda_iP_i(x)\le 0$} for every $x\in\RR^n$.\QED
-\end{itemize}
-\end{proposition}
 
 % \begin{proof}
 % \def\myC{\raisebox{-.5ex}{\Bigg[}}
