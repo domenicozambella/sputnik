@@ -28,9 +28,6 @@
 A sample is a just sequence of elements of $\U$ where we disregard the order and only consider the number of times they appear.
 Formally, a \emph{sample\/} is a \emph{multi-subset of $\U$}, that is is a function $A:\U\to\NN$. 
 
-The definitions in this and the next sections easily generalize to \emph{fractional multi-sets\/} i.e.,  function $A:\U\to\RR$ with non negative values.
-These will have some applications in the next chapters.
-
 We interpret $A(x)$ as the \emph{multiplicity\/} of the element $x\in\U$.
 The \emph{support\/} of $A$ is the set \emph{$\supp(A)$}$=\{x:A(x)\neq0\}$.
 The \emph{size of $A$\/} is defined as
@@ -48,17 +45,28 @@ We also define the \emph{intersection\/} and the \emph{difference\/} of two samp
 The element $x\in\U$ has multiplicity  $A(x)\wedge C(x)$ in \emph{$A\cap C$\/} and multiplicity  $A(x)\dotminus C(x)$ in \emph{$A\sm C$}.
 Note that $|A|=|A\cap C|+|A\sm C|$.
 
+
+The definitions above and those in next sections easily generalize to \emph{fractional multi-sets\/} i.e., function $A:\U\to\RR$ with non negative values.
+These will have some applications in the next chapters.
+
+As an alternative to multi-sets, we could use the following approach. Replace $\U$ with $\U'=\U\times\omega$ and $\Phi$ with $\Phi'=\{\B\times\omega\ :\ \B\in\Phi\}$. Then $\U'$ contains infinitely many copies of each element of $\U$. These copies are indistinguishable by sets in $\Phi'$. Then to every finite subset of $A\subseteq\U'$ we can associate a multi-subset of $\U$. (The correspondence is not one-to-one, but this is not relevant for the intended applications.)
+
+
 If $\B\subseteq\U$ we define the \emph{frequency\/} of $\B$ over $A$
 
 \ceq{\hfill\emph{$\Fr\big(\B/A\big)$}}{=}{\frac{\big|\B\cap A\big|}{|A|}}
 
 Note that $\Fr(\cdot/A)$ is a probability measure on $\U$.
 
-An \emph{$\epsilon$-approximation\/} of a sample $A$ is a subsample $C\subseteq A$ such that for every definable set $\B$
+If $\Pr$ is a probability measure on $\U$. An \emph{$\epsilon$-approximation\/} is a sample $C$ such that  
+
+\ceq{\hfill\displaystyle \Big|\Pr(\B) - \Fr(\B/C)\Big|}{\le}{\epsilon}
+
+It is interesting to note that not all probability measures have an approximation. For instance let $\U=\aleph_1$ and let $\Phi$ be the $\sigma$-algebra of the countable and co-countable sets. Let $\Pr(\B)=1$ if $\B$ contains an end-segment, $\Pr(\B)=0$ otherwise. This defines a $\sigma$-additive measure which has no $\epsilon$-approximations for $\epsilon<1$. 
+
+The \emph{$\epsilon$-approximation\/} of a sample $A$ is a subsample $C\subseteq A$ such that for every definable set $\B$
 
 \ceq{\hfill\displaystyle \Big|\Fr(\B/A) - \Fr(\B/C)\Big|}{\le}{\epsilon}
-
-As an alternative to multi-sets, we could use the following approach. Replace $\U$ with $\U'=\U\times\omega$, which we think of as the union of infinitely many disjoint copies of $\U$. Replace $\Phi$ with $\Phi'=\{\B\times\omega\ :\ \B\in\Phi\}$. Then $\U'$ contains infinitely many copies of each element of $\U$ which are indistinguishable by sets in $\Phi'$. Then to every finite subset of $A\subseteq\U'$ we can associate a multi-subset of $\U$. (The correspondence is not one-to-one, but this is not relevant in the following.)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

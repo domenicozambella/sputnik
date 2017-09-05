@@ -124,26 +124,106 @@ Proceed as in the even case with the other lines.\QED
 Let $\U=\RR$ and $\V$ is a set of finitely many closed intervals.
 Let $\phi$ be the incidence relation.
 Then $\nu(\phi)=\tau(\phi)$.
-Hint: by induction on $\nu(\phi)$.
+Hint: use induction on $\nu(\phi)$.
 \end{exercise}
 
 \begin{theorem}
-For every finite incidence relation $\nu^*(\phi)=\tau^*(\phi)$.
+For every finite incidence relation $\nu^*(\phi)=\tau^*(\phi)$ and this value is rational.
 \end{theorem}
 \begin{proof}
 Let $\U=\{a_1,\dots,a_m\}$ and $\V=\{b_1,\dots,b_n\}$.
 Let $F$ be the $\{0,1\}$-valued incidence matrix $\phi(a_i,b_j)$.
 A multi-set over $\U$ is a naturally associated to a vector $0\le x\in\RR^m$.
 A multi-set over $\U$ is associated to a vector $0\le y\in\RR^n$. 
-Then 
-
+Then it is easy to verify that
 
 \ceq{\hfill\tau^*(\phi)}{=}{\min\,\big\{\,1_n^{\rm T}\;x\ :\ \ F\,x\ge 1_m,\ 0\le x\}.}
 
 \ceq{\hfill\nu^*(\phi)}{=}{\max\big\{\,1_n^{\rm T}\ y\,\  :\ F^{\rm T}y\le 1_n,\,\  0\le y\};}
 
+Therefore, by he duality of linear programming  $\nu^*(\phi)=\tau^*(\phi)$.
 
-
+As $\tau^*(\phi)$ is the minumum of the linear function $x\mapsto 1_n^{\rm T}\;x$ over a polyhedron, such minumum is attained at  vertex. The inequalities describing the polyhedron have rational coefficients, so also the vertices have rational coordinates.
 \end{proof}
+
+\section{Helly-type properies}
+
+We now investigate methods of bounding $\tau^*(\phi)=\nu^*(\phi)$.
+Recall a classical theorem of Helly.
+
+\begin{proposition}[(Helly Theorem)]
+Let $\Phi$ be a finite family of convex sets in $\RR^d$.
+Assume that any $d+1$ sets from $\Phi$ have non empty intersection.
+Then the whole family $\Phi$ has non empty intersection. 
+\end{proposition}
+
+Note that Helly's theorem does not hold for families of finite $\vc$-dimension.
+A counter example of \vc-dimension $2$ can be constructed with a family containing sets that are unions of two finite intervals of the real line. 
+
+The following property is more robust.
+
+\begin{definition}
+Let $\Phi$ be an infinite family of sets. We say that $\Phi$ \emph{has fractional Helly number $k$\/} if for every $\alpha>0$ there is a $\beta>0$ such that:
+
+if $S_i\in\Phi$, for $i=1,\dots,n$ are such that
+
+\ceq{\hfill \bigcap_{i\in I}S_i}{\neq}{\0}\hfill for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
+
+then
+
+\ceq{\hfill\bigcap_{i\in J}S_i}{\neq}{\0}\hfill for some $J\subseteq [n]$ of cardinality $\ge\beta\,n$.
+
+We say that $\Phi$ has the \emph{fractional Helly property\/} if it has some finite Helly number.
+The \emph{fractional Helly number\/} of $\Phi$ is the smallest number $k$ above.
+\QED
+\end{definition}
+
+\begin{theorem}[(Matou\v{s}ek~\cite{M2004})]
+Let $\Phi$ be a set system with $\pi^*(\phi)\in o(n^k)$.
+Then $\Phi$ has fractional Helly number $\le k$.
+\end{theorem}
+
+Recall that $\pi^*(\phi)\in o(n^k)$ means that $\lim_{n\to\infty}\pi^*(\phi)/n^k=0$. 
+Which occurs in particular when the \vc-density is $<k$ or when the \vc-dimension is $\le k$. 
+\begin{proof}
+Let $\Phi$ and $k$ be as in the assumptions of the theorem. Let $\alpha$ be arbitrary and set $\beta=1/2m$ where $m$ is such that 
+
+\ceq{\hfill \pi^*(m)}{<}{\frac\alpha4{m\choose k}.}
+
+Fix some  $S_i\in\Phi$, for $i=1,\dots,n$ and assume
+ 
+\ceq{\hfill \bigcap_{i\in I}S_i}{\neq}{\0}\quad for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
+
+We will abbreviate the intersection above with $S_I$. We need to show that there is a set $J\subseteq [n]$ of cardinality $\ge\beta\,n$ such that $S_J\neq0$. So, assume not and reason for a contradiction. Note that we can assume $n>2m$ because for $n\le2m$ we can take take $|J|=1$. 
+
+Identify $J\subseteq[n]$ with subsets of $\V$. We will find a set $J\subseteq[n]$ of cardinality $m$ with many $\phi^*$-definable subsets, more than $\pi^*(m)$, a contradiction.
+
+Let $P$ be the set of pairs $I\subseteq J\subseteq[n]$ such that $|J|=m$ and $|I|=k$. We say that a pair $I\subseteq J$ in $P$ is \textit{good\/} if there is $a\in\U$ such that $I=\{i\in J\ :\ a\in S_i\}$. That is, $I$ is a $\phi^*$-definable subset of $J$.
+
+\textit{Claim 1.} Assume on $P$ the uniform probability. The probability that a random pair is good is $\ge\alpha/4$.
+
+Assume the claim and proceed with the proof. There 
+
+
+
+We bound from below the probability that a pair $I\subseteq J\subset[n]$ is good.  
+\end{proof}
+
+
+\section{Notes and references}
+
+\begin{biblist}[]\normalsize
+\bib{M2004}{article}{
+   author={Matou\v sek, Ji\v r\'\i },
+   title={Bounded VC-dimension implies a fractional Helly theorem},
+   journal={Discrete Comput. Geom.},
+   volume={31},
+   date={2004},
+   number={2},
+   pages={251--255},
+%   issn={0179-5376},
+%   doi={10.1007/s00454-003-2859-z
+   }
+\end{biblist}
 
 \end{document}
