@@ -25,7 +25,7 @@
 
 \def\ceq#1#2#3{\parbox[t]{32ex}{$\displaystyle #1$}\parbox{5ex}{$\displaystyle\hfil #2$}{$\displaystyle #3$}}
 
-A sample is a just sequence of elements of $\U$ where we disregard the order and only consider the number of times they appear.
+A sample is a sequence of elements of $\U$ where we disregard the order and only consider the number of times they appear.
 Formally, a \emph{sample\/} is a \emph{multi-subset of $\U$}, that is is a function $A:\U\to\NN$. 
 
 We interpret $A(x)$ as the \emph{multiplicity\/} of the element $x\in\U$.
@@ -58,15 +58,17 @@ If $\B\subseteq\U$ we define the \emph{frequency\/} of $\B$ over $A$
 
 Note that $\Fr(\cdot/A)$ is a probability measure on $\U$.
 
-If $\Pr$ is a probability measure on $\U$. An \emph{$\epsilon$-approximation\/} is a sample $C$ such that  
+If $\Pr$ is a probability measure on $\U$. An \emph{$\epsilon$-approximation\/} of $\Pr$ is a sample $C$ such that  
 
 \ceq{\hfill\displaystyle \Big|\Pr(\B) - \Fr(\B/C)\Big|}{\le}{\epsilon}
 
 It is interesting to note that not all probability measures have an approximation. For instance let $\U=\aleph_1$ and let $\Phi$ be the $\sigma$-algebra of the countable and co-countable sets. Let $\Pr(\B)=1$ if $\B$ contains an end-segment, $\Pr(\B)=0$ otherwise. This defines a $\sigma$-additive measure which has no $\epsilon$-approximations for $\epsilon<1$. 
 
-The \emph{$\epsilon$-approximation\/} of a sample $A$ is a subsample $C\subseteq A$ such that for every definable set $\B$
+The \emph{$\epsilon$-approximation of a sample $A$\/} is a subsample $C\subseteq A$ such that for every definable set $\B$
 
 \ceq{\hfill\displaystyle \Big|\Fr(\B/A) - \Fr(\B/C)\Big|}{\le}{\epsilon}
+
+In other words, it is an $\epsilon$-approximation of the probability measure  $\Fr(\cdot/A)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,29 +161,59 @@ That is, we assume an uniform distribution on the colorings and this induces a m
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Important inequalities}
+\section{Useful inequalities}
 
 
-\def\ceq#1#2#3{\parbox[t]{15ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
-\begin{void_thm}[Proposition (Chebychev's inequality)]\label{wlln}
-Let $X$ be a random variable with finite mean and finite variance.
+\begin{void_thm}[Proposition (Markov's inequality)]\label{Markov}
+Let $X$ be a random variable with finite mean
 
-\ceq{\hfill1-\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle\Pr \Big(\big|{\rm E}(X)-X\big|\le\epsilon\Big)}
+\ceq{\hfill\Pr\Big(X\ge\epsilon\Big)}{\le}{\frac{{\rm E}(X)}{\epsilon}}
 \end{void_thm}
 
 
 \begin{proof}
+For simplicity, we will assume that the sample space $\Omega$ is finite. Define $A=\{a\in\Omega\,:\, X(a)>\epsilon\}$.
 
-\ceq{\hfill1-\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle\Pr \Big(\big|X-{\rm E}(X)\big|\le\epsilon\Big)}
+\ceq{\hfill{\rm E}(X)}{=}{\sum_{a\in\Omega} \Pr(a)\, X(a)}
 
+\ceq{}{=}{\sum_{a\in A} \Pr(a)\, X(a) + \sum_{a\notin A} \Pr(a)\, X(a)}
+
+\ceq{}{\ge}{\sum_{a\in A} \Pr(a)\, X(a) + \epsilon\sum_{a\notin A} \Pr(a)}
+
+\ceq{}{\ge}{\epsilon\sum_{a\notin A}X(a)\le\epsilon \Pr(a)}
+
+\ceq{}{=}{\epsilon\Pr(X\le\epsilon)}
+
+\end{proof}
+
+\begin{void_thm}[Proposition (Chebychev's inequality)]\label{Chebyshev}
+Let $X$ be a random variable with finite mean and finite variance.
+
+\ceq{\hfill\Pr \Big(\big|{\rm E}(X)-X\big|\le\epsilon\Big)}{<}{\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}
+\end{void_thm}
+
+
+\begin{proof}
+For simplicity, we will assume that the sample space $\Omega$ is finite. Define $A=\{a\in\Omega\,:\, |E(X)-X(a)|>\epsilon\}$.
+
+\ceq{\hfill{\rm Var}(X)}{=}{\sum_{a\in\Omega} \Pr(a)\, \big(X(a)-{\rm E}(X)\big)^2}
+
+\ceq{}{=}{\sum_{a\in A}\Pr(a)\, \big(X(a)-{\rm E}(X)\big)^2 + \sum_{a\notin A} \Pr(a)\, \big(X(a)-{\rm E}(X)\big)^2}
+
+\ceq{}{\ge}{\sum_{a\in A}\Pr(a)\, \big(X(a)-{\rm E}(X)\big)^2 + \epsilon^2\sum_{a\notin A} \Pr(a)}
+
+\ceq{}{\ge}{\epsilon^2\sum_{a\notin A} \Pr(a)}
+
+\ceq{}{=}{\epsilon^2 \Pr \Big(\big|{\rm E}(X)-X\big|\le\epsilon\Big)}
 \end{proof}
 
 \begin{void_thm}[Proposition (Weak Law of Large Numbers)]\label{wlln}
 Let $\Pr$ be a probability measure on $\U$.
 Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
 
-\ceq{\hfill1-\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{<}{\displaystyle{\Pr}^n \Big(c\in\U^n\ :\ \Big|\Pr(\B) - \Fr(\B/c) \Big|\le\epsilon\Big)}
+\ceq{\hfill\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{\ge}{\displaystyle\Pr \Big(c\in\U^n\ :\ \Big|\Pr(\B) - \Fr(\B/c) \Big|\ge\epsilon\Big)}
 \end{void_thm}
 
 
@@ -198,7 +230,7 @@ Apply Chebyshev's inequality.
 For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i=\pm1)=1/2$.
 Then for every $\epsilon>0$
 
-\ceq{\hfill \Pr\big(M\ge\epsilon\big)}{\le}{\exp(-\frac{\epsilon^2}{2n})}\hfill where $\displaystyle M=\sum^n_{i=1}X_i$
+\ceq{\hfill \Pr\big(M\ge\epsilon\big)}{\le}{\exp(-\frac{\,n\epsilon^2}{2})}\hfill where $\displaystyle M=\sum^n_{i=1}X_i$
 \end{lemma}
 \begin{proof}
 Let $t>0$ be arbitrary.
@@ -225,12 +257,22 @@ From this, by independence we have
 
 \ceq{\hfill {\rm E}\big(e^{tM}\big)}{=}{\prod^n_{i=1}e^{t\,X_i}}$\medrel{=}e^{n\,t^2/2}$
 
-
-Subtituting in $\sharp$ gives $\Pr(M\ge\epsilon)\le e^{n\,t^2/2-t\epsilon}$.
+Substituting in $\sharp$ gives $\Pr(M\ge\epsilon)\le e^{n\,t^2/2-t\epsilon}$.
 Finally Chernoff's inequality is obtained substituting $\epsilon/n$ for $t$.
 \end{proof}
 
+\begin{proposition}\label{prop_disequazione}
+For every $y$ and every $x>1$
 
+\ceq{\hfill \frac{x}{\ln x}\le y}{\IMP}{x\le 2\, y\,\ln y}
+\end{proposition}
+\begin{proof}
+It suffices to prove that for  every $x>1$
+
+\ceq{\hfill \frac{x}{\ln x}\le y}{\IMP}{\ln x\le 2\, \ln y}
+
+As the latter inequality is equivalent to $\sqrt{x}\le y$, it suffices to verify that $\sqrt{x}\le\displaystyle\frac{x}{\ln x}$ for all $x>1$.
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A uniform law of large numbers}
 
@@ -371,12 +413,21 @@ which is equivalent to
 
 \ceq{\hfill \frac{c^2 d}{\epsilon^2}}{\le}{\frac{n_h}{\ln n_h}}
 
-this in turn is ensured if
-
-\ceq{\hfill n_h}{\le}{ 2\frac{c^2 d}{\epsilon^2}\ln\frac{c^2 d}{\epsilon^2}}
+Let $h$ be the maximal (or, $n_h$ the minimal) that satisfies this inequality. Hence
 
 
+\ceq{\hfill \frac{c^2 d}{\epsilon^2}}{>}{\frac{n_{h+1}}{\ln n_{h+1}}}
 
+By Proposition~\ref{prop_disequazione}
+
+\ceq{\hfill n_{h+1}}{\le}{ 2\frac{c^2 d}{\epsilon^2}\ln\frac{c^2 d}{\epsilon^2}}
+
+hence 
+
+\ceq{\hfill n_h}{\le}{ 4\frac{c^2 d}{\epsilon^2}\ln\frac{c^2 d}{\epsilon^2}}
+
+
+which proves the theorem.
 \end{void_thm}
 
 

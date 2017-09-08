@@ -134,7 +134,7 @@ For every finite incidence relation $\nu^*(\phi)=\tau^*(\phi)$ and this value is
 Let $\U=\{a_1,\dots,a_m\}$ and $\V=\{b_1,\dots,b_n\}$.
 Let $F$ be the $\{0,1\}$-valued incidence matrix $\phi(a_i,b_j)$.
 A multi-set over $\U$ is a naturally associated to a vector $0\le x\in\RR^m$.
-A multi-set over $\U$ is associated to a vector $0\le y\in\RR^n$. 
+A multi-set over $\U$ is associated to a vector $0\le y\in\RR^n$.
 Then it is easy to verify that
 
 \ceq{\hfill\tau^*(\phi)}{=}{\min\,\big\{\,1_n^{\rm T}\;x\ :\ \ F\,x\ge 1_m,\ 0\le x\}.}
@@ -143,7 +143,34 @@ Then it is easy to verify that
 
 Therefore, by he duality of linear programming  $\nu^*(\phi)=\tau^*(\phi)$.
 
-As $\tau^*(\phi)$ is the minumum of the linear function $x\mapsto 1_n^{\rm T}\;x$ over a polyhedron, such minumum is attained at  vertex. The inequalities describing the polyhedron have rational coefficients, so also the vertices have rational coordinates.
+As $\tau^*(\phi)$ is the minumum of the linear function $x\mapsto 1_n^{\rm T}\;x$ over a polyhedron, such minumum is attained at  vertex.
+The inequalities describing the polyhedron have rational coefficients, so also the vertices have rational coordinates.
+\end{proof}
+
+\section{$\epsilon$-Nets}
+
+Fix a set system $\Phi$ and let $\Pr$ be a probability measure on $\U$ such that all sets in $\Phi$ are measurable.
+Fix also $\epsilon>0$.
+An \emph{$\epsilon$-net\/} is a set $A\subseteq\U$ that intersects all sets in $\Phi$ of measure at least $\epsilon$.
+In other words, an $\epsilon$-net is a transversal for the set system $\Phi_\epsilon=\big\{\B\in\Phi\,:\,\Pr(\B)\ge\epsilon\big\}$.
+
+\begin{proposition}
+For any $\epsilon>0$ and $d\in\omega$ there is some $N=N(\epsilon,k)$ such that for every set system $\Phi$ of \vc-dimension $\le k$, there is an $\epsilon$-net of cardinality $\le N$.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{proposition}
+Let $\Phi$ be a finite set system with \vc-dimension $\le k$. Then 
+
+\ceq{\hfill\tau(\Phi)}{\le}{ c\,\tau^*(\Phi)\,\ln\tau^*(\Phi).}
+\end{proposition}
+
+\begin{proof}
+As 
 \end{proof}
 
 \section{Helly-type properies}
@@ -154,16 +181,17 @@ Recall a classical theorem of Helly.
 \begin{proposition}[(Helly Theorem)]
 Let $\Phi$ be a finite family of convex sets in $\RR^d$.
 Assume that any $d+1$ sets from $\Phi$ have non empty intersection.
-Then the whole family $\Phi$ has non empty intersection. 
+Then the whole family $\Phi$ has non empty intersection.
 \end{proposition}
 
 Note that Helly's theorem does not hold for families of finite $\vc$-dimension.
-A counter example of \vc-dimension $2$ can be constructed with a family containing sets that are unions of two finite intervals of the real line. 
+A counter example of \vc-dimension $2$ can be constructed with a family containing sets that are unions of two finite intervals of the real line.
 
 The following property is more robust.
 
 \begin{definition}
-Let $\Phi$ be an infinite family of sets. We say that $\Phi$ \emph{has fractional Helly number $k$\/} if for every $\alpha>0$ there is a $\beta>0$ such that:
+Let $\Phi$ be an infinite family of sets.
+We say that $\Phi$ \emph{has fractional Helly number $k$\/} if for every $\alpha>0$ there is a $\beta>0$ such that:
 
 if $S_i\in\Phi$, for $i=1,\dots,n$ are such that
 
@@ -183,10 +211,11 @@ Let $\Phi$ be a set system with $\pi^*(\phi)\in o(n^k)$.
 Then $\Phi$ has fractional Helly number $\le k$.
 \end{theorem}
 
-Recall that $\pi^*(\phi)\in o(n^k)$ means that $\lim_{n\to\infty}\pi^*(\phi)/n^k=0$. 
-Which occurs in particular when the \vc-density is $<k$ or when the \vc-dimension is $\le k$. 
+Recall that $\pi^*(\phi)\in o(n^k)$ means that $\lim_{n\to\infty}\pi^*(\phi)/n^k=0$.
+Which occurs in particular when the \vc-density is $<k$ or when the \vc-dimension is $\le k$.
 \begin{proof}
-Let $\Phi$ and $k$ be as in the assumptions of the theorem. Let $\alpha$ be arbitrary and set $\beta=1/2m$ where $m$ is such that 
+Let $\Phi$ and $k$ be as in the assumptions of the theorem.
+Let $\alpha$ be arbitrary and set $\beta=1/2m$ where $m$ is such that 
 
 \ceq{\hfill \pi^*(m)}{<}{\frac\alpha4{m\choose k}.}
 
@@ -194,22 +223,56 @@ Fix some  $S_i\in\Phi$, for $i=1,\dots,n$ and assume
  
 \ceq{\hfill \bigcap_{i\in I}S_i}{\neq}{\0}\quad for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
 
-We will abbreviate the intersection above with $S_I$. We need to show that there is a set $J\subseteq [n]$ of cardinality $\ge\beta\,n$ such that $S_J\neq0$. So, assume not and reason for a contradiction. Note that we can assume $n>2m$ because for $n\le2m$ we can take take $|J|=1$. 
+We will abbreviate the intersection above with $S_I$.
+We need to show that there is a set $J\subseteq [n]$ of cardinality $\ge\beta\,n$ such that $S_J\neq0$.
+So, assume not and reason for a contradiction.
+Note that we can assume $n>2m$ because for $n\le2m$ we can take take $|J|=1$.
 
-Identify $J\subseteq[n]$ with subsets of $\V$. We will find a set $J\subseteq[n]$ of cardinality $m$ with many $\phi^*$-definable subsets, more than $\pi^*(m)$, a contradiction.
+Identify $J\subseteq[n]$ with subsets of $\V$.
+We will find a set $J\subseteq[n]$ of cardinality $m$ with many $\phi^*$-definable subsets, more than $\pi^*(m)$, a contradiction.
 
-Let $P$ be the set of pairs $I\subseteq J\subseteq[n]$ such that $|J|=m$ and $|I|=k$. We say that a pair $I\subseteq J$ in $P$ is \textit{good\/} if there is $a\in\U$ such that $I=\{i\in J\ :\ a\in S_i\}$. That is, $I$ is a $\phi^*$-definable subset of $J$.
+Let $P$ be the set of pairs $I\subseteq J\subseteq[n]$ such that $|I|=k$ and $|J|=m$.
+We say that a pair $I\subseteq J$ in $P$ is \textit{good\/} if there is $a\in\U$ such that $I=\{i\in J\ :\ a\in S_i\}$.
+That is, $I$ is a $\phi^*$-definable subset of $J$.
 
-\textit{Claim 1.} Assume on $P$ the uniform probability. The probability that a random pair is good is $\ge\alpha/4$.
+\textit{Claim.} Assume on $P$ the uniform probability.
+Then the probability that a random pair is good is $\ge\alpha/4$.
 
-Assume the claim and proceed with the proof. There 
+Assume the claim and proceed with the proof.
+There is a $J\in{[n]\choose m}$ with at least $\frac\alpha4{m\choose k}$ good subsets.
+This yields the required contradiction.
+
+We now prove the claim.
+First we choose at random $I\in{[n]\choose k}$ of cardinality $k$, then we choose at random $m-k$ elements from $[n]\sm I$.
+By assumption, the probability that $S_I\neq\0$ is at least $\alpha$. If  $S_I\neq\0$, we fix $a\in S_I$.
+By assumption $a$ is contained in fewer than $\beta n$ sets $S_i$.
+Then the probability that all of the sets $S_i\in J\sm I$ contains $a$ is at most
+
+\ceq{\hfill\frac{\displaystyle{\beta n\choose m-k}}{\displaystyle{n-k\choose m-k}}}{\le}{\prod^{m-k-1}_{i=0}\frac{\beta n-i}{n-k-i}}
+\medrel{\le}
+$\displaystyle$
 
 
 
-We bound from below the probability that a pair $I\subseteq J\subset[n]$ is good.  
+
+
+
+
+We bound from below the probability that a pair $I\subseteq J\subset[n]$ is good. 
 \end{proof}
 
 
+\section{The (p,q)-theorem}
+
+For integers $p\ge q$ we say that $\phi$ has the \emph{$(p,q)$-property\/} if out of any $p$ definable sets there are $q$ sets with non empty intersection.
+
+\begin{theorem}[(Alon, Kleitman + Matou\v sek)] Let $p\ge q\ge d+1$ be natural numbers.
+Then there is anuber $N=N(d,p,q)$ such that if $\phi$ has \vc-codensity $\le d$ satisfies the $(p,q)$-property then $\tau(\phi)\le N$.
+\end{theorem}
+
+\begin{proof}
+As we are not trying to optimize $N$, we may prove the theorem for $q=d+1$.
+\end{proof}
 \section{Notes and references}
 
 \begin{biblist}[]\normalsize
