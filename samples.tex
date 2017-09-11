@@ -210,21 +210,36 @@ For simplicity, we will assume that the sample space $\Omega$ is finite. Define 
 \end{proof}
 
 \begin{void_thm}[Proposition (Weak Law of Large Numbers)]\label{wlln}
+\def\ceq#1#2#3{\parbox[t]{45ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 Let $\Pr$ be a probability measure on $\U$.
 Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
 
-\ceq{\hfill\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{\ge}{\displaystyle\Pr \Big(c\in\U^n\ :\ \Big|\Pr(\B) - \Fr(\B/c) \Big|\ge\epsilon\Big)}
+\ceq{\hfill\Pr \Big(c\in\U^n\ :\ \Big|\Pr(\B) - \Fr(\B/c) \Big|\ge\epsilon\Big)}{\le}{\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}
+
 \end{void_thm}
 
 
 \begin{proof}
-Note that $X=X(c)=\big|\range(c)\cap\B\big|$ is a binomial random variable with success probability $p=\mu\B$. 
-Hence ${\rm E}(X)=p$ and  ${\rm Var}(X)=p(1-p)/n$.
+Note that $X:c\mapsto\big|\range(c)\cap\B\big|$ is a binomial random variable with paremeters $n$ and $p=\mu\B$. 
+Hence ${\rm E}[X]=p$ and  ${\rm Var}[X]=p(1-p)/n$.
 Apply Chebyshev's inequality.
 \end{proof}
 
 
 
+\begin{void_thm}[Proposition (Hoeffding's inequality)]\label{Chebyshev}
+Let $X_i$, for $i\in[n]$, be independent random variables with bounded range, say $a_i\le X_i\le b_i$.
+Define
+
+\hfil$\displaystyle M\medrel{=}\sum^n_{i=1}X_i$\hfil and \hfil $\displaystyle c\medrel{=}\sum^n_{i=1}(a_i-b_i)^2$
+
+and assume $c>0$ to avoid trivialities. Then for every $\epsilon>0$ 
+
+\ceq{\hfill\Pr \Big({\rm E}[M]-M\le\epsilon\Big)}{<}{\exp{\Big(-\frac{2\epsilon^2}{c}}\Big)}.
+\end{void_thm}
+
+\begin{proof}
+\end{proof}
 
 \begin{lemma}[(Chernoff's bound, special case)]\label{Chernoff}
 For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i=\pm1)=1/2$.
@@ -288,10 +303,14 @@ If we allow $C\subseteq A$ to depend on $\B$, the existence of a subsample that 
 
 follows easily from Chebychev's inequality and its size only depends on $\epsilon$. This is essentially the weak law of large numbers for the probability measure $\Fr(\cdot/A)$.
 
-\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+\def\ceq#1#2#3{\parbox[t]{35ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
 \begin{proposition}[(Weak law of large numbers)]
-For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C$ of size $n=1/4\,\epsilon^2$ such that $\big|\Fr(\B/A) - \Fr(\B/C)\big|\le\epsilon$.
+For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C$ of size $\le1/4\,\epsilon^2$ such that $\big|\Fr(\B/A) - \Fr(\B/C)\big|\le\epsilon$.
+
+More explicitly, let $C$ ranges over the samples of size $n$ with the product probability measure. Then 
+
+\ceq{\hfill\Pr\{\big|\Fr(\B/A) - \Fr(\B/C)\big|\ge\epsilon\}}{\le}{\frac1{4n\epsilon^2}}
 \end{proposition}
 % 
 % \begin{proof}
@@ -302,45 +321,32 @@ For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C
 % In particular, set above in non empty. The required subsample is $C=c^\circ\cap A$.
 % \end{proof}
 
- Note that to avoid technicalities we do not insist in requiring $C\subseteq A$.
+Note that to avoid technicalities we do not insist in requiring $C\subseteq A$. The proof only works for $\supp C\subseteq\supp A$.
 
 \begin{proof}
-Interpret $\Fr(\cdot/A)$ as a probability measure on $\supp A$. Fix $\B$ and set $p=\Fr(\B/A)$. Consider the Bernoulli random variables $X_i$ that on input $c\in(\supp A)^n$ output
-
-\ceq{\hfill X_i(c)}{=}{\left\{
-\begin{array}{ll}
-1&{\rm if}\ c_i\in\B\\
-0&{\rm if}\ c_i\notin\B\\
-\end{array}\right.}
-
-Define also $\displaystyle\bar X=\frac1n\sum_iX_i$. Then ${\rm E}(\bar X)=p$ and $\displaystyle{\rm Var}(\bar X)=\frac{p(1-p)}{n}\le\frac1{4n}$. 
-
-If we set $C=\range(c)$, we obtain 
-
-\ceq{\hfill \big|{\rm E}(\bar X)-\bar X(c) \big|}{=}{\big|\Fr(\B/A) - \Fr(\B/C)\big|}
-
-So it suffices that $\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon$ has positive probability for some large enough $n$. By Chebychev's inequality
-
-\ceq{\hfill 1-\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}{<}{\Pr\Big(\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon\Big)}
-
-% By the Chernoff bound
-% 
-% \ceq{\hfill 1-2\,e^{-2n\epsilon^2}}{<}{\Pr\Big(\big|{\rm E}(\bar X) - \bar X\big|\le\epsilon\Big)}
-
-Hence the probability above is positive for $\displaystyle\frac1{4\epsilon^{\scriptscriptstyle 2}}\le n$.
+Clearly, the first claim follows from the second.
+Interpret $\Fr(\cdot/A)$ as a probability measure on $\supp A$ an apply the weak law of large numbers.
 \end{proof}
 
-The main result of this chapter is the following theorem of  Vapnik and Chervonenkis which we proof in the next section.
+The key result in \vc-theory is the following theorem of Vapnik and Chervonenkis which is a uniform version of the weak law of large numbers. 
 
-\begin{theorem}[(Uniform law of large numbers)]\label{thm_epsilon_approx}
-Assume $(\U,\Phi)$ has \vc-density $d$. Then every sample $A$ has an $\epsilon$-approximation of size 
+\begin{theorem}[(Uniform law of large numbers)]\label{thm_vc}
+\def\ceq#1#2#3{\parbox[t]{40ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+Assume $\Phi$ has \vc-density $d$. Let $A$ be any finite sample and let $C$ range over the samples of size $n$ with the product probability measure. Then 
 
-\ceq{\hfill n}{=}{c\,\frac{d}{\epsilon^{\scriptscriptstyle 2}}\ln\frac1\epsilon,}
-
-where $c$ is an absolute constant.
+\ceq{\hfill\Pr\Big(\sup_{\B\in\Phi}\big\{\big|\Fr(\B/A) - \Fr(\B/C)\big|\big\}>\epsilon\Big)}{\le}{8\,d\exp\Big(-\frac{n\epsilon^2}{32}\Big)}\QED
 \end{theorem}
 
+We will not prove this theorem. The main result of this chapter is the following which a corollary which we proof independently in the next section. The corollary is all what we need in the sequel.
 
+\begin{corollary}\label{corol_epsilon_approx}
+\def\ceq#1#2#3{\parbox[t]{20ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+Assume $\Phi$ has \vc-density $d$. Then every sample $A$ has an $\epsilon$-approximation of size 
+
+\ceq{\hfill n}{\le}{c\,\frac{d}{\epsilon^{\scriptscriptstyle 2}}\ln\frac1\epsilon}
+
+where $c$ is an absolute constant.
+\end{corollary}
 
 The lemma above tells that $\epsilon$-approximations with small discrepancy are useful, but as yet we have no clue as to finding one.
 We are going to prove that when the number of definable subsets of $A$ is relatively small, then the discrepancy of $A$ is not too large.
@@ -388,7 +394,7 @@ Fix an enumeration $a$ of $A$. Suppose $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obt
 As $|\B|\le n$, the latter is clearly true.
 \end{proof}
 
-\begin{void_thm}[Proof of Proposition \ref{thm_epsilon_approx}]\rm
+\begin{void_thm}[Proof of Proposition \ref{corol_epsilon_approx}]\rm
 Set $A_0=A$ and $\epsilon_0=0$. We construct a decreasing chain $A_i$ of $\epsilon_i$-approximations.
 We denote by $n_i$ and $\delta_i$ the cardinality, respectively the discrepancy, of $A_i$.
 By lemma~\ref{lem_aprossimazionediapprossimazione}, we can require that $\epsilon_{i+1}=\epsilon_i+2\delta_i$ and $n_{i+1}\le n_i/2$.

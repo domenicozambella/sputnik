@@ -154,8 +154,8 @@ Fix also $\epsilon>0$.
 An \emph{$\epsilon$-net\/} is a set $A\subseteq\U$ that intersects all sets in $\Phi$ of measure at least $\epsilon$.
 In other words, an $\epsilon$-net is a transversal for the set system $\Phi_\epsilon=\big\{\B\in\Phi\,:\,\Pr(\B)\ge\epsilon\big\}$.
 
-\begin{proposition}
-For any $\epsilon>0$ and $d\in\omega$ there is some $N=N(\epsilon,k)$ such that for every set system $\Phi$ of \vc-dimension $\le k$, there is an $\epsilon$-net of cardinality $\le N$.
+\begin{proposition}\label{prop_nets}
+For any $\epsilon>0$ and $d\in\omega$ there is some $N=N(\epsilon,k)$ such that for every set system $\Phi$ of \vc-dimension $\le k$, there is an $\epsilon$-net of cardinality $\le N$. By Remark~\ref{rmk_nets} we obtain an $1/r$-net of cardinality $\le c\,r\,\ln r$.
 \end{proposition}
 
 \begin{proof}
@@ -163,14 +163,21 @@ For any $\epsilon>0$ and $d\in\omega$ there is some $N=N(\epsilon,k)$ such that 
 \end{proof}
 
 
+\begin{remark}\label{rmk_nets}
+
+\end{remark}
+
+
 \begin{proposition}
 Let $\Phi$ be a finite set system with \vc-dimension $\le k$. Then 
 
 \ceq{\hfill\tau(\Phi)}{\le}{ c\,\tau^*(\Phi)\,\ln\tau^*(\Phi).}
+
+where $c$ is an absolute constant.
 \end{proposition}
 
 \begin{proof}
-As 
+Let $r=\tau^*(\Phi)$ ad let $A$ be an optimal fractional transversal. As $\Phi$ is finite we can assume that the support of $A$ is finite. After normalizing, $A$ defines a probability measure on $\U$ concentrated on $\supp A$. Namely, $\Pr(\{x\})=(1/r)A(x)$ for all $x\in\U$. By the definition of fractional transversal every set in $\Phi$ has measure at last $1/r$.  
 \end{proof}
 
 \section{Helly-type properies}
@@ -252,12 +259,6 @@ Then the probability that all of the sets $S_i\in J\sm I$ contains $a$ is at mos
 \medrel{\le}
 $\displaystyle$
 
-
-
-
-
-
-
 We bound from below the probability that a pair $I\subseteq J\subset[n]$ is good. 
 \end{proof}
 
@@ -267,7 +268,7 @@ We bound from below the probability that a pair $I\subseteq J\subset[n]$ is good
 For integers $p\ge q$ we say that $\phi$ has the \emph{$(p,q)$-property\/} if out of any $p$ definable sets there are $q$ sets with non empty intersection.
 
 \begin{theorem}[(Alon, Kleitman + Matou\v sek)] Let $p\ge q\ge d+1$ be natural numbers.
-Then there is anuber $N=N(d,p,q)$ such that if $\phi$ has \vc-codensity $\le d$ satisfies the $(p,q)$-property then $\tau(\phi)\le N$.
+Then there is a number $N=N(d,p,q)$ such that if $\phi$ has \vc-codensity $\le d$  satisfies the $(p,q)$-property then $\tau(\phi)\le N$.
 \end{theorem}
 
 \begin{proof}
