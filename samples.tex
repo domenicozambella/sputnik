@@ -185,18 +185,16 @@ For simplicity, we will assume that the sample space $\Omega$ is finite. Define 
 \ceq{}{\ge}{\epsilon\sum_{a\notin A}X(a)\le\epsilon \Pr(a)}
 
 \ceq{}{=}{\epsilon\Pr(X\le\epsilon)}
-
 \end{proof}
 
 \begin{void_thm}[Proposition (Chebychev's inequality)]\label{Chebyshev}
 Let $X$ be a random variable with finite mean and finite variance.
 
-\ceq{\hfill\Pr \Big(\big|{\rm E}(X)-X\big|\le\epsilon\Big)}{<}{\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}
+\ceq{\hfill\Pr \Big(\big|X-{\rm E}(X)\big|\ge\epsilon\Big)}{\le}{\frac{{\rm Var}(X)}{\epsilon^{\scriptscriptstyle 2}}}
 \end{void_thm}
 
-
 \begin{proof}
-For simplicity, we will assume that the sample space $\Omega$ is finite. Define $A=\{a\in\Omega\,:\, |E(X)-X(a)|>\epsilon\}$.
+For simplicity, we will assume that the sample space $\Omega$ is finite. Define $A=\{a\in\Omega\,:\, |E(X)-X(a)|\ge\epsilon\}$.
 
 \ceq{\hfill{\rm Var}(X)}{=}{\sum_{a\in\Omega} \Pr(a)\, \big(X(a)-{\rm E}(X)\big)^2}
 
@@ -206,10 +204,10 @@ For simplicity, we will assume that the sample space $\Omega$ is finite. Define 
 
 \ceq{}{\ge}{\epsilon^2\sum_{a\notin A} \Pr(a)}
 
-\ceq{}{=}{\epsilon^2 \Pr \Big(\big|{\rm E}(X)-X\big|\le\epsilon\Big)}
+\ceq{}{=}{\epsilon^2 \Pr \Big(\big|X-{\rm E}(X)\big|\le\epsilon\Big)}
 \end{proof}
 
-\begin{void_thm}[Proposition (Weak Law of Large Numbers)]\label{wlln}
+\begin{void_thm}[Proposition (Weak Law of Large Numbers)]\label{prop_wlln}
 \def\ceq#1#2#3{\parbox[t]{45ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 Let $\Pr$ be a probability measure on $\U$.
 Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
@@ -220,45 +218,36 @@ Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
 
 
 \begin{proof}
-Note that $X:c\mapsto\big|\range(c)\cap\B\big|$ is a binomial random variable with paremeters $n$ and $p=\mu\B$. 
-Hence ${\rm E}[X]=p$ and  ${\rm Var}[X]=p(1-p)/n$.
+We can rephrase the inequality above as
+
+\ceq{\hfill\Pr \Big(\big|p -\bar X \big|\ge\epsilon\Big)}{\le}{\frac{1}{4n\epsilon^{\scriptscriptstyle 2}}}\hfill where\quad$\displaystyle\bar X=\frac1n\sum^n_{i=1}X_i$
+
+and $X_i$ are Bernoulli variables with success probability $p$. In fact, let $p=\mu\B$ and let $X_i$ output $1$ if $c_i\in\B$ and $0$ otherwise.
+Hence ${\rm E}[\bar X]=p$ and  ${\rm Var}[\bar X]=p(1-p)/n$.
 Apply Chebyshev's inequality.
 \end{proof}
 
+We want to prove a better bound for the Weak Law of Large Numbers. So, we need to prove Hoeffding's inequality. For clarity we first prove a special case 
 
 
-\begin{void_thm}[Proposition (Hoeffding's inequality)]\label{Chebyshev}
-Let $X_i$, for $i\in[n]$, be independent random variables with bounded range, say $a_i\le X_i\le b_i$.
-Define
-
-\hfil$\displaystyle M\medrel{=}\sum^n_{i=1}X_i$\hfil and \hfil $\displaystyle c\medrel{=}\sum^n_{i=1}(a_i-b_i)^2$
-
-and assume $c>0$ to avoid trivialities. Then for every $\epsilon>0$ 
-
-\ceq{\hfill\Pr \Big({\rm E}[M]-M\le\epsilon\Big)}{<}{\exp{\Big(-\frac{2\epsilon^2}{c}}\Big)}.
-\end{void_thm}
-
-\begin{proof}
-\end{proof}
-
-\begin{lemma}[(Chernoff's bound, special case)]\label{Chernoff}
+\begin{lemma}[(Chernoff's bound)]\label{Chernoff}
 For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i=\pm1)=1/2$.
 Then for every $\epsilon>0$
 
-\ceq{\hfill \Pr\big(M\ge\epsilon\big)}{\le}{\exp(-\frac{\,n\epsilon^2}{2})}\hfill where $\displaystyle M=\sum^n_{i=1}X_i$
+\ceq{\hfill \Pr\big(M\ge\epsilon\big)}{\le}{\exp\Big(-\frac{\epsilon^2}{2n}\Big)}\hfill where $\displaystyle M=\sum^n_{i=1}X_i$
 \end{lemma}
 \begin{proof}
-Let $t>0$ be arbitrary.
+Let $t>0$ be arbitrary (we will set it at the end of the proof).
 Then
 
 \ceq{\sharp\hfill \Pr(M\ge\epsilon)}{=}{ \Pr\big(e^{tM}\ge e^{t\epsilon}\big)}
 
 \ceq{~}{\le}{e^{-t\epsilon}\,{\rm E}\big(e^{tM}\big)}
 
-In fact, the equality follows because the exponential is an increasing function and the inequality is Markov's inequality, which says that $\Pr(X\ge a)\le a^{-1}{\rm E}(X)$ for every $a$ and is immediate to verify.
+In fact, the equality follows because the exponential is an increasing function and the inequality is Markov's inequality.
 Now observe that
 
-\ceq{\hfill {\rm E}\big(e^{tX_i}\big)}{=}{\frac12e^t\ +\ \frac12e^{-t}}
+\ceq{\flat\hfill {\rm E}\big(e^{tX_i}\big)}{=}{\frac12e^t\ +\ \frac12e^{-t}}
 
 \ceq{~}{=}{\frac12\sum^\infty_{i=0}\frac{t^i}{i!}\ +\ \frac12\sum^\infty_{i=0}\frac{(-t)^{i}}{i!}}
 
@@ -275,6 +264,50 @@ From this, by independence we have
 Substituting in $\sharp$ gives $\Pr(M\ge\epsilon)\le e^{n\,t^2/2-t\epsilon}$.
 Finally Chernoff's inequality is obtained substituting $\epsilon/n$ for $t$.
 \end{proof}
+
+
+\begin{void_thm}[Proposition (Hoeffding's inequality )]\label{Chebyshev}
+Let $Y_i$, for $i\in[n]$, be independent random variables with bounded range, say $a_i\le Y_i\le b_i$.
+Define
+
+\hfil$\displaystyle M\medrel{=}\sum^n_{i=1}\big(Y_i-{\rm E}[Y_i]\big)$\hfil and \hfil $\displaystyle d è quella di c\medrel{=}\sum^n_{i=1}(a_i-b_i)^2$
+
+and assume $d>0$ to avoid trivialities. Then for every $\epsilon>0$ 
+
+\ceq{\hfill\Pr \big(M\ge\epsilon\big)}{\le}{\exp{\Big(-\frac{2\epsilon^2}{d}}\Big)}.
+\end{void_thm}
+
+\begin{proof}
+Let $X_i=Y_i-{\rm E}[Y_i]$. The proof is identical to the one above, only the bound $\flat$ needs a new proof. Let $Z_i=(d_i+X_i)/2d_i$. Note that $0\le Z_i\le1$. By the convexity of the exponential function.
+
+\ceq{\hfill e^{tX_i}}{=}{e^{td_iZ_i-td_i(1-Z_i)}}
+
+\ceq{}{\le}{Z_i\, e^{td_i}+(1-Z_i)\,e^{-td_i}}
+
+As ${\rm E}[Z_i]=1/2$ we obtain
+
+\ceq{\hfill {\rm E}\big(e^{tX_i}\big)}{\le}{\frac12 e^{td_i}+\frac12e^{-td_i}}
+
+\ceq{}{=}{e^{t^2 d^2_i}}
+
+Then, proceeding as in Proposition~\ref{Chernoff} we obtain ${\rm E}[M]=e^{t^2d}$. By the Markov inequality $\Pr \big(M\ge\epsilon\big)\le e^{t^2d-t\epsilon}$. Substituting $\epsilon/d$ for $t$ we obtain the required inequality.
+\end{proof}
+
+\begin{corollary}[(Weak Law of Large Numbers with exponential bound)] 
+\def\ceq#1#2#3{\parbox[t]{45ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+Let $\Pr$ be a probability measure on $\U$.
+Then, for every event $\B\subseteq\U$ and every $n,\epsilon>0$
+
+\ceq{\hfill\Pr \Big(c\in\U^n\ :\ \Big|\Pr(\B) - \Fr(\B/c) \Big|\ge\epsilon\Big)}{\le}{2\exp\Big(-\frac{n\epsilon^{\scriptscriptstyle 2}}{2}\Big)}
+\end{corollary}
+
+\begin{proof}
+Reason as in the proof of Proposition~\ref{prop_wlln} and apply Hoeffding's inequality with $M=n\bar X$ and $d=n$. 
+\end{proof}
+
+
+
+For future reference we include here the following simple fact.
 
 \begin{proposition}\label{prop_disequazione}
 For every $y$ and every $x>1$
@@ -301,16 +334,16 @@ If we allow $C\subseteq A$ to depend on $\B$, the existence of a subsample that 
 
 \ceq{\hfill\displaystyle \Big|\Fr(\B/A) - \Fr(\B/C)\Big|}{\le}{\epsilon}
 
-follows easily from Chebychev's inequality and its size only depends on $\epsilon$. This is essentially the weak law of large numbers for the probability measure $\Fr(\cdot/A)$.
+follows easily from the law of large numbers and its size only depends on $\epsilon$. This is essentially the weak law of large numbers for the probability measure $\Fr(\cdot/A)$.
 
 \def\ceq#1#2#3{\parbox[t]{35ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
-\begin{proposition}[(Weak law of large numbers)]
-For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C$ of size $\le1/4\,\epsilon^2$ such that $\big|\Fr(\B/A) - \Fr(\B/C)\big|\le\epsilon$.
+\begin{proposition}
+For every sample $A$, every $\B\subseteq\U$ and every $\epsilon>0$ there is a $C$ of size $\le2\exp\big(-n\,\epsilon^2/2\big)$ such that $\big|\Fr(\B/A) - \Fr(\B/C)\big|\le\epsilon$.
 
 More explicitly, let $C$ ranges over the samples of size $n$ with the product probability measure. Then 
 
-\ceq{\hfill\Pr\{\big|\Fr(\B/A) - \Fr(\B/C)\big|\ge\epsilon\}}{\le}{\frac1{4n\epsilon^2}}
+\ceq{\hfill\Pr\{\big|\Fr(\B/A) - \Fr(\B/C)\big|\ge\epsilon\}}{\le}{{2\exp\Big(-\frac{n\epsilon^{\scriptscriptstyle 2}}{2}\Big)}}
 \end{proposition}
 % 
 % \begin{proof}
@@ -325,7 +358,7 @@ Note that to avoid technicalities we do not insist in requiring $C\subseteq A$. 
 
 \begin{proof}
 Clearly, the first claim follows from the second.
-Interpret $\Fr(\cdot/A)$ as a probability measure on $\supp A$ an apply the weak law of large numbers.
+Interpret $\Fr(\cdot/A)$ as a probability measure on $\supp A$ an apply the weak law of large numbers with exponential bounds.
 \end{proof}
 
 The key result in \vc-theory is the following theorem of Vapnik and Chervonenkis which is a uniform version of the weak law of large numbers. 
@@ -394,7 +427,7 @@ Fix an enumeration $a$ of $A$. Suppose $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obt
 As $|\B|\le n$, the latter is clearly true.
 \end{proof}
 
-\begin{void_thm}[Proof of Proposition \ref{corol_epsilon_approx}]\rm
+\begin{void_thm}[Proof of Corollary \ref{corol_epsilon_approx}]\rm
 Set $A_0=A$ and $\epsilon_0=0$. We construct a decreasing chain $A_i$ of $\epsilon_i$-approximations.
 We denote by $n_i$ and $\delta_i$ the cardinality, respectively the discrepancy, of $A_i$.
 By lemma~\ref{lem_aprossimazionediapprossimazione}, we can require that $\epsilon_{i+1}=\epsilon_i+2\delta_i$ and $n_{i+1}\le n_i/2$.

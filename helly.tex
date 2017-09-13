@@ -147,7 +147,7 @@ As $\tau^*(\phi)$ is the minumum of the linear function $x\mapsto 1_n^{\rm T}\;x
 The inequalities describing the polyhedron have rational coefficients, so also the vertices have rational coordinates.
 \end{proof}
 
-\section{$\epsilon$-Nets}
+\section{Nets}
 
 Fix a set system $\Phi$ and let $\Pr$ be a probability measure on $\U$ such that all sets in $\Phi$ are measurable.
 Fix also $\epsilon>0$.
@@ -155,29 +155,32 @@ An \emph{$\epsilon$-net\/} is a set $A\subseteq\U$ that intersects all sets in $
 In other words, an $\epsilon$-net is a transversal for the set system $\Phi_\epsilon=\big\{\B\in\Phi\,:\,\Pr(\B)\ge\epsilon\big\}$.
 
 \begin{proposition}\label{prop_nets}
-For any $\epsilon>0$ and $d\in\omega$ there is some $N=N(\epsilon,k)$ such that for every set system $\Phi$ of \vc-dimension $\le k$, there is an $\epsilon$-net of cardinality $\le N$. By Remark~\ref{rmk_nets} we obtain an $1/r$-net of cardinality $\le c\,r\,\ln r$.
+For any $d,\epsilon>0$, every measure on a set system $\Phi$ of \vc-density $\le d$, has an $\epsilon$-net of cardinality $\displaystyle\le c\,\frac d\epsilon\,\ln \frac1\epsilon$.
 \end{proposition}
 
 \begin{proof}
-
+We only prove a weaker bound by observing that every $\epsilon$-approximation is in particular an $\epsilon$-net. Hence from Proposition~\ref{corol_epsilon_approx} we obtain an $\epsilon$-net of cardinality  $\displaystyle\le c\,(d/\epsilon^2)\,\ln(1/\epsilon)$.
 \end{proof}
 
 
-\begin{remark}\label{rmk_nets}
-
-\end{remark}
 
 
 \begin{proposition}
 Let $\Phi$ be a finite set system with \vc-dimension $\le k$. Then 
 
-\ceq{\hfill\tau(\Phi)}{\le}{ c\,\tau^*(\Phi)\,\ln\tau^*(\Phi).}
+\ceq{\hfill\tau(\Phi)}{\le}{ c\,\tau^*(\Phi)\,\ln\tau^*(\Phi)}
 
 where $c$ is an absolute constant.
 \end{proposition}
 
 \begin{proof}
-Let $r=\tau^*(\Phi)$ ad let $A$ be an optimal fractional transversal. As $\Phi$ is finite we can assume that the support of $A$ is finite. After normalizing, $A$ defines a probability measure on $\U$ concentrated on $\supp A$. Namely, $\Pr(\{x\})=(1/r)A(x)$ for all $x\in\U$. By the definition of fractional transversal every set in $\Phi$ has measure at last $1/r$.  
+Let $r=\tau^*(\Phi)$ ad let $A$ be an optimal fractional transversal.
+As $\Phi$ is finite we can assume that the support of $A$ is finite.
+After normalizing, $A$ defines a probability measure on $\U$ concentrated on $\supp A$.
+Namely, $\Pr(\{x\})=(1/r)A(x)$ for all $x\in\U$.
+By the definition of fractional transversal every set in $\Phi$ has measure at last $1/r$.
+Therefore every $(1/r)$-net is a transversal.
+By Proposition~\ref{prop_nets} we obtain a transversal of cardinality $\le c r \ln r$.
 \end{proof}
 
 \section{Helly-type properies}
