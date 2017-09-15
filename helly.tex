@@ -24,7 +24,7 @@
 The following is a classical result.
 The proof may be found in any introductory text of linear programming.
 There are many (sometimes non equivalent) ways to state it.
-The following somewhat unusual phrasing is taken from Terence Tao's blog.
+The following somewhat unusual phrasing is taken from Terence Tao's blog~\cite{Tao}.
 It stresses the analogies between Farkas' lemma and Hilbert's Nullstellensatz.
 % (we have reversed strict and weak inequalities, but the proof is identical).
 
@@ -38,7 +38,7 @@ Then the following are equivalent
 \end{itemize}
 \end{proposition}
 
-
+We translate the lemma in a more standard form. See~\cite{GM} for a discussion of different formulations and for a proof of the following important theorem.
 
 \begin{proposition}[(Farkas' Lemma, second formulation)]
 Let $A$ be a $m\times n$ real matrix. 
@@ -127,7 +127,7 @@ Then $\nu(\phi)=\tau(\phi)$.
 Hint: use induction on $\nu(\phi)$.
 \end{exercise}
 
-\begin{theorem}
+\begin{theorem}\label{thm_fractional_nu=tau}
 For every finite incidence relation $\nu^*(\phi)=\tau^*(\phi)$ and this value is rational.
 \end{theorem}
 \begin{proof}
@@ -165,7 +165,7 @@ We only prove a weaker bound by observing that every $\epsilon$-approximation is
 
 
 
-\begin{proposition}
+\begin{proposition}\label{prop_bound_fractional_trans}
 Let $\Phi$ be a finite set system with \vc-dimension $\le k$. Then 
 
 \ceq{\hfill\tau(\Phi)}{\le}{ c\,\tau^*(\Phi)\,\ln\tau^*(\Phi)}
@@ -212,9 +212,11 @@ then
 \ceq{\hfill\bigcap_{i\in J}S_i}{\neq}{\0}\hfill for some $J\subseteq [n]$ of cardinality $\ge\beta\,n$.
 
 We say that $\Phi$ has the \emph{fractional Helly property\/} if it has some finite Helly number.
-The \emph{fractional Helly number\/} of $\Phi$ is the smallest number $k$ above.
+The \emph{fractional Helly number\/} of $\Phi$ is the smallest number $k$ satisfying the property above.
 \QED
 \end{definition}
+
+For future reference we remark that the $\beta$ above may be used to obtain a bound to $\nu(\phi)$. In fact, if at least $\beta\,n$ sets in $\Phi$ intersect, then $\nu(\Phi)\le n-\beta\,n+1$.  
 
 \begin{theorem}[(Matou\v{s}ek~\cite{M2004})]
 Let $\Phi$ be a set system with $\pi^*(\phi)\in o(n^k)$.
@@ -249,23 +251,47 @@ That is, $I$ is a $\phi^*$-definable subset of $J$.
 Then the probability that a random pair is good is $\ge\alpha/4$.
 
 Assume the claim and proceed with the proof.
-There is a $J\in{[n]\choose m}$ with at least $\frac\alpha4{m\choose k}$ good subsets.
-This yields the required contradiction.
+We can think that the random pair in $P$ is chosen by first picking $J\in{[n]\choose m}$ with the uniform distribution and than $I\in{J\choose k}$ again with the uniform distribution. 
+(To say it more pedantically, we are applying the theorem of total probability.)
+If the the probability that a pair is good is $\ge\alpha/4$, then for at least one $J\in{[n]\choose m}$ the probability of finding a good subset $I$ is $\ge\alpha/4$.
+So, that $J$ has $\ge\frac\alpha4{m\choose k}$ good subsets.
+A contradiction which proves the theorem (given the claim).
 
 We now prove the claim.
+There is another equivalent way to pick a random pair in $P$.
 First we choose at random $I\in{[n]\choose k}$ of cardinality $k$, then we choose at random $m-k$ elements from $[n]\sm I$.
 By assumption, the probability that $S_I\neq\0$ is at least $\alpha$. If  $S_I\neq\0$, we fix $a\in S_I$.
-By assumption $a$ is contained in fewer than $\beta n$ sets $S_i$.
-Then the probability that all of the sets $S_i\in J\sm I$ contains $a$ is at most
+By the assumption that we would like to contradict, $a$ is contained in $<\beta n$ sets $S_i$.
+Then the probability that no set $S_i\in J\sm I$ contains $a$ is at least
 
-\ceq{\hfill\frac{\displaystyle{\beta n\choose m-k}}{\displaystyle{n-k\choose m-k}}}{\le}{\prod^{m-k-1}_{i=0}\frac{\beta n-i}{n-k-i}}
-\medrel{\le}
-$\displaystyle$
+\ceq{\hfill\frac{\displaystyle{n-\beta n\choose m-k}}{\displaystyle{n-k\choose m-k}}}{\ge}{\prod^{m-k-1}_{i=0}\frac{n-\beta n-i}{n-k-i}}
+\medrel{\ge}
+$\displaystyle\prod^{m-k}_{i=0}\frac{n-\beta n-i}{n-k-i}$
 
-We bound from below the probability that a pair $I\subseteq J\subset[n]$ is good. 
+\ceq{}{\ge}{\prod^{m-k}_{i=0}\frac{n-\beta n-m}{n-m}}
+\medrel{\ge}
+$\displaystyle\bigg(\frac{n-\beta n-m}{n-m}\bigg)^m$
+
+\ceq{}{=}
+{\bigg(1-\frac{\beta n}{n-m}\bigg)^m}
+
+\smallskip recall that $n>2m$ and $\beta\le1/2m$, then
+
+\ceq{}{\ge}{\displaystyle(1-2\beta)^m}
+\medrel{=}
+$\displaystyle\bigg(1-\frac{1}{m}\bigg)^m$
+\medrel{\ge}
+$\displaystyle\frac{1}{4}$
+
+Therefore the probability that a random pair in $P$ is good is at least $\alpha/4$.
+This proves the claim and with it the theorem.
 \end{proof}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The (p,q)-theorem}
 
 For integers $p\ge q$ we say that $\phi$ has the \emph{$(p,q)$-property\/} if out of any $p$ definable sets there are $q$ sets with non empty intersection.
@@ -276,10 +302,48 @@ Then there is a number $N=N(d,p,q)$ such that if $\phi$ has \vc-codensity $\le d
 
 \begin{proof}
 As we are not trying to optimize $N$, we may prove the theorem for $q=d+1$.
+
+By Proposition~\ref{prop_bound_fractional_trans}, $\tau(\phi)$ is bounded by a function of $\tau^*(\phi)$, so it is enough to bound $\tau^*(\phi)$. By Proposition~\ref{thm_fractional_nu=tau},  $\tau^*(\phi)=\nu^*(\phi)$, so it is enough to bound $\nu^*(\phi)$.
+
+Let $A$ be an optimal fractional packing. By Theorem~\ref{thm_fractional_nu=tau} we may assume that $A$ is rational valued. Therefore $A=(1/m)\,C$ where $m$ is a positive integer and $C$ is a (integral valued) multi-subset of $\V$.
+
+\smallskip
+\textit{Claim 1.}
+For some $\alpha=\alpha(p,q)>0$ there are \smash{$\displaystyle\alpha{n\choose q}$} many collections in \smash{$\displaystyle{\Phi\choose q}$} with non-empty intersection.
+
+Every $p$-collection of definable sets contains at least one $q$-collection with non-empty intersection.
+Every $q$-collection is contained in ${n-q\choose p-q}$ many $p$-collections.
+Therefore there are
+
+\ceq{\hfill\frac{\displaystyle{n\choose p}}{\displaystyle{n-q\choose p-q}}}{=}{{p\choose q}^{-1}{n\choose q}}
+
+$q$-collections of definable sets with non-empty intersection, which yields \smash{$\displaystyle\alpha={p\choose q}^{-1}$} and proves the claim.
+
+\smallskip
+\textit{Claim 2.}
+We claim that for some $\beta=\beta(p,q)>0$ there are a least $\beta n$ definable sets with non-empty intersection.
+
+This follows from Claim~1 by Helly fractional theorem.
+
+
 \end{proof}
+
 \section{Notes and references}
 
 \begin{biblist}[]\normalsize
+\bib{GM}{book}{
+   author={G\"artner, Bernd},
+   author={Matou\v sek, Ji\v r\'\i },
+   title={Approximation algorithms and semidefinite programming},
+   publisher={Springer, Heidelberg},
+   date={2012},
+   pages={xii+251},
+%   isbn={978-3-642-22014-2},
+%   isbn={978-3-642-22015-9},
+%   doi={10.1007/978-3-642-22015-9},
+}
+
+
 \bib{M2004}{article}{
    author={Matou\v sek, Ji\v r\'\i },
    title={Bounded VC-dimension implies a fractional Helly theorem},
@@ -291,6 +355,14 @@ As we are not trying to optimize $N$, we may prove the theorem for $q=d+1$.
 %   issn={0179-5376},
 %   doi={10.1007/s00454-003-2859-z
    }
+   
+\bib{Tao}{article}{
+   author={Tao, Terence},
+   title={\href{https://terrytao.wordpress.com/2007/11/30/the-hahn-banach-theorem-mengers-theorem-and-hellys-theorem/}{The Hahn-Banach theorem, Menger’s theorem, and Helly’s theorem}},
+   journal={What's new},
+   date={2008}
+}  
+   
 \end{biblist}
 
 \end{document}

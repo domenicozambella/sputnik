@@ -23,14 +23,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Two equivalent frameworks}\label{vc_dimension}
 
-Let $\U$ and $\V$ be two sets and let $\phi\subseteq \U\times\V$.
+Let $\U$ and $\V$ be two sets and let $\phi\subseteq \U\times\V$ be a binary relation.
 In other words $\phi$ is a \emph{bipartite graph}.
 We may call $\phi$ an (abstract) \emph{incidence relation\/} and write $\phi(x,y)$ for $\<x,y\>\in\phi$.
 Sets of the form
 
 \ceq{\hfill\emph{$\phi(\U,b)$}}{=}{\{a\in\U:\phi(a,b)\}}
 
-are called \emph{definable sets\/} or, when other relations are involved, \emph{$\phi$-definable sets}.
+are called \emph{definable sets\/} or, when more than one relation is involved, \emph{$\phi$-definable sets}.
 The collection of all definable sets is denoted by \emph{$\phi(\U,b)_{b\in\V}$}.
 
 Often we need to consider the \emph{trace\/} of a definable set on some arbitrary $A\subseteq\U$
@@ -41,7 +41,7 @@ We call this a \emph{definable subset of $A$\/} and denote by \emph{$\phi(A,b)_{
 
 Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ defined by 
 
-\ceq{\hfill\emph{$b\equiv_{\phi,A} b'$}}{\IFF}{\phi(a,b)\iff\phi(a,b')}\quad for ll $a\in A$;
+\ceq{\hfill\emph{$b\equiv_{\phi,A} b'$}}{\IFF}{\phi(a,b)\iff\phi(a,b')}\quad for all $a\in A$;
 
 \ceq{}{\IFF}{\phi(A,b)=\phi(A,b').}
 
@@ -111,13 +111,22 @@ Given a set system, we immediately obtain an incidence relation.
 Fix any $\V$ containing $\Phi$ and define $\phi(x,y)$ as $x\in y\in\Phi$.
 
 Vice versa, to an incidence relation $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$, the set system of the definable subsets of $\U$.
-The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
-The shatter function \emph{$\pi_\Phi(n)$\/} is defined in a similar way.
-
 An incidence relation is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
 The correspondence between extensional incidence relations and set systems is one-to-one.
 In general, the correspondence is many-to-one.
 However, as we are mainly interested the set system associated, we my switch from one formalism to the other according to which one is more convenient.
+
+The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
+We repeat this explicitly in order to set the notation. Define
+
+
+\ceq{\hfill\emph{$\Phi{\restriction} A$}}{=}{\big\{A\cap\B\ \ :\ \ \B\in \Phi\big\}.}
+
+Then $A$ is shattered by $\Phi$ if $\P A=\Phi{\restriction} A$. The shatter function \emph{$\pi_\Phi(n)$\/} is
+
+\ceq{\hfill\emph{$\pi_\Phi(n)$}}{=}{\max\bigg\{\big|\Phi{\restriction} A\big|\ \ :\ \ A\in {\U\choose n}\bigg\}.}
+
+
 
 %An incidence relation is \emph{reduced\/} if $\phi(\U,b')=\phi(\U,b'')$ implies $b'=b''$ and, dually, $\phi(a',V)=\phi(a'',V)$ implies $a'=a''$.
 %By quotienting and taking representatives, we can always find a reduced relation with the same shattering function.
@@ -145,7 +154,7 @@ Then $\Phi$ has \vc-dimension $k$ and
 %Consider the type space $S_{\phi^*}(B)$ where $B\subseteq\V$ is a set of cardinality $k$. Note that for every 
 
 \item[g.] Let $\U=\RR^2$ and let $\Phi$ be the collection of polygons.
-Then $\Phi$ has \vc-dimension $\infty$.\QED
+Then $\Phi$ has infinite \vc-dimension.\QED
 \end{itemize}
 \end{example}
 
