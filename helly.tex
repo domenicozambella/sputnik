@@ -305,21 +305,28 @@ As we are not trying to optimize $N$, we may prove the theorem for $q=d+1$.
 
 By Proposition~\ref{prop_bound_fractional_trans}, $\tau(\phi)$ is bounded by a function of $\tau^*(\phi)$, so it is enough to bound $\tau^*(\phi)$. By Proposition~\ref{thm_fractional_nu=tau},  $\tau^*(\phi)=\nu^*(\phi)$, so it is enough to bound $\nu^*(\phi)$.
 
-Let $A$ be an optimal fractional packing. By Theorem~\ref{thm_fractional_nu=tau} we may assume that $A$ is rational valued. Therefore $A=(1/m)\,C$ where $m$ is a positive integer and $C$ is a (integral valued) multi-subset of $\V$.
+Let $A$ be an optimal fractional packing. By Theorem~\ref{thm_fractional_nu=tau} we may assume that $A$ is rational valued. Therefore $A=(1/m)\,C$ where $m$ is a positive integer and $C$ is a (integral valued) multi-subset of $\V$. 
+
+As explained in Section~\ref{multisets}, after replacing each $b\in\V$ with $m$ copies $b_1,\dots,b_m$, and each arc $\<a,b\>$ in $\phi$ with the arcs $\<a,b_1\>,\dots,\<a,b_m\>$, we can assume that $C$ is a plain set. Call $\phi'$ the new incidence relation.
 
 \smallskip
-\textit{Claim 1.}
+\textit{Claim 1.} $\phi'$ satisfies the $(p',q)$-property with $p'=q(p-1)+1$.
+
+A $p'$-collection of $\phi'$ definable sets either contains $q$ copies of the same $\phi$-definable set or it contains $p$ distinct $\phi$-definable sets. In both case it has a subcollection of $q$ sets with non-empty intersection.
+
+\smallskip
+\textit{Claim 2.}
 For some $\alpha=\alpha(p,q)>0$ there are \smash{$\displaystyle\alpha{n\choose q}$} many collections in \smash{$\displaystyle{\Phi\choose q}$} with non-empty intersection.
 
-Every $p$-collection of definable sets contains at least one $q$-collection with non-empty intersection.
-Every $q$-collection is contained in ${n-q\choose p-q}$ many $p$-collections.
-Therefore there are
+Every $p'$-collection of definable sets contains at least one $q$-collection with non-empty intersection.
+Every $q$-collection is contained in ${n-q\choose p'-q}$ many $p'$-collections.
+Therefore the number $q$-collections of definable sets with non-empty intersection is
 
-\ceq{\hfill\frac{\displaystyle{n\choose p}}{\displaystyle{n-q\choose p-q}}}{=}{{p\choose q}^{-1}{n\choose q}}
+\ceq{\hfill\frac{\displaystyle{n\choose p'}}{\displaystyle{n-q\choose p'-q}}}{=}{\frac{\displaystyle{n\choose q}}{\displaystyle{p'\choose q}}.}
 
-$q$-collections of definable sets with non-empty intersection, which yields \smash{$\displaystyle\alpha={p\choose q}^{-1}$} and proves the claim.
+Therefore, the claim is proved with \smash{$\displaystyle\alpha={p'\choose q}^{-1}$\kern-1ex}.
 
-\smallskip
+\medskip
 \textit{Claim 2.}
 We claim that for some $\beta=\beta(p,q)>0$ there are a least $\beta n$ definable sets with non-empty intersection.
 
