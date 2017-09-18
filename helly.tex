@@ -200,51 +200,50 @@ A counter example of \vc-dimension $2$ can be constructed with a family containi
 The following property is more robust.
 
 \begin{definition}
-Let $\Phi$ be an infinite family of sets.
-We say that $\Phi$ \emph{has fractional Helly number $k$\/} if for every $\alpha>0$ there is a $\beta>0$ such that:
+Let $\phi$ be an incidence relation.
+We say that $\phi$ \emph{has fractional Helly number $k$\/} if for every $\alpha>0$ there is a $\beta>0$ such that:
 
-if $S_i\in\Phi$, for $i=1,\dots,n$ are such that
+if $b_i\in\V$, for $i=1,\dots,n$, are such that
 
-\ceq{\hfill \bigcap_{i\in I}S_i}{\neq}{\0}\hfill for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
+\ceq{\hfill \bigcap_{i\in I}\phi(\U,b_i)}{\neq}{\0}\hfill for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
 
 then
 
-\ceq{\hfill\bigcap_{i\in J}S_i}{\neq}{\0}\hfill for some $J\subseteq [n]$ of cardinality $\ge\beta\,n$.
+\ceq{\hfill\bigcap_{i\in J}\phi(\U,b_i)}{\neq}{\0}\hfill for some $J\subseteq [n]$ of cardinality $\ge\beta\,n$.
 
-We say that $\Phi$ has the \emph{fractional Helly property\/} if it has some finite Helly number.
-The \emph{fractional Helly number\/} of $\Phi$ is the smallest number $k$ satisfying the property above.
+We say that $\phi$ has the \emph{fractional Helly property\/} if it has some finite Helly number.
+The \emph{fractional Helly number\/} of $\phi$ is the smallest number $k$ satisfying the property above.
 \QED
 \end{definition}
 
-For future reference we remark that the $\beta$ above may be used to obtain a bound to $\nu(\phi)$. In fact, if at least $\beta\,n$ sets in $\Phi$ intersect, then $\nu(\Phi)\le n-\beta\,n+1$.  
+For future reference we remark that the $\beta$ above may be used to obtain a bound to $\nu(\phi)$. In fact, if at least $\beta\,n$ definable sets intersect, then $\nu(\phi)\le n-\beta\,n+1$.  
 
 \begin{theorem}[(Matou\v{s}ek~\cite{M2004})]
-Let $\Phi$ be a set system with $\pi^*(\phi)\in o(n^k)$.
-Then $\Phi$ has fractional Helly number $\le k$.
+Let $\phi$ be an incidence relation with $\pi^*(\phi)\in o(n^k)$.
+Then $\phi$ has fractional Helly number $\le k$.
 \end{theorem}
 
 Recall that $\pi^*(\phi)\in o(n^k)$ means that $\lim_{n\to\infty}\pi^*(\phi)/n^k=0$.
 Which occurs in particular when the \vc-density is $<k$ or when the \vc-dimension is $\le k$.
 \begin{proof}
-Let $\Phi$ and $k$ be as in the assumptions of the theorem.
+Let $\phi$ and $k$ be as in the assumptions of the theorem.
 Let $\alpha$ be arbitrary and set $\beta=1/2m$ where $m$ is such that 
 
 \ceq{\hfill \pi^*(m)}{<}{\frac\alpha4{m\choose k}.}
 
-Fix some  $S_i\in\Phi$, for $i=1,\dots,n$ and assume
+Fix some  $b_i\in\V$, for $i=1,\dots,n$ and assume
  
-\ceq{\hfill \bigcap_{i\in I}S_i}{\neq}{\0}\quad for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
+\ceq{\hfill \bigcap_{i\in I}\phi(\U,b_i)}{\neq}{\0}\quad for at least \ $\displaystyle\alpha{n\choose k}$ \ sets \ $\displaystyle I\in{[n]\choose k}$
 
-We will abbreviate the intersection above with $S_I$.
-We need to show that there is a set $J\subseteq [n]$ of cardinality $\ge\beta\,n$ such that $S_J\neq0$.
-So, assume not and reason for a contradiction.
-Note that we can assume $n>2m$ because for $n\le2m$ we can take take $|J|=1$.
+We need to show that $\bigcap_{i\in J}\phi(\U,b_i)\neq\0$ for some  set $J\subseteq [n]$ of cardinality $\ge\beta\,n$.
+So, assume no such $J$ exists and reason for a contradiction.
+Note that we can assume that $n>2m$ because for $n\le2m$ we can take take $|J|=1$.
 
-Identify $J\subseteq[n]$ with subsets of $\V$.
+Identify $J\subseteq[n]$ with a subset of $\V$.
 We will find a set $J\subseteq[n]$ of cardinality $m$ with many $\phi^*$-definable subsets, more than $\pi^*(m)$, a contradiction.
 
 Let $P$ be the set of pairs $I\subseteq J\subseteq[n]$ such that $|I|=k$ and $|J|=m$.
-We say that a pair $I\subseteq J$ in $P$ is \textit{good\/} if there is $a\in\U$ such that $I=\{i\in J\ :\ a\in S_i\}$.
+We say that a pair $I\subseteq J$ in $P$ is \textit{good\/} if there is $a\in\U$ such that $I=\phi(a,J)$.
 That is, $I$ is a $\phi^*$-definable subset of $J$.
 
 \textit{Claim.} Assume on $P$ the uniform probability.
@@ -259,10 +258,11 @@ A contradiction which proves the theorem (given the claim).
 
 We now prove the claim.
 There is another equivalent way to pick a random pair in $P$.
-First we choose at random $I\in{[n]\choose k}$ of cardinality $k$, then we choose at random $m-k$ elements from $[n]\sm I$.
-By assumption, the probability that $S_I\neq\0$ is at least $\alpha$. If  $S_I\neq\0$, we fix $a\in S_I$.
-By the assumption that we would like to contradict, $a$ is contained in $<\beta n$ sets $S_i$.
-Then the probability that no set $S_i\in J\sm I$ contains $a$ is at least
+First we choose at random $I\subseteq[n]$ of cardinality $k$, then we choose at random $m-k$ elements from $[n]\sm I$.
+By assumption, the probability that $I$ is such that $\bigcap_{i\in I}\phi(\U,b_i)\neq\0$ is at least $\alpha$.
+So, assume that $I$ is such, and fix any $a\in \bigcap_{i\in I}\phi(\U,b_i)$.
+By the assumption that we would like to contradict, there are $<\beta n$ many $i\in[n]$ such that $\phi(a,b_i)$.
+Then the probability that all $i\in J\sm I$ are such that $\neg\phi(a,b_i)$ is at least
 
 \ceq{\hfill\frac{\displaystyle{n-\beta n\choose m-k}}{\displaystyle{n-k\choose m-k}}}{\ge}{\prod^{m-k-1}_{i=0}\frac{n-\beta n-i}{n-k-i}}
 \medrel{\ge}
@@ -307,32 +307,38 @@ By Proposition~\ref{prop_bound_fractional_trans}, $\tau(\phi)$ is bounded by a f
 
 Let $A$ be an optimal fractional packing. By Theorem~\ref{thm_fractional_nu=tau} we may assume that $A$ is rational valued. Therefore $A=(1/m)\,C$ where $m$ is a positive integer and $C$ is a (integral valued) multi-subset of $\V$. 
 
-As explained in Section~\ref{multisets}, after replacing each $b\in\V$ with $m$ copies $b_1,\dots,b_m$, and each arc $\<a,b\>$ in $\phi$ with the arcs $\<a,b_1\>,\dots,\<a,b_m\>$, we can assume that $C$ is a plain set. Call $\phi'$ the new incidence relation.
+As explained in Section~\ref{multisets}, after replacing each $b\in\V$ with $m$ copies $b_1,\dots,b_m$ and denote the resultig set by $\V_m$.
+Replace each arc $\<a,b\>$ in $\phi$ with the arcs $\<a,b_1\>,\dots,\<a,b_m\>$.
+Denote by $\phi_m$ the new incidence relation.
+We can assume that $C$ is a plain subset of $\V_m$ with the property that $|\phi(a,C)|\le m$ for every $a\in\U$.
+%Then $C$ is a transversal of $\phi_m$.  
 
 \smallskip
-\textit{Claim 1.} $\phi'$ satisfies the $(p',q)$-property with $p'=q(p-1)+1$.
+\textit{Claim 1.} $\phi_m$ satisfies the $(p',q)$-property with $p'=q(p-1)+1$.
 
-A $p'$-collection of $\phi'$ definable sets either contains $q$ copies of the same $\phi$-definable set or it contains $p$ distinct $\phi$-definable sets. In both case it has a subcollection of $q$ sets with non-empty intersection.
+A $p'$-collection of $\phi_m$ definable sets either contains $q$ copies of the same $\phi$-definable set or it contains $p$ distinct $\phi$-definable sets. In both case it has a subcollection of $q$ sets with non-empty intersection. This proves Claim~1.
 
 \smallskip
 \textit{Claim 2.}
-For some $\alpha=\alpha(p,q)>0$ there are \smash{$\displaystyle\alpha{n\choose q}$} many collections in \smash{$\displaystyle{\Phi\choose q}$} with non-empty intersection.
+There is an $\alpha=\alpha(p,q)>0$ such that for every $n$ and every $b_1,\dots,b_n\in\V'$
 
-Every $p'$-collection of definable sets contains at least one $q$-collection with non-empty intersection.
+\ceq{\hfill \bigcap_{i\in I}\phi(\U,b_i)}{\neq}{\0}\hfill for at least \ $\displaystyle\alpha{n\choose q}$ \ sets \ $\displaystyle I\in{[n]\choose q}$.
+
+By Claim~1, every $p'$-collection of $\phi_m$-definable sets contains at least one $q$-collection with non-empty intersection.
 Every $q$-collection is contained in ${n-q\choose p'-q}$ many $p'$-collections.
 Therefore the number $q$-collections of definable sets with non-empty intersection is
 
 \ceq{\hfill\frac{\displaystyle{n\choose p'}}{\displaystyle{n-q\choose p'-q}}}{=}{\frac{\displaystyle{n\choose q}}{\displaystyle{p'\choose q}}.}
 
-Therefore, the claim is proved with \smash{$\displaystyle\alpha={p'\choose q}^{-1}$\kern-1ex}.
+Therefore, claim~2 holds with \smash{$\displaystyle\alpha={p'\choose q}^{-1}$\kern-1ex}.
 
 \medskip
-\textit{Claim 2.}
-We claim that for some $\beta=\beta(p,q)>0$ there are a least $\beta n$ definable sets with non-empty intersection.
+\textit{Claim 3.}
+There is a $\beta=\beta(p,q)>0$ such that for every $n$ and every $b_1,\dots,b_n\in\V'$ there is an $a\in\U$ such that $\phi(a,b_i)$ holds for at least $\beta n$ many $b_i$.
 
-This follows from Claim~1 by Helly fractional theorem.
+As $\phi'$ has the same \vc-codensity as $\phi$,  Caim~3 follows immediately from Claim~2 by Helly fractional theorem.
 
-
+Now, apply Claim~3 with the elements of $C$ as $b_1,\dots,b_n$. Then $\nu^*(\phi)=n/m$. So, from $\beta\,n\le |\phi(a,C)|\le m$, we obtain  $\nu^*(\phi)\le 1/\beta$. So $N=1/\beta$ is the bound claimed by the theorem.
 \end{proof}
 
 \section{Notes and references}
