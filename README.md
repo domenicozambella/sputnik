@@ -1,4 +1,4 @@
-# Topics on Vapnik-Chervnenkis theory
+# [Topics on Vapnik-Chervnenkis theory](https://github.com/domenicozambella/sputnik/raw/master/sputnik.pdf)
 
 Notes for a series of lectures.
 
