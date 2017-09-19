@@ -19,13 +19,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Linear programming / convex optimization}\label{LP}
+\section{Linear programming (optimization)}\label{LP}
 
 The following is a classical result.
 The proof may be found in any introductory text of linear programming.
 There are many (sometimes non equivalent) ways to state it.
 The following somewhat unusual phrasing is taken from Terence Tao's blog~\cite{Tao}.
-It stresses the analogies between Farkas' lemma and Hilbert's Nullstellensatz.
+This formulation stresses the analogies between Farkas' lemma and Hilbert's Nullstellensatz.
 % (we have reversed strict and weak inequalities, but the proof is identical).
 
 \begin{proposition}[(Farkas' Lemma)]
@@ -155,8 +155,10 @@ Fix also $\epsilon>0$.
 An \emph{$\epsilon$-net\/} is a set $A\subseteq\U$ that intersects all sets in $\Phi$ of measure at least $\epsilon$.
 In other words, an $\epsilon$-net is a transversal for the set system $\Phi_\epsilon=\big\{\B\in\Phi\,:\,\Pr(\B)\ge\epsilon\big\}$.
 
+$\epsilon$-Nets, like all threshold structures are mathematically awkward. The advantage is that $\epsilon$-nets have a smaller size. 
+
 \begin{proposition}\label{prop_nets}
-For any $d,\epsilon>0$, every measure on a set system $\Phi$ of \vc-density $\le d$, has an $\epsilon$-net of cardinality $\displaystyle\le c\,\frac d\epsilon\,\ln \frac1\epsilon$.
+For any $d,\epsilon>0$, every measure on a set system $\Phi$ of \vc-density $\le d$, has an $\epsilon$-net of cardinality $\displaystyle\le c\,\frac d\epsilon\,\ln \frac1\epsilon$ where $c$ is an absolute constant.
 \end{proposition}
 
 \begin{proof}
