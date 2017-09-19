@@ -47,12 +47,13 @@ Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ defined b
 
 The $\equiv_{\phi,A}$-equivalence class are called \emph{types over $A$}. We denote by $S_\phi(A)$ the set types over $A$. As there is a one-to-one correspondence between definable subsets and types, $|S_\phi(A)|=|\phi(A,b)_{b\in\V}|$. 
 
-If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in\V}$, we say that $A$ is \emph{shattered\/} by $\phi$.
+If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in\V}$, we say that $A$ is \emph{shattered\/} by $\phi$. Paraphrase the the definition,  $A$ is shattered by $\phi$ if fr every $C\subseteq A$ there is a $b_C\in\V$ such that $C=\phi(A,b_C)$.
+
 The following is called the \emph{shatter function\/}
 
 %\ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\Big\{|\phi(A,b)_{b\in\V}|\ \ :\ \ A\subseteq\U,\ |A|=n\Big\}.}
 
-\ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\bigg\{|\phi(A,b)_{b\in\V}|\ \ :\ \ A\in {\U\choose n}\bigg\}.}
+\ceq{\hfill\emph{$\pi_\phi(n)$}}{=}{\max\bigg\{|\phi(A,b)_{b\in\V}|\ \ :\ \ A\in {\U\choose n}\bigg\}}
 
 \ceq{}{=}{\max\bigg\{\kern2ex|S_\phi(A)|\kern2.5ex\ \ :\ \  A\in {\U\choose n}\bigg\}.}
 
@@ -60,10 +61,10 @@ So, $\pi_\phi(n)$ gives the maximal number of definable subsets that a set of ca
 Trivially, $\pi_\phi(n)\le2^n$ for all $n$.
 Moreover, if $\pi_\phi(k)=2^k$ for some $k$, then $\pi_\phi(n)=2^n$ for every $n\le k$.
 
-The dual incidence relation $\phi^*$ is the relation on $\V\times\U$ which is sometimes denoted by $\phi^{-1}$.
+The dual relation $\phi^*$ is the relation on $\V\times\U$ which is sometimes denoted by $\phi^{-1}$.
 Then dual scattering function is defined as follows (with the obvious meaning of the notation) 
 
-\ceq{\hfill\emph{$\pi^*_\phi(n)$}}{=}{\max\bigg\{|\phi(a,B)_{a\in\U}|\ \ :\ \ B\in {\V\choose n}\bigg\}.}
+\ceq{\hfill\emph{$\pi^*_\phi(n)$}}{=}{\max\bigg\{|\phi(a,B)_{a\in\U}|\ \ :\ \ B\in {\V\choose n}\bigg\}}
 
 \ceq{}{=}{\max\bigg\{\kern2ex|S_{\phi^*}(B)|\kern2.2ex\ \ :\ \  B\in {\V\choose n}\bigg\}.}
 
@@ -91,7 +92,7 @@ If $\phi$ has \vc-dimension $< k$ then its dual \vc-dimension is $< 2^{k+1}$.
 
 \begin{proof}
 Assume that the \vc-dimension of $\phi^*$ is $\ge 2^k$.
-We prove that the \vc-dimension of $\phi^*$ is $\ge k$.
+We prove that the \vc-dimension of $\phi$ is $\ge k$.
 Let $B=\{b_I\,:\,I\subseteq k\}$ be a set of cardinality $2^k$ shattered by $\phi^*$. 
 That is, for every $\J\subseteq \P(k)$ there is $a_\J$ such that
 
@@ -104,17 +105,17 @@ Let $a_i=a_{\{I\subseteq k\,:\, i\in I\}}$. Then from the equivalence above we o
 That is, $\phi$ shatters $\{a_i\,:\,i<k\}$.
 \end{proof}
 
-An alternative formalism uses \emph{set systems\/} in place of incidence relations.
+An alternative formalism uses \emph{set systems\/} in place of bipartite graphs.
 A set system is a collection $\Phi$ of subsets of some set $\U$.
-We denote a set system by $(\U,\Phi)$.
-Given a set system, we immediately obtain an incidence relation.
+We denote a set system by \emph{$(\U,\Phi)$}.
+Given a set system, we immediately obtain a bipartite graph.
 Fix any $\V$ containing $\Phi$ and define $\phi(x,y)$ as $x\in y\in\Phi$.
 
-Vice versa, to an incidence relation $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$, the set system of the definable subsets of $\U$.
-An incidence relation is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
+Vice versa, to a bipartite graph $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$, the set system of the definable subsets of $\U$.
+We say that a bipartite graph is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
 The correspondence between extensional incidence relations and set systems is one-to-one.
 In general, the correspondence is many-to-one.
-However, as we are mainly interested the set system associated, we my switch from one formalism to the other according to which one is more convenient.
+Even when we are interested set systems, in the proof it may be convenient to consider non extensional a bipartite graphs associated to these. So, my switch from one formalism to the other according to which one is more convenient.
 
 The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
 We repeat this explicitly in order to set the notation. Define
@@ -133,9 +134,8 @@ Then $A$ is shattered by $\Phi$ if $\P A=\Phi{\restriction} A$. The shatter func
 
 \begin{example}\label{ex_vcdim}
 \begin{itemize}
-\item[a.] Set systems of cardinality $1$ are those with an incidence relation of the form $A\times\V$ for some $A\subseteq\U$.
-They shatter only the empty set, therefore they have \vc-dimension $0$.
-Their shatter function is identically $1$.
+\item[a.] A bipartite graph of the form $A\times\V$ for some $A\subseteq\U$ shatters only the empty set, therefore it has \vc-dimension $0$.
+Its shatter function is identically $1$.
 \item[b.] Let $\Phi$ be a non trivial partition of $\U$.
 Then only singletons are shattered, so the \vc-dimension is $1$.
 The shatter function is $\pi_\Phi(n)=\min\big\{n,|\Phi|\big\}$.

@@ -29,7 +29,7 @@ A sample is a sequence of elements of $\U$ where we disregard the order and only
 Formally, a \emph{sample\/} is a \emph{multi-subset of $\U$}, that is is a function $A:\U\to\NN$. 
 
 We interpret $A(x)$ as the \emph{multiplicity\/} of the element $x\in\U$.
-The \emph{support\/} of $A$ is the set \emph{$\supp(A)$}$=\{x:A(x)\neq0\}$.
+The \emph{support\/} of a multi-set $A$ is the set \emph{$\supp(A)$}$=\{x:A(x)\neq0\}$.
 The \emph{size of $A$\/} is defined as
 
 \ceq{\hfill\emph{$|A|$}}{=}{\sum_{x\in\U} A(x).}
@@ -49,7 +49,7 @@ Note that $|A|=|A\cap C|+|A\sm C|$.
 The definitions above and those in next sections easily generalize to \emph{fractional multi-sets\/} i.e., function $A:\U\to\RR$ with non negative values.
 These will have some applications in the next chapters.
 
-As an alternative to multi-sets, we could use the following approach. Replace $\U$ with $\U'=\U\times\omega$ and $\Phi$ with $\Phi'=\{\B\times\omega\ :\ \B\in\Phi\}$. Then $\U'$ contains infinitely many copies of each element of $\U$. These copies are indistinguishable by sets in $\Phi'$. Then to every finite subset of $A\subseteq\U'$ we can associate a multi-subset of $\U$. (The correspondence is not one-to-one, but this is not relevant for the intended applications.)
+As an alternative to multi-sets, we could use the following approach. Replace each element of $\U$ with many copies which are indistinguishable by sets in $\Phi'$. Say replace $\U$ with $\U'=\U\times\omega$ and replace $\Phi$ with $\Phi'=\{\B\times\omega\ :\ \B\in\Phi\}$. Then to every finite subset of $A\subseteq\U'$ we can associate a multi-subset of $\U$: the multiplicity of $x\in\U$ is the number of elements in the fiber of $x$ that occur in $A$.  Though the correspondence is not one-to-one, this is sufficient for the intended applications.
 
 
 If $\B\subseteq\U$ we define the \emph{frequency\/} of $\B$ over $A$
