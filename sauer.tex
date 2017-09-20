@@ -23,7 +23,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Two equivalent frameworks}\label{vc_dimension}
 
-Let $\U$ and $\V$ be two sets and let $\phi\subseteq \U\times\V$ be a binary relation.
+Let $\U$ and $\V$ be two sets and let $\phi\subseteq \U\times\V$ be a non-empty binary relation.
 In other words $\phi$ is a \emph{bipartite graph}.
 We may call $\phi$ an (abstract) \emph{incidence relation\/} and write $\phi(x,y)$ for $\<x,y\>\in\phi$.
 Sets of the form
@@ -134,12 +134,12 @@ Then $A$ is shattered by $\Phi$ if $\P A=\Phi{\restriction} A$. The shatter func
 
 \begin{example}\label{ex_vcdim}
 \begin{itemize}
-\item[a.] A bipartite graph of the form $A\times\V$ for some $A\subseteq\U$ shatters only the empty set, therefore it has \vc-dimension $0$.
+\item[a.] A bipartite graph of the form $A\times\V$ for some $\0\neq A\subseteq\U$ shatters only the empty set, therefore it has \vc-dimension $0$.
 Its shatter function is identically $1$.
-\item[b.] Let $\Phi$ be a non trivial partition of $\U$.
+\item[b.] Let $\Phi$ be a non-trivial partition of $\U$.
 Then only singletons are shattered, so the \vc-dimension is $1$.
-The shatter function is $\pi_\Phi(n)=\min\big\{n,|\Phi|\big\}$.
-\item[c.] If $\Phi$ is a non trivial chain of subsets of $\U$ the situation is identical to that described in \ssf{b}.
+The shatter function is $\pi_\Phi(n)=\min\big\{n+1,|\Phi|\big\}$.
+\item[c.] If $\Phi$ is a non-trivial chain of subsets of $\U$ the situation is identical to that described in \ssf{b}.
 \item[d.] Let $\U=\RR$ and let $\Phi$ be the collection of open intervals.
 Any set of 2 points is shattered but no set with 3 points can.
 So the \vc-dimension is $2$.
@@ -303,7 +303,7 @@ In particular $\phi$ shatters every finite subset of a definable set.
 \end{proposition}
 
 \begin{proof}
-If for contradiction $\psi(\U,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
+If for contradiction $\phi(\U,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
 \end{proof}
 
 
@@ -360,13 +360,13 @@ By Proposition~\ref{prop_conservative}, $|\Psi|=|\Phi|$.\QED
 Define $E_{\phi,a}\subseteq\V^2$ as the set of e pairs $\<b',b\>$ such that $\phi(\U,b')\subseteq_a\phi(\U,b)$. 
 Note incidentally that $E_{\phi,a}$ is the graph of a partial injections of $\V$ into itself. 
 
+We call $\displaystyle E_\phi=\bigcup_{a\in U}E_{\phi,a}$ the unit distance diagraph of $\phi$. 
+
 \begin{proposition}\label{prop_udd1} 
-Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $E_\phi\subseteq E_{\psi}$
+Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $E_{\phi}\subseteq E_{\psi}$
 \end{proposition}
 \begin{proof}Both the range and the domain of $E_{\phi,a}$ are disjoint from $B_{\phi,a}$.
 \end{proof}
-
-We call $\displaystyle E_\phi=\bigcup_{a\in U}E_{\phi,a}$ the unit distance diagraph of $\phi$. 
 
 \begin{proposition}
 Let $\phi$ be a finite extensional incidence relation with \vc-dimension $k$.
