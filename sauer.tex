@@ -23,9 +23,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Two equivalent frameworks}\label{vc_dimension}
 
-Let $\U$ and $\V$ be two sets and let $\phi\subseteq \U\times\V$ be a non-empty binary relation.
-In other words $\phi$ is a \emph{bipartite graph}.
-We may call $\phi$ an (abstract) \emph{incidence relation\/} and write $\phi(x,y)$ for $\<x,y\>\in\phi$.
+Let $\U$ and $\V$ be two sets. 
+A binary relation $\phi\subseteq \U\times\V$ is identified with a \emph{bipartite graph}.
+We may call $\phi$ an \emph{(abstract or generalized) incidence relation\/} and write $\phi(x,y)$ for $\<x,y\>\in\phi$.
 Sets of the form
 
 \ceq{\hfill\emph{$\phi(\U,b)$}}{=}{\{a\in\U:\phi(a,b)\}}
@@ -115,7 +115,7 @@ Vice versa, to a bipartite graph $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$,
 We say that a bipartite graph is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
 The correspondence between extensional incidence relations and set systems is one-to-one.
 In general, the correspondence is many-to-one.
-Even when we are interested set systems, in the proof it may be convenient to consider non extensional a bipartite graphs associated to these. So, my switch from one formalism to the other according to which one is more convenient.
+Even when we are interested set systems, in the proof it may be convenient to consider non extensional a bipartite graphs associated to these. So, we use the formalism which is most convenient in a given context.
 
 The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
 We repeat this explicitly in order to set the notation. Define
@@ -134,9 +134,9 @@ Then $A$ is shattered by $\Phi$ if $\P A=\Phi{\restriction} A$. The shatter func
 
 \begin{example}\label{ex_vcdim}
 \begin{itemize}
-\item[a.] A bipartite graph of the form $A\times\V$ for some $\0\neq A\subseteq\U$ shatters only the empty set, therefore it has \vc-dimension $0$.
+\item[a.] A bipartite graph of the form $A\times\V$ for some $A\subseteq\U$ shatters only the empty set, therefore it has \vc-dimension $0$.
 Its shatter function is identically $1$.
-\item[b.] Let $\Phi$ be a non-trivial partition of $\U$.
+\item[b.] Let $\Phi$ be a collection of disjoint subsets $\U$.
 Then only singletons are shattered, so the \vc-dimension is $1$.
 The shatter function is $\pi_\Phi(n)=\min\big\{n+1,|\Phi|\big\}$.
 \item[c.] If $\Phi$ is a non-trivial chain of subsets of $\U$ the situation is identical to that described in \ssf{b}.
@@ -295,15 +295,14 @@ When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subseteq_{a}\kern-1
 
 \ceq{\hfill\emph{$B_{\phi,a}$}}{=}{\big\{b\ :\ \phi(a,b)\ {\rm and}\ \neg\E b'\,\phi(\U,b')\subseteq_a\phi(\U,b)\big\}}
 
-We say that $\phi$ is \emph{compressed\/} if $B_{\phi,a}=\0$ for every $a\in\U$.
+We say that $\phi$ is \emph{compressed in $A$\/} if $B_{\phi,a}=\0$ for every $a\in A$.
 
 \begin{proposition}\label{prop_compressed} 
-If $\phi$ is compressed then any co-finite subset of a definable set is definable.
-In particular $\phi$ shatters every finite subset of a definable set.
+Let $A$ be finite. If $\phi$ is compressed in $A$ then $\phi$ shatters every definable subset of $A$.
 \end{proposition}
 
 \begin{proof}
-If for contradiction $\phi(\U,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
+We claim that any subset of a definable subsets of $A$ is definable. If for contradiction $\phi(A,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
 \end{proof}
 
 
@@ -320,13 +319,15 @@ Then $\phi(a,b)\niff\phi(a,b')$, say $ \phi(a,b)$ and $\neg \phi(a,b')$.
 Then $\phi(\U,b')\subseteq_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
 So $\psi(a,b)$ and $\neg \psi(a,b')$.
 
-$\PMI$\quad Assume $\psi(\U,b)\neq\psi(\U,b')$. 
-Again, we may also assume that $\psi(\U\sm\{a\},b)=\psi(\U\sm\{a\},b')$.
-Then $\psi(a,b)\niff\psi(a,b')$, say $\psi(a,b)$ and $\neg\psi(a,b')$.
-As $\phi(a,b)$ is clear, we only have to prove that $\neg\phi(a,b')$.
-Suppose for a contradiction that $\phi(a,b')$.
-Then $b'\in B_{\phi,a}$.
-This is a contradiction as $\psi(\U,b)\subseteq_a\psi(\U,b')$.
+$\PMI$\quad If $\phi(\U,b)=\phi(\U,b')$ then $b\in B_{\phi,a}$ if and only if $b'\in B_{\phi,a}$.
+Then it is clear that $\psi(\U,b)=\psi(\U,b')$.
+%Assume $\psi(\U,b)\neq\psi(\U,b')$. 
+% Again, we may also assume that $\psi(\U\sm\{a\},b)=\psi(\U\sm\{a\},b')$.
+% Then $\psi(a,b)\niff\psi(a,b')$, say $\psi(a,b)$ and $\neg\psi(a,b')$.
+% As $\phi(a,b)$ is clear, we only have to prove that $\neg\phi(a,b')$.
+% Suppose for a contradiction that $\phi(a,b')$.
+% Then $b'\in B_{\phi,a}$.
+% This is a contradiction as $\psi(\U,b)\subseteq_a\phi(\U,b')$.
 \end{proof}
 
 
@@ -348,22 +349,20 @@ Therefore $\psi(A,b)=\phi(A,b')$.
 
 
 \begin{void_thm}[Second proof of Pajor's Lemma]\label{proof2_Pajor}\rm
-Let $\phi$ be a finite extensional incidence relation associated to $\Phi$.
-Let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm \{a\}{\times}B_{\phi_i,a}$ for some $a$.
-As $\phi$ is finite, we can assume that at some stage $n$ we obtain a compressed relation $\psi=\phi_n$.
-Let $\Psi$ be the set of $\psi$-definable sets.
-By Proposition~\ref{prop_compressed}, $\Psi$ shatters at least $|\Psi|$ sets.
-By Proposition~\ref{prop_shattered}, every set shattered by $\Psi$ is shattered by $\Phi$.
-By Proposition~\ref{prop_conservative}, $|\Psi|=|\Phi|$.\QED
+Let $\phi_0=\phi$ and $\phi_{i+1}=\phi_i\sm \{a\}{\times}B_{\phi_i,a}$ for some $a\in A$.
+As $A$ is finite, we can assume that at some stage $n$ we obtain a relation $\psi=\phi_n$ that is compressed in $A$.
+By Proposition~\ref{prop_compressed}, $\psi$ shatters all sets in $\psi(A,b)_{b\in\V}$.
+By Proposition~\ref{prop_shattered}, every set shattered by $\psi$ is shattered by $\phi$.
+By Proposition~\ref{prop_conservative}, $|\psi(A,b)_{b\in\V}|=|\phi(A,b)_{b\in\V}|$.\QED
 \end{void_thm}
 
-Define $E_{\phi,a}\subseteq\V^2$ as the set of e pairs $\<b',b\>$ such that $\phi(\U,b')\subseteq_a\phi(\U,b)$. 
+Finally, we present an other application of the shifting methods. Define $E_{\phi,a}\subseteq\V^2$ as the set of e pairs $\<b',b\>$ such that $\phi(\U,b')\subseteq_a\phi(\U,b)$. 
 Note incidentally that $E_{\phi,a}$ is the graph of a partial injections of $\V$ into itself. 
 
-We call $\displaystyle E_\phi=\bigcup_{a\in U}E_{\phi,a}$ the unit distance diagraph of $\phi$. 
+We call $\displaystyle E_{\phi,A}=\bigcup_{a\in A}E_{\phi,a}$ the unit distance diagraph of $\phi$ in $A$. 
 
 \begin{proposition}\label{prop_udd1} 
-Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $E_{\phi}\subseteq E_{\psi}$
+Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$. Then $E_{\phi,A}\subseteq E_{\psi,A}$
 \end{proposition}
 \begin{proof}Both the range and the domain of $E_{\phi,a}$ are disjoint from $B_{\phi,a}$.
 \end{proof}
