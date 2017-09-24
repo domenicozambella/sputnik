@@ -16,6 +16,8 @@
 \def\mr{\color{brown}}
 \def\gr{\color{green}}
 
+\def\separatore{\hfil o \rule[0.5ex]{4ex}{0.1ex} o \rule[0.5ex]{4ex}{0.1ex} o}
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -33,21 +35,48 @@ Sets of the form
 are called \emph{definable sets\/} or, when more than one relation is involved, \emph{$\phi$-definable sets}.
 The collection of all definable sets is denoted by \emph{$\phi(\U,b)_{b\in\V}$}.
 
-Often we need to consider the \emph{trace\/} of a definable set on some arbitrary $A\subseteq\U$
+An alternative formalism uses \emph{set-systems\/} in place of bipartite graphs.
+A set system is a collection $\Phi$ of subsets of $\U$.
+We denote a set system by \emph{$(\U,\Phi)$} or, as $\U$ is fixed throughout the following, simply by \emph{$\Phi$}.
+The set system $\Phi=\phi(\U,b)_{b\in\V}$ is canonically associated to the bipartite graph $\phi$.
+Vice versa, from the set-system $\Phi$ we obtain a bipartite graph $\phi\subseteq\U\times\Phi$ by stipulating that for every $a\in\U$ and every $\B\in\Phi$ 
+
+\ceq{\hfill\phi(a,\B)}{\IFF}{a\in\B.}
+
+We say that a relation is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
+The correspondence between extensional relations and set systems is one-to-one.
+Non-extensional set-systems sometimes offers some technical advantages even when we are mainly interested in the set-system associated.
+
+\separatore
+
+Often we will consider the intersection of the definable sets with some some $A\subseteq\U$.
+The set  $A\cap\B$ is called the \emph{trace\/} of $\B$ on $A$.
+The set of all traces is denoted by
+
+\ceq{\hfill\emph{$\Phi{\restriction} A$}}{=}{\big\{A\cap\B\ \ :\ \ \B\in \Phi\big\}.}
+
+Using bipartite graphs the trace of $\phi(\U,b)$ on $A$ is denoted by
 
 \ceq{\hfill\emph{$\phi(A,b)$}}{=}{\{a\in A:\phi(a,b)\}.}
 
-We call this a \emph{definable subset of $A$\/} and denote by \emph{$\phi(A,b)_{b\in\V}$\/} the collection of definable subsets on $A$.
+We call this a \emph{definable subset of $A$}.
+We denote by \emph{$\phi(A,b)_{b\in\V}$\/} the collection of definable subsets on $A$.
 
-Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ defined by 
+\separatore
+
+Given $A\subseteq\U$ define the equivalence relation $\equiv_{\phi,A}$ on $\V$ defined by 
 
 \ceq{\hfill\emph{$b\equiv_{\phi,A} b'$}}{\IFF}{\phi(a,b)\iff\phi(a,b')}\quad for all $a\in A$;
 
 \ceq{}{\IFF}{\phi(A,b)=\phi(A,b').}
 
-The $\equiv_{\phi,A}$-equivalence class are called \emph{types over $A$}. We denote by $S_\phi(A)$ the set types over $A$. As there is a one-to-one correspondence between definable subsets and types, $|S_\phi(A)|=|\phi(A,b)_{b\in\V}|$. 
+The $\equiv_{\phi,A}$-equivalence class are called \emph{types over $A$}. We denote by $S_\phi(A)$ the set types over $A$. As there is a one-to-one correspondence between definable subsets and types.
+In particular $|S_\phi(A)|=|\phi(A,b)_{b\in\V}|$.
 
-If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in\V}$, we say that $A$ is \emph{shattered\/} by $\phi$. Paraphrase the the definition,  $A$ is shattered by $\phi$ if fr every $C\subseteq A$ there is a $b_C\in\V$ such that $C=\phi(A,b_C)$.
+\separatore
+
+If all subsets of $A$ are definable, that is $\P A=\phi(A,b)_{b\in\V}$ we say that $A$ is \emph{shattered\/} by $\phi$.
+Paraphrase the the definition,  $A$ is shattered by $\phi$ if fr every $C\subseteq A$ there is a $b_C\in\V$ such that $C=\phi(A,b_C)$.
 
 The following is called the \emph{shatter function\/}
 
@@ -59,14 +88,34 @@ The following is called the \emph{shatter function\/}
 
 So, $\pi_\phi(n)$ gives the maximal number of definable subsets that a set of cardinality $n$ may have.
 Trivially, $\pi_\phi(n)\le2^n$ for all $n$.
-Moreover, if $\pi_\phi(k)=2^k$ for some $k$, then $\pi_\phi(n)=2^n$ for every $n\le k$.
+Moreover, if $\pi_\phi(n)=2^n$ for some $n$, then $\pi_\phi(k)=2^k$ for every $k\le n$.
 
-The dual relation $\phi^*$ is the relation on $\V\times\U$ which is sometimes denoted by $\phi^{-1}$.
+Rephrase the definitions above with the notation of set-systems $A$.
+The set $A$ is shattered by $\Phi$ if $\P A=\Phi{\restriction} A$.
+The shatter function \emph{$\pi_\Phi(n)$\/} is
+
+\ceq{\hfill\emph{$\pi_\Phi(n)$}}{=}{\max\bigg\{\big|\Phi{\restriction} A\big|\ \ :\ \ A\in {\U\choose n}\bigg\}.}
+
+
+\separatore
+
+The \emph{dual relation\/} $\phi^*$ is the relation on $\V\times\U$ which is sometimes denoted by $\phi^{-1}$.
 Then dual scattering function is defined as follows (with the obvious meaning of the notation) 
 
 \ceq{\hfill\emph{$\pi^*_\phi(n)$}}{=}{\max\bigg\{|\phi(a,B)_{a\in\U}|\ \ :\ \ B\in {\V\choose n}\bigg\}}
 
 \ceq{}{=}{\max\bigg\{\kern2ex|S_{\phi^*}(B)|\kern2.2ex\ \ :\ \  B\in {\V\choose n}\bigg\}.}
+
+In the formalism of set-systems the latter definition translate into
+ 
+\ceq{\hfill\emph{$\pi^*_\Phi(n)$}}{=}{\max\bigg\{|\U/\Sigma|\ \ :\ \ \Sigma\in {\Phi\choose n}\bigg\}}
+
+Where $\U/\Sigma$ is the quotient of $\U$ with the equivalence relation $a\in\B\iff a'\in\B$ for all $\B\in\Sigma$.
+
+
+\separatore
+
+The following definition isolates the class of set-systems we are interested in. 
 
 \begin{definition}\label{def_VCdim}
 The \emph{Vapnik-Cher\-vo\-nen\-kis dimension\/} of $\phi$, abbreviated by \emph{\vc-dimension}, is the maximal cardinality of a finite set $A\subseteq\U$ that is shattered by $\phi$.
@@ -104,33 +153,6 @@ Let $a_i=a_{\{I\subseteq k\,:\, i\in I\}}$. Then from the equivalence above we o
 
 That is, $\phi$ shatters $\{a_i\,:\,i<k\}$.
 \end{proof}
-
-An alternative formalism uses \emph{set systems\/} in place of bipartite graphs.
-A set system is a collection $\Phi$ of subsets of some set $\U$.
-We denote a set system by \emph{$(\U,\Phi)$}.
-Given a set system, we immediately obtain a bipartite graph.
-Fix any $\V$ containing $\Phi$ and define $\phi(x,y)$ as $x\in y\in\Phi$.
-
-Vice versa, to a bipartite graph $\phi$ we associate $\Phi=\phi(\U,b)_{b\in\V}$, the set system of the definable subsets of $\U$.
-We say that a bipartite graph is \emph{extensional\/} if $\phi(\U,b)=\phi(\U,b')$ implies $b,b'\in\V$.
-The correspondence between extensional incidence relations and set systems is one-to-one.
-In general, the correspondence is many-to-one.
-Even when we are interested set systems, in the proof it may be convenient to consider non extensional a bipartite graphs associated to these. So, we use the formalism which is most convenient in a given context.
-
-The \emph{\vc-dimension of $\Phi$} is defined to be that of the associated incidence relation.
-We repeat this explicitly in order to set the notation. Define
-
-
-\ceq{\hfill\emph{$\Phi{\restriction} A$}}{=}{\big\{A\cap\B\ \ :\ \ \B\in \Phi\big\}.}
-
-Then $A$ is shattered by $\Phi$ if $\P A=\Phi{\restriction} A$. The shatter function \emph{$\pi_\Phi(n)$\/} is
-
-\ceq{\hfill\emph{$\pi_\Phi(n)$}}{=}{\max\bigg\{\big|\Phi{\restriction} A\big|\ \ :\ \ A\in {\U\choose n}\bigg\}.}
-
-
-
-%An incidence relation is \emph{reduced\/} if $\phi(\U,b')=\phi(\U,b'')$ implies $b'=b''$ and, dually, $\phi(a',V)=\phi(a'',V)$ implies $a'=a''$.
-%By quotienting and taking representatives, we can always find a reduced relation with the same shattering function.
 
 \begin{example}\label{ex_vcdim}
 \begin{itemize}
@@ -173,6 +195,9 @@ Saharon Shelah was working in model theory while Norbert Sauer, Vladimir Vapnik 
 
 We shall present three proofs of this lemma, one in this section and two in the next section. I am aware of a forth proof which uses linear algebra, see e.g.~\cite{gowers}. 
 
+Some notation: we write $\phi(A,b)$\emph{$\,\subset_a\,$}$\phi(A,b')$ if $\phi(a,b')$ and $\phi(A,b)=\phi(A,b')\sm\{a\}$.
+
+
 \begin{proposition}[(Sauer-Shelah's Lemma)]\label{prop_Sauer}
 If $\phi$ has \vc-dimension $k$ then for every $n\ge k$
 
@@ -191,11 +216,11 @@ We prove by induction on $n$ that for every $A$ of cardinality $n$
 If $n=k$ the r.h.s.\@ of the inequality above is $2^n$ and the claim is trivial.
 So, assume the claim is true for $n-1$ and let $A$ have cardinality $n$.
 Fix some $a\in A$ and let $A'=A\sm\{a\}$.
-We can assume that $\phi(A,b)\simdiff\phi(A,b')=\{a\}$ for some $b,b'$, otherwise $\big|\phi(A,b)_{b\in\V}\big|=\big|\phi(A',b)_{b\in\V}\big|$ and the claim follows immediately from the induction hypothesis.
+We can assume that $\phi(A,b)\subset_a\phi(A,b')$ for some $b,b'$, otherwise $\big|\phi(A,b)_{b\in\V}\big|=\big|\phi(A',b)_{b\in\V}\big|$ and the claim follows immediately from the induction hypothesis.
 
 Define a new incidence relation
 
-\ceq{\hfill\psi(x,y)}{=}{x\in A'\ \wedge\ \phi(x,y)\ \wedge\ \E y'\, \Big[\phi(A,y)\simdiff\phi(A,y')=\{a\}\Big].}
+\ceq{\hfill\psi(x,y)}{=}{\phi(x,y)\ \wedge\ \E y'\, \Big[\phi(A,y')\subset_a\phi(A,y)\Big].}
 
 %\ceq{\hfill\psi(x,y)}{=}{\phi(x,y)\ \wedge\ \E y'\, \Big[\phi(A,y')\sm\phi(A,y)=\{a\}\Big].}
 
