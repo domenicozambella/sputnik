@@ -9,7 +9,7 @@
 
 
 \def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
-\def\ceq#1#2#3{\parbox[t]{25ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+\def\ceq#1#2#3{\parbox[t]{22ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
 
 \definecolor{brown}{RGB}{150, 50, 10}
 \definecolor{green}{RGB}{10,120, 20}
@@ -185,7 +185,7 @@ Then $\Phi$ has infinite \vc-dimension.\QED
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Sauer-Shelah Lemma}
+\section{A first proof of the Sauer-Shelah Lemma}
 
 According to Gil Kalai in~\cite{kalai}, Sauer-Shelah's Lemma can been described as an \textit{eigentheorem\/} because it is important in many different areas of mathematic (model theory, learning theory, probability theory, ergodic theory, Banach spaces, to name a few).
 No wonder it has been discovered and rediscovered may times.
@@ -228,7 +228,7 @@ Note that if $A''$ is shattered by $\psi$ then $A''\cup\{a\}$ it is shattered by
 Then the \vc-dimension of $\psi$ is at most $k-1$.
 We also have that
 
-\ceq{\hfill\big|\phi(A,b)_{b\in\V}\big|}{=}{\big|\phi(A',b)_{b\in\V}\big|\ +\ \big|\psi(A',b)_{b\in\V}\big|.}
+\ceq{\hfill\big|\phi(A,b)_{b\in\V}\big|}{=}{\big|\phi(A',b)_{b\in\V}\big|\ +\ \big|\psi(A,b)_{b\in\V}\big|.}
 
 Hence by induction hypothesis
 
@@ -316,9 +316,11 @@ The method has been introduced by Erd\H{o}s, Ko and Rado to prove their eponymou
 They named it \textit{compression}, but is also known as \textit{shifting}.
 
 
-When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subseteq_{a}\kern-1.5pt A$}. We write
+For $a\in A\subseteq\U$, we write 
 
-\ceq{\hfill\emph{$B_{\phi,a}$}}{=}{\big\{b\ :\ \phi(a,b)\ {\rm and}\ \neg\E b'\,\phi(\U,b')\subseteq_a\phi(\U,b)\big\}}
+
+\ceq{\hfill\emph{$B_{\phi,a}$}}{=}{\big\{b\in\V\ :\ \phi(a,b) {\rm\ and\ }\phi(\U,b)\sm\{a\} {\rm\ is\ not\ definable}\big\}.}
+
 
 We say that $\phi$ is \emph{compressed in $A$\/} if $B_{\phi,a}=\0$ for every $a\in A$.
 
@@ -327,7 +329,7 @@ Let $A$ be finite. If $\phi$ is compressed in $A$ then $\phi$ shatters every def
 \end{proposition}
 
 \begin{proof}
-We claim that any subset of a definable subsets of $A$ is definable. If for contradiction $\phi(A,b)\sm\{a\}$ is not definable, then $b\in B_{\phi,a}$.
+We claim that every subset of a definable subsets of $A$ is definable. As $A$ is finite it suffices to show that for every $\phi(A,b)\sm\{a\}$ is a definable subset of $A$ for any $a\in A$. Suppose not, then  $\phi(\U,b)\sm\{a\}$ is not definable and $b\in B_{\phi,a}$ contradicting the compression of $\phi$.
 \end{proof}
 
 
@@ -341,8 +343,9 @@ Then
 $\IMP$\quad Assume $\phi(\U,b)\neq\phi(\U,b')$.
 We may also assume that $\phi(\U\sm\{a\},b)=\phi(\U\sm\{a\},b')$, otherwise $\psi(\U,b)\neq\psi(\U,b')$ is immediate.
 Then $\phi(a,b)\niff\phi(a,b')$, say $ \phi(a,b)$ and $\neg \phi(a,b')$.
-Then $\phi(\U,b')\subseteq_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
-So $\psi(a,b)$ and $\neg \psi(a,b')$.
+Then $\phi(\U,b')\subset_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
+So $\psi(a,b)$. 
+As $\neg \psi(a,b')$ follows from $\neg \phi(a,b')$ we obtain $\psi(\U,b)\neq\psi(\U,b')$.
 
 $\PMI$\quad If $\phi(\U,b)=\phi(\U,b')$ then $b\in B_{\phi,a}$ if and only if $b'\in B_{\phi,a}$.
 Then it is clear that $\psi(\U,b)=\psi(\U,b')$.
@@ -352,7 +355,7 @@ Then it is clear that $\psi(\U,b)=\psi(\U,b')$.
 % As $\phi(a,b)$ is clear, we only have to prove that $\neg\phi(a,b')$.
 % Suppose for a contradiction that $\phi(a,b')$.
 % Then $b'\in B_{\phi,a}$.
-% This is a contradiction as $\psi(\U,b)\subseteq_a\phi(\U,b')$.
+% This is a contradiction as $\psi(\U,b)\subset_a\phi(\U,b')$.
 \end{proof}
 
 
@@ -368,7 +371,7 @@ We may assume that $a\in A$.
 If $\psi(a,b)$ then we may chose $b=b'$.
 So, assume $\neg\psi(a,b)$.
 As $\psi$ shatters $A$ then there is $c$ such that $\psi(A,c)=\psi(A,b)\cup\{a\}$.
-Then $\E b'\,\phi(\U,b')\subseteq_a\phi(\U,c)$.
+Then $\E b'\,\phi(\U,b')\subset_a\phi(\U,c)$.
 Therefore $\psi(A,b)=\phi(A,b')$.
 \end{proof}
 
@@ -381,7 +384,7 @@ By Proposition~\ref{prop_shattered}, every set shattered by $\psi$ is shattered 
 By Proposition~\ref{prop_conservative}, $|\psi(A,b)_{b\in\V}|=|\phi(A,b)_{b\in\V}|$.\QED
 \end{void_thm}
 
-Finally, we present an other application of the shifting methods. Define $E_{\phi,a}\subseteq\V^2$ as the set of e pairs $\<b',b\>$ such that $\phi(\U,b')\subseteq_a\phi(\U,b)$. 
+Finally, we present an other application of the shifting methods. Define $E_{\phi,a}\subseteq\V^2$ as the set of the pairs $\<b',b\>$ such that $\phi(\U,b')\subset_a\phi(\U,b)$. 
 Note incidentally that $E_{\phi,a}$ is the graph of a partial injections of $\V$ into itself. 
 
 We call $\displaystyle E_{\phi,A}=\bigcup_{a\in A}E_{\phi,a}$ the unit distance diagraph of $\phi$ in $A$. 
@@ -399,7 +402,7 @@ Then $|E_\phi|\le k\,|\V|$.
 
 \begin{proof}
 Let $\psi$ be as defined in Proof~\ref{proof2_Pajor}.
-By Propositions~\ref{prop_compressed} and~\ref{prop_shattered}, every $b\in\V$ has at most $k$ ancestors.
+By Propositions~\ref{prop_compressed} and~\ref{prop_shattered}, every $b\in\V$ has at most $k$ many $b'$ such that $\<b'b\>\in E_\psi$.
 Therefore
 
 \ceq{\hfill\frac{|E_\phi|}{|\V|}}{\le}{\frac{|E_\psi|}{|\V|}\medrel{\le}k}
@@ -470,11 +473,11 @@ Then $\psi'=\psi\sm A'{\times}\{b\}$ satisfies \ssf{\#} contradicting the minima
 
 %When $\psi\subseteq\phi$ and $\phi\sm\psi=\{\<a,b\>\}$, we write \emph{$\psi\subseteq_{\<a,b\>}\kern-1.5pt\phi$}.
 
-When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subseteq_{a}\kern-1.5pt A$}.
+When $A'\subseteq A$ and $A\sm A'=\{a\}$, we write \emph{$A'\subset_a\kern-1.5pt A$}.
 
 \begin{proposition} Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$ where
 
-\ceq{\hfill B_{\phi,a}}{=}{\big\{b\ : \neg\E b'\,\phi(\U,b')\subseteq_a\phi(\U,b)\big\}}
+\ceq{\hfill B_{\phi,a}}{=}{\big\{b\ : \neg\E b'\,\phi(\U,b')\subset_a\phi(\U,b)\big\}}
 
 Then $\psi$ satisfy \ssf{\#\#}.
 \end{proposition}
@@ -483,7 +486,7 @@ Then $\psi$ satisfy \ssf{\#\#}.
 $\IMP$\quad Assume $\phi(\U,b)\neq\phi(\U,b')$. 
 We may also assume that $\phi(\U\sm\{a\},b)=\phi(\U\sm\{a\},b')$, otherwise $\psi(\U,b)\neq\psi(\U,b')$ is immediate.
 Then $\phi(a,b)\niff\phi(a,b')$, say $ \phi(a,b)$ and $\neg \phi(a,b')$.
-Then $\phi(\U,b')\subseteq_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
+Then $\phi(\U,b')\subset_a\phi(\U,b)$ and $b\notin B_{\phi,a}$.
 So $\psi(a,b)$ and $\neg \psi(a,b')$.
 
 $\PMI$\quad Assume $\psi(\U,b)\neq\psi(\U,b')$. 
@@ -492,7 +495,7 @@ Then $\psi(a,b)\niff\psi(a,b')$, say $\psi(a,b)$ and $\neg\psi(a,b')$.
 As $\phi(a,b)$ is clear, we only have to prove that $\neg\phi(a,b')$. 
 Suppose for a contradiction that $\phi(a,b')$. 
 Then $b'\in B_{\phi,a}$.
-This is a contradiction as $\psi(\U,b)\subseteq_a\psi(\U,b')$.
+This is a contradiction as $\psi(\U,b)\subset_a\psi(\U,b')$.
 \end{proof}
 
 
