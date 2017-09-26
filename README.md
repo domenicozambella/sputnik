@@ -1,10 +1,14 @@
 # [Topics on Vapnik-Chervnenkis theory](https://github.com/domenicozambella/sputnik/raw/master/sputnik.pdf)
 
-Notes for a series of lectures.
 
-Steer clear of it (for the time being).
+These notes are a digested read of (a fraction of) <a rel="external" href="http://www.math.ucla.edu/~chernikov/teaching/Combinatorics285N/CombinatoricsNotes.pdf">Artem Chernicov's Topics in combinatorics</a>.<br/><br/>
+
+
+They are intended to support the students of my course in Turin, fall 2017 (some proofs are different from Chernikov's). However, they are less complete and less reliable than Chernicov's notes which I recommend as the main source. 
 
 This is **very messy** work-in-progress.
+
+Steer clear of it (for the time being).
 
 
 ## Table of contents
