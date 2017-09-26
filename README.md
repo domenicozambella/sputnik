@@ -1,4 +1,4 @@
-# [Topics on Vapnik-Chervnenkis theory](https://github.com/domenicozambella/sputnik/raw/master/sputnik.pdf)
+# [Topics on Vapnik-Chervonenkis theory](https://github.com/domenicozambella/sputnik/raw/master/sputnik.pdf)
 
 
 These notes are a digested read of (a fraction of) <a rel="external" href="http://www.math.ucla.edu/~chernikov/teaching/Combinatorics285N/CombinatoricsNotes.pdf">Artem Chernicov's Topics in combinatorics</a>.
