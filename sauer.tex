@@ -272,20 +272,25 @@ Then
 
 \section{Pajor variant and the method of shifting}
 
+\def\ceq#1#2#3{\parbox[t]{30ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
 An alternative proof of the Sauer-Shelah's Lemma derives it as corollary of a lemma by Alain Pajor~\cite{pajor}.
 %The proof below is credited to Noga Alon by Kalai~\cite{kalai}, to (many) others by~\cite{ARS}.
 
 \begin{proposition}[(Pajor's Lemma)]\label{prop_Pajor}
 Let $A\subseteq\U$ be finite.
-Then $\phi$ shatters at least $|S_\phi(A)|$ subsets of $A$.
+
+\ceq{\hfill|\phi(A,b)_{b\in\V}|}{\le}{\#\{C\subseteq A\; :\; C \textrm{\ is\ shattered\ by\ }\phi\}}.
 \end{proposition}
 
-We show how Sauer-Shelah's Lemma follows from Pajor's Lemma.
-Fix a set $A\subseteq\U$ of cardinality $n$ such that $\pi_\phi(n)=\big|S_\phi(A)\big|$.
-By Pajor's Lemma there are $|S_\phi(A)|$ subsets of $A$ shattered by $\phi$.
-These subsets cannot have cardinality larger than the \vc-dimension of $\phi$, then 
+We show how Sauer-Shelah's Lemma follows from Pajor's Lemma. If $\phi$ has \vc-dimension $k$ then
 
-\ceq{\hfill\pi_\phi(n)}{=}{|\phi(A,b)_{b\in\V}|\medrel{\le}\left|\bigcup^k_{i=0}{A\choose i}\right|\medrel{=}\sum^k_{i=0} \binom{n}{i}.}
+\ceq{\hfill\{C\subseteq A\; :\; C\textrm{\ shattered\ by\ }\phi\}}{\subseteq}{\bigcup^k_{i=0}{A\choose i}}.
+
+Then by  Pajor's Lemma
+
+\ceq{\hfill\pi_\phi(n)\medrel{=}|\phi(A,b)_{b\in\V}|}{\le}{\left|\bigcup^k_{i=0}{A\choose i}\right|\medrel{=}\sum^k_{i=0} \binom{n}{i}.}
+
 
 \begin{proof}
 If $A$ is empty then $|S_\phi(A)|=1$ and $\0$ is the only subset of $A$ that $\phi$ shatters.
@@ -310,7 +315,10 @@ If no set is shattered by both $\Phi_i$, the claim follows immediately.
 Otherwise, note that for each set shattered by both $\Phi_i$ there are two sets shattered by $\Phi$, one containing $a$ and one not containing $a$.
 The claim follows.
 \end{proof}
- 
+
+\def\ceq#1#2#3{\parbox[t]{22ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
+
+
 We give different proof of Pajor's Lemma by a method which is interesting in itself because of its many applications.
 The method has been introduced by Erd\H{o}s, Ko and Rado to prove their eponymous theorem.
 They named it \textit{compression}, but is also known as \textit{shifting}.
@@ -318,9 +326,7 @@ They named it \textit{compression}, but is also known as \textit{shifting}.
 
 For $a\in\U$, we write 
 
-
 \ceq{\hfill\emph{$B_{\phi,a}$}}{=}{\big\{b\in\V\ :\ \phi(a,b) {\rm\ and\ }\phi(\U,b)\sm\{a\} {\rm\ is\ not\ definable}\big\}.}
-
 
 We say that $\phi$ is \emph{compressed in $A$\/} if $B_{\phi,a}=\0$ for every $a\in A$.
 
@@ -331,7 +337,6 @@ Let $A$ be finite. If $\phi$ is compressed in $A$ then $\phi$ shatters every def
 \begin{proof}
 We claim that every subset of a definable subsets of $A$ is definable. As $A$ is finite it suffices to show that for every $\phi(A,b)\sm\{a\}$ is a definable subset of $A$ for any $a\in A$. Suppose not, then  $\phi(\U,b)\sm\{a\}$ is not definable and $b\in B_{\phi,a}$ contradicting the compression of $\phi$.
 \end{proof}
-
 
 \begin{proposition}\label{prop_conservative} Let $\psi=\phi\sm\{a\}{\times}B_{\phi,a}$.
 Then
