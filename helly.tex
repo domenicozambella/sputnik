@@ -136,9 +136,9 @@ A multi-set over $\U$ is a naturally associated to a vector $0\le x\in\RR^m$.
 A multi-set over $\U$ is associated to a vector $0\le y\in\RR^n$.
 Then it is easy to verify that
 
-\ceq{\hfill\tau^*(\phi)}{=}{\min\,\big\{\,1_n^{\rm T}\;x\ :\ \ F\,x\ge 1_m,\ 0\le x\}.}
+\ceq{\hfill\tau^*(\phi)}{=}{\min\,\big\{\,1_n^{\rm T}\;x\ :\ \ F\,x\ge 1_m,\ 0\le x\};}
 
-\ceq{\hfill\nu^*(\phi)}{=}{\max\big\{\,1_n^{\rm T}\ y\,\  :\ F^{\rm T}y\le 1_n,\,\  0\le y\};}
+\ceq{\hfill\nu^*(\phi)}{=}{\max\big\{\,1_n^{\rm T}\ y\,\  :\ F^{\rm T}y\le 1_n,\,\  0\le y\}.}
 
 Therefore, by he duality of linear programming  $\nu^*(\phi)=\tau^*(\phi)$.
 
@@ -160,16 +160,13 @@ For any $k,\epsilon>0$, every measure on a set system $\Phi$ of \vc-dimension $\
 \end{proposition}
 
 \begin{proof}
-We only prove a weaker bound by observing that every $\epsilon$-approximation is in particular an $\epsilon$-net. Hence from Proposition~\ref{corol_epsilon_approx} we obtain an $\epsilon$-net of cardinality  $\displaystyle\le c\,(d/\epsilon^2)\,\ln(1/\epsilon)$.
+We only prove a weaker bound by observing that every $\epsilon$-approximation is in particular an $\epsilon$-net. Hence from Proposition~\ref{corol_epsilon_approx} we obtain an $\epsilon$-net of cardinality $\displaystyle\le c\,(k/\epsilon^2)\,\ln(k/\epsilon)$.
 \end{proof}
-
-
-
 
 \begin{proposition}\label{prop_bound_fractional_trans}
 Let $\Phi$ be a finite set system with \vc-dimension $\le k$. Then 
 
-\ceq{\hfill\tau(\Phi)}{\le}{ c\,\tau^*(\Phi)\,\ln\tau^*(\Phi)}
+\ceq{\hfill\tau(\Phi)}{\le}{ c\,k\,\tau^*(\Phi)\,\ln\tau^*(\Phi)}
 
 where $c$ is an absolute constant.
 \end{proposition}
@@ -181,7 +178,7 @@ After normalizing, $A$ defines a probability measure on $\U$ concentrated on $\s
 Namely, $\Pr(\{x\})=(1/r)A(x)$ for all $x\in\U$.
 By the definition of fractional transversal every set in $\Phi$ has measure at last $1/r$.
 Therefore every $(1/r)$-net is a transversal.
-By Proposition~\ref{prop_nets} we obtain a transversal of cardinality $\le c r \ln r$.
+By Proposition~\ref{prop_nets} we obtain a transversal of cardinality $\le c\,k\, r \ln r$.
 \end{proof}
 
 \section{Helly-type properies}

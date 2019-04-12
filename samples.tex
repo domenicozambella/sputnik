@@ -58,7 +58,7 @@ If $\B\subseteq\U$ we define the \emph{frequency\/} of $\B$ over $A$
 
 Note that $\Fr(\cdot/A)$ is a probability measure on $\U$.
 
-If $\Pr$ is a probability measure on $\U$. An \emph{$\epsilon$-approximation\/} of $\Pr$ is a sample $C$ such that  
+If $\Pr$ is a probability measure on $\U$. An \emph{$\epsilon$-approximation\/} of $\Pr$ is a sample $C$ such that for every definable set $\B$ 
 
 \ceq{\hfill\displaystyle \Big|\Pr(\B) - \Fr(\B/C)\Big|}{\le}{\epsilon}
 
@@ -124,7 +124,7 @@ We also have
 
 \ceq{\ssf{2.}\hfill(*)}{=}{\frac{|C\cap\B)|}{n^+}\big(1+\delta_{A,C,\U}\big)\,-\,\delta_{A,C,\B}}
 
-\ceq{}{\ge}{\frac{|C\cap\B|}{n^+}\ -\ 2\delta_{A,C}}
+\ceq{}{\ge}{\frac{|C\cap\B|}{n^+}\ -\ \delta_{A,C}}
 
 Combining \ssf{1} and \ssf{2} we obtain\smallskip
 
@@ -143,21 +143,20 @@ We say that a tuple $a=\<a_1,\dots,a_n\>\in\U^n$ is an \emph{enumeration\/} of t
 
 \ceq{\hfill A(x)}{=}{\big|\{i\ :\ a_i=x\}\big|.}
 
-Clearly, all enumerations of $A$ have length $n=|A|$. We write \emph{$\range(a)$} for the sample enumerated by $a$.
+Clearly, all enumerations of $A$ have length $n=|A|$.% We write \emph{$\range(a)$} for the sample enumerated by $a$.
 
-\def\spl{{\rm smpl}}
 
-Fix an enumeration $a=\<a_1,\dots,a_n\>$ of $A$. A tuple $c=\<c_1,\dots,c_n\>\in\{-1,+1\}^n$ is called a \emph{coloring}. To each coloring $c$ we associate a subsample of $A$, which we denote by \emph{$\spl(a,c) $}. It assigns to $x\in\U$ multiplicity $\big|\{i : a_i=x,\ c_i=+1\}\big|$.
+Fix an enumeration $a=\<a_1,\dots,a_n\>$ of $A$. A tuple $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is called a \emph{coloring}. To each coloring $c$ we associate the subsample $C_{a,c}\subseteq A$ which assigns to $x\in\U$ multiplicity $\big|\{i : a_i=x,\ c_i=+1\}\big|$.
 
 Note that the quantity 
 
 \ceq{\hfill\Delta_{a,c,\B}}{=}{\sum_{a_i\in\B}c_i.}
 
-coincide with the discrepancy of $\spl(a,c)$ over $\B$.
+coincides with $\Delta_{A,C_{a,c},\B}$.
 
-There is probability measure on the subsamples of $A$ which is computationally convenient. We assume that $C=\spl(a,c)$ where $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obtained tossing $n$ times a fair coin. 
+There is probability measure on the subsamples of $A$ which is computationally convenient. We assume that $C=C_{a,c}$ where $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obtained tossing $n$ times a fair coin.
 
-That is, we assume an uniform distribution on the colorings and this induces a multivariate binomial distribution on the subsamples. Note that this distribution s independent of the enumeration of $A$.
+That is, we assume an uniform distribution on the colorings and this induces a multivariate binomial distribution on the subsamples. Note that this distribution is independent of the enumeration of $A$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +170,6 @@ Let $X$ be a random variable with finite mean
 
 \ceq{\hfill\Pr\Big(X\ge\epsilon\Big)}{\le}{\frac{{\rm E}(X)}{\epsilon}}
 \end{void_thm}
-
 
 \begin{proof}
 For simplicity, we will assume that the sample space $\Omega$ is finite. Define $A=\{a\in\Omega\,:\, X(a)>\epsilon\}$.
@@ -231,7 +229,7 @@ We want to prove a better bound for the Weak Law of Large Numbers. So, we need t
 
 
 \begin{lemma}[(Chernoff's bound)]\label{Chernoff}
-For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i=\pm1)=1/2$.
+For $i=1,\dots,n$ let $X_i$ be independent identically distributed random variables such that\/ $\Pr(X_i{=}1)=\Pr(X_i{=}{-}1)=1/2$.
 Then for every $\epsilon>0$
 
 \ceq{\hfill \Pr\big(M\ge\epsilon\big)}{\le}{\exp\Big(-\frac{\epsilon^2}{2n}\Big)}\hfill where $\displaystyle M=\sum^n_{i=1}X_i$
@@ -374,9 +372,9 @@ We will not prove this theorem. The main result of this chapter is the following
 
 \begin{corollary}\label{corol_epsilon_approx}
 \def\ceq#1#2#3{\parbox[t]{20ex}{$\displaystyle #1$}\medrel{#2}{$\displaystyle #3$}}
-Assume $\Phi$ has \vc-density $d$. Then every sample $A$ has an $\epsilon$-approximation of size 
+Assume $\Phi$ has \vc-dimension $k$. Then every sample $A$ has an $\epsilon$-approximation of size 
 
-\ceq{\hfill n}{\le}{c\,\frac{d}{\epsilon^{\scriptscriptstyle 2}}\ln\frac1\epsilon}
+\ceq{\hfill n}{\le}{c\,\frac{k}{\epsilon^{\scriptscriptstyle 2}}\ln\frac k\epsilon}
 
 where $c$ is an absolute constant.
 \end{corollary}
@@ -418,11 +416,11 @@ Fix an enumeration $a$ of $A$. Suppose $c=\<c_1,\dots,c_n\>\in\{\pm1\}^n$ is obt
 
 \ceq{\rm By\ the\ Chernoff's\ bound}{\Uparrow}{} 
 
-\ceq{\hfill\exp(-\frac{\epsilon^2}{2|\B|})}{\le}{\frac1{m+2}.}
+\ceq{\hfill\exp(-\frac{\epsilon^2}{2|\B\cap A|})}{\le}{\frac1{m+2}.}
 
 \ceq{}{\Updownarrow}{} 
 
-\ceq{\hfill2|\B|\ln(m+2)}{\le}{\epsilon^2}
+\ceq{\hfill2|\B\cap A|\ln(m+2)}{\le}{\epsilon^2}
 
 As $|\B|\le n$, the latter is clearly true.
 \end{proof}
@@ -435,35 +433,35 @@ Then
 
 \ceq{\hfill\epsilon_{h}}{=}{2\sum^h_{i=1}\delta_i}
 
-Let $h$ be the largest such that $\epsilon_h\le\epsilon$. The theorem claims that $\displaystyle 2^{-h}n_0\le c\,(d/\epsilon^2)\log(1/\epsilon)$, independently of $n_0$. 
+Let $h$ be the largest such that $\epsilon_h\le\epsilon$. The theorem claims that $\displaystyle 2^{-h}n_0\le c\,(k/\epsilon^2)\log(1/\epsilon)$, independently of $n_0$. 
 
 
-\ceq{\hfill2\sum^h_{i=1}\delta_i}{\le}{2\sum^h_{i=1}\sqrt{(2/n_i)\ln(n_i^d+2)}}
+\ceq{\hfill2\sum^h_{i=1}\delta_i}{\le}{2\sum^h_{i=1}\sqrt{(2/n_i)\ln(e\,n_i^k+2)}}
 
 and, as $n_i=2^{-i}n_0$, the sum above is proportional to its largest term,
 
-\ceq{}{\le}{c\sqrt{(d/n_h)\ln(n_h)}}
+\ceq{}{\le}{c\sqrt{(k/n_h)\ln(n_h)}}
 
 Hence a sufficient condition for $\epsilon_h<\epsilon$ is 
 
-\ceq{\hfill c\sqrt{(d/n_h)\ln(n_h)}}{\le}{\epsilon}
+\ceq{\hfill c\sqrt{(k/n_h)\ln(n_h)}}{\le}{\epsilon}
 
 which is equivalent to
 
-\ceq{\hfill \frac{c^2 d}{\epsilon^2}}{\le}{\frac{n_h}{\ln n_h}}
+\ceq{\hfill \frac{c^2 k}{\epsilon^2}}{\le}{\frac{n_h}{\ln n_h}}
 
 Let $h$ be the maximal (or, $n_h$ the minimal) that satisfies this inequality. Hence
 
 
-\ceq{\hfill \frac{c^2 d}{\epsilon^2}}{>}{\frac{n_{h+1}}{\ln n_{h+1}}}
+\ceq{\hfill \frac{c^2 k}{\epsilon^2}}{>}{\frac{n_{h+1}}{\ln n_{h+1}}}
 
 By Proposition~\ref{prop_disequazione}
 
-\ceq{\hfill n_{h+1}}{\le}{ 2\frac{c^2 d}{\epsilon^2}\ln\frac{c^2 d}{\epsilon^2}}
+\ceq{\hfill n_{h+1}}{\le}{ 2\frac{c^2 k}{\epsilon^2}\ln\frac{c^2 k}{\epsilon^2}}
 
 hence 
 
-\ceq{\hfill n_h}{\le}{ 4\frac{c^2 d}{\epsilon^2}\ln\frac{c^2 d}{\epsilon^2}}
+\ceq{\hfill n_h}{\le}{ 4\frac{c^2 k}{\epsilon^2}\ln\frac{c^2 k}{\epsilon^2}}
 
 
 which proves the theorem.
